@@ -59,9 +59,9 @@ void check_mouse_menu_three(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 700 && mouse.y < 780)
-        press_button(rpg, MINUS_MUSIC);
+        press_button(rpg, PLUS_MUSIC);
     else
-        release_button(rpg, MINUS_MUSIC);
+        release_button(rpg, PLUS_MUSIC);
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 700 && mouse.y < 780)
         press_button(rpg, MINUS_MUSIC);
@@ -69,9 +69,9 @@ void check_mouse_menu_three(rpg_t *rpg, sfVector2i mouse)
         release_button(rpg, MINUS_MUSIC);
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 300 && mouse.y < 380)
-        press_button(rpg, MINUS_EFFECT);
+        press_button(rpg, PLUS_EFFECT);
     else
-        release_button(rpg, MINUS_EFFECT);
+        release_button(rpg, PLUS_EFFECT);
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 300 && mouse.y < 380)
         press_button(rpg, MINUS_EFFECT);
