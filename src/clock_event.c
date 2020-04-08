@@ -20,7 +20,7 @@ void last_check(rpg_t *rpg)
 
 void change_background_menu_rect(rpg_t *rpg)
 {
-    if (rpg->menu[17].rect.top < 4494 && rpg->menu[17].rect.left != 5130)
+    if (rpg->menu[17].rect.top < 4494 && rpg->menu[17].rect.left < 5132)
         if (rpg->menu[17].rect.left < 4104)
             rpg->menu[17].rect.left += 1026;
         else {

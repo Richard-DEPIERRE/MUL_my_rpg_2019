@@ -74,7 +74,7 @@ void set3(rpg_t *rpg, char **name)
     rpg->menu[16] = create_object("assets/sprites/menu/minus.png",
     (sfVector2f){1160, 700}, (sfIntRect){0, 0, 200, 200}, MINUS_MUSIC);
     rpg->menu[17] = create_object("assets/sprites/menu/background_menu.png",
-    (sfVector2f){-40, -40}, (sfIntRect){0, 0, 1026, 642}, BACKGROUND);
+    (sfVector2f){-10, -10}, (sfIntRect){0, 0, 1026, 642}, BACKGROUND);
     for (int i = 0; i < 14; i += 1)
         make_text(&rpg->text[i], name[i], "assets/fonts/virus2.TTF");
     for (int i = 0; i < 3; i += 1)
