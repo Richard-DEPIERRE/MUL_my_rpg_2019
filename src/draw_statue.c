@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "rafik.h"
+#include "rpg.h"
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
@@ -19,5 +20,8 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_drawSprite(win, obj->sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->player.sprite, NULL);
         sfRenderWindow_display(win);
+    }
+    if (rpg->status == 4) {
+        display_fights(rpg, win);
     }
 }

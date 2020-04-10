@@ -18,19 +18,14 @@ void create_window(rpg_t *rpg)
 
 void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
 {
-    rpg->screen = malloc(sizeof(screen_t));
-    init_particle_environment(&rpg->screen->particle_environment, \
-    (sfVector2f){PARICULE_ANGLE_MIN, PARICULE_ANGLE_MAX}, \
-    (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
-    //ici on set tout ce qui est sprite en début de programme
+    init_variables_for_particules(rpg);
+    init_variables_for_fights(&rpg->fight);
     set_menu_sprites(rpg);
     rpg->delete_me_too = sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);
-    // rpg->delete_me_too = sfTexture_createFromFile("assets/maps/map.png", NULL);
     rpg->delete_me_too = sfTexture_createFromFile("map/Map.png", NULL);
     rpg->delete_me = sfSprite_create();
     sfSprite_setTexture(rpg->delete_me, rpg->delete_me_too, sfTrue);
     sfSprite_setScale(rpg->delete_me, (sfVector2f) {2, 2});
-    // obj->texture = sfTexture_createFromFile("map/Map.png", NULL);
     obj->texture = sfTexture_createFromFile("map/Map.png", NULL);
     obj->sprite = sfSprite_create();
     sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
@@ -43,7 +38,7 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 0;
+    rpg->status = 4;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;

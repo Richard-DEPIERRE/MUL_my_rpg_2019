@@ -37,6 +37,40 @@ typedef struct clock_c
     float second;
 } clock_s;
 
+typedef struct player_fight_s
+{
+    sfSprite *player;
+    sfTexture *player_texture;
+
+    sfIntRect rect;
+    sfVector2f pos;
+    int direction;
+    int life;
+}player_fight_t;
+
+typedef struct ennemies
+{
+    sfSprite *enn;
+    sfTexture *enn_texture;
+
+    clock_s clock;
+
+    sfIntRect rect;
+    sfVector2f pos;
+    int life;
+    int tmp;
+}ennemies_t;
+
+typedef struct fight_s
+{
+    sfSprite *background;
+    sfTexture *background_texture;
+
+    player_fight_t player;
+    ennemies_t *enns;
+    int nb_enn;
+}fight_t;
+
 typedef struct player_s
 {
     sfSprite *sprite;
@@ -53,6 +87,7 @@ typedef struct rpg_s
     sfRenderWindow *win;
     sfEvent evnt;
     screen_t *screen;
+    fight_t *fight;
 
     game_obj_R_t *menu;
     text_R_t *text;
@@ -67,10 +102,6 @@ typedef struct rpg_s
 
     sfSprite *delete_me;
     sfTexture *delete_me_too;
-
-    // sfClock *clock;
-    // sfTime time;
-    // float sec;
 
     player_t player;
 
@@ -97,6 +128,8 @@ int my_strlen(char const *str);
 int my_putstr(char const *str);
 
 //menu
+void init_variables_for_particules(rpg_t *rpg);
+void init_variables_for_fights(fight_t *fight);
 void set_menu_sprites(rpg_t *rpg);
 void menu_destroy(rpg_t *rpg);
 void click_menu(rpg_t *rpg, sfVector2i mouse);
@@ -108,6 +141,11 @@ void set2(rpg_t *rpg, char **name);
 void initialize_text(rpg_t *rpg, char **name);
 void check_mouse_pos_menu(rpg_t *rpg);
 void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
+
+//fight
+void display_fights(fight_t *fight, sfRenderWindow *win);
+void update_fights(fight_t *fight);
+void draw_fights(fight_t *fight, sfRenderWindow *win);
 
 
 #endif /* !RPG_H_ */

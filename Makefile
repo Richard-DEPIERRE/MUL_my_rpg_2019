@@ -31,6 +31,10 @@ SRC	=	src/clics_handlings.c		\
 		src/menu/particules.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
+		src/init.c					\
+		src/fight/draw_fights.c		\
+		src/fight/fights.c			\
+		src/fight/update_fights.c	\
 
 SRC2 =	tests/test_main.c		\
 
