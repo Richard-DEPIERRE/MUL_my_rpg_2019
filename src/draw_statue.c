@@ -22,6 +22,6 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_display(win);
     }
     if (rpg->status == 4) {
-        display_fights(rpg, win);
+        display_fights(rpg->fight, win);
     }
 }
