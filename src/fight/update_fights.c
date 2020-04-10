@@ -51,12 +51,8 @@ void ennemies_deplacements(fight_t *fight)
         float x = fight->enns[i].pos.x - fight->player.pos.x;
         float y = fight->enns[i].pos.y - fight->player.pos.y;
 
-
-        fight->enns[i].pos.x = x;
-        fight->enns[i].pos.y = y;
-
-        float truc1 = (fight->enns[i].pos.x / distance) * 2;
-        float truc2 = (fight->enns[i].pos.y / distance) * 2;
+        float truc1 = (x / distance) * 1.59;
+        float truc2 = (y / distance) * 1.59;
 
         fight->enns[i].pos.x -= truc1;
         fight->enns[i].pos.y -= truc2;
