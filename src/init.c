@@ -44,7 +44,7 @@ void init_variables_for_particules(rpg_t *rpg)
     (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
 }
 
-void init_variables_for_fights(fight_t *fight)
+fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
     fight->enns = malloc(sizeof(ennemies_t) * 5);
@@ -67,4 +67,5 @@ void init_variables_for_fights(fight_t *fight)
     sfSprite_setPosition(fight->player.player, (sfVector2f){0, 0});
     sfSprite_setTexture(fight->player.player, fight->player.player_texture, sfTrue);
     sfSprite_setTextureRect(fight->player.player, (sfIntRect){52, 0, 1920, 1080});
+    return (fight);
 }

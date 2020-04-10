@@ -19,7 +19,7 @@ void create_window(rpg_t *rpg)
 void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
 {
     init_variables_for_particules(rpg);
-    init_variables_for_fights(rpg->fight);
+    rpg->fight = init_variables_for_fights(rpg->fight);
     set_menu_sprites(rpg);
     rpg->delete_me_too = sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);
     rpg->delete_me_too = sfTexture_createFromFile("map/Map.png", NULL);

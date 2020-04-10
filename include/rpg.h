@@ -129,7 +129,7 @@ int my_putstr(char const *str);
 
 //menu
 void init_variables_for_particules(rpg_t *rpg);
-void init_variables_for_fights(fight_t *fight);
+fight_t *init_variables_for_fights(fight_t *fight);
 void set_menu_sprites(rpg_t *rpg);
 void menu_destroy(rpg_t *rpg);
 void click_menu(rpg_t *rpg, sfVector2i mouse);
