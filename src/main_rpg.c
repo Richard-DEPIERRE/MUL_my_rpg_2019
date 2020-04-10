@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "rafik.h"
+#include "rpg.h"
 
 void create_window(rpg_t *rpg)
 {
@@ -17,6 +18,10 @@ void create_window(rpg_t *rpg)
 
 void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
 {
+    rpg->screen = malloc(sizeof(screen_t));
+    init_particle_environment(&rpg->screen->particle_environment, \
+    (sfVector2f){PARICULE_ANGLE_MIN, PARICULE_ANGLE_MAX}, \
+    (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
     //ici on set tout ce qui est sprite en début de programme
     set_menu_sprites(rpg);
     rpg->delete_me_too = sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);

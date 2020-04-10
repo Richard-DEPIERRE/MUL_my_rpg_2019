@@ -28,6 +28,7 @@
 #include <errno.h>
 #include <math.h>
 #include "richard.h"
+#include "particule.h"
 
 typedef struct clock_c
 {
@@ -51,6 +52,7 @@ typedef struct rpg_s
 {
     sfRenderWindow *win;
     sfEvent evnt;
+    screen_t *screen;
 
     game_obj_R_t *menu;
     text_R_t *text;
@@ -106,5 +108,6 @@ void set2(rpg_t *rpg, char **name);
 void initialize_text(rpg_t *rpg, char **name);
 void check_mouse_pos_menu(rpg_t *rpg);
 void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
+
 
 #endif /* !RPG_H_ */

@@ -45,5 +45,8 @@ void draw_menu(rpg_t *rpg, sfRenderWindow *win)
             sfRenderWindow_drawText(win, rpg->text[i].text, NULL);
     }
     draw_menu2(rpg, win);
+    for (size_t index = 0; index != PARICULE_MAX; index++)
+            display_particle(win, &rpg->screen->particle[index], \
+            rpg->screen->particle_environment.circle_shape);
     sfRenderWindow_display(win);
 }

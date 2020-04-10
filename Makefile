@@ -7,7 +7,7 @@
 
 CC		=	gcc
 
-CFLAGS	=	-W -Wall -Wextra -lcsfml-graphics -lcsfml-audio -lcsfml-window -lcsfml-system -g3 -I./include
+CFLAGS	=	-W -Wall -Wextra -lcsfml-graphics -lcsfml-audio -lcsfml-window -lcsfml-system -g3 -I./include -lm
 
 SRC	=	src/clics_handlings.c		\
 		src/clock_event.c			\
@@ -28,6 +28,7 @@ SRC	=	src/clics_handlings.c		\
 		src/menu/menu_destroy.c		\
 		src/menu/menu_set_sprites.c	\
 		src/menu/menu_set2.c		\
+		src/menu/particules.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
 
