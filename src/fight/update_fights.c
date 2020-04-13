@@ -33,15 +33,18 @@ void animate_enemy(ennemies_t *ennemies)
 {
     ennemies->clock.time = sfClock_getElapsedTime(ennemies->clock.clock);
     ennemies->clock.second = ennemies->clock.time.microseconds / 1000000.0;
-    if (ennemies->clock.second > 0.5) {
-        if (ennemies->tmp == 0 || ennemies->tmp == 1)
-            ennemies->rect.left += 54;
-        else {
-            ennemies->rect.left -= 104;
-            ennemies->tmp = -1;
+    if (ennemies->clock.second > 0.2) {
+        printf("ennemies->tmp : %d\n", ennemies->tmp);
+        if (ennemies->tmp == 0 || ennemies->tmp == 1) {
+            ennemies->rect.left += 50;
+            ennemies->tmp += 1;
+        } else {
+            ennemies->rect.left -= 100;
+            ennemies->tmp = 0;
         }
+        printf("top : %d | left : %d\n", ennemies->rect.top, ennemies->rect.left);
+        sfClock_restart(ennemies->clock.clock);
     }
-    ennemies->tmp += 1;
 }
 
 void ennemies_deplacements(fight_t *fight)
@@ -58,6 +61,7 @@ void ennemies_deplacements(fight_t *fight)
         fight->enns[i].pos.y -= truc2;
         where_to_move(&fight->enns[i], truc1, truc2);
         animate_enemy(&fight->enns[i]);
+        printf("AFTER : top : %d | left : %d\n\n", fight->enns[i].rect.top, fight->enns[i].rect.left);
         sfSprite_setTextureRect(fight->enns[i].enn, fight->enns[i].rect);
         sfSprite_setPosition(fight->enns[i].enn, fight->enns[i].pos);
     }

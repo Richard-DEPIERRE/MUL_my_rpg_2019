@@ -27,10 +27,12 @@ ennemies_t set_enn(int i)
     if (i % 2 == 0) {
         enn.rect.left = 0;
     } else
-        enn.rect.left = 210;
+        enn.rect.left = 150;
     sfSprite_setTextureRect(enn.enn, enn.rect);
     enn.pos.x = generate_random(100, 1820);
     enn.pos.y = generate_random(100, 980);
+    enn.tmp = 0;
+    enn.clock.clock = sfClock_create();
     printf("pos initiale : %f | %f\n", enn.pos.x, enn.pos.y);
     sfSprite_setPosition(enn.enn, enn.pos);
     sfSprite_setOrigin(enn.enn, (sfVector2f) {25, 35});
@@ -66,7 +68,5 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->nb_enn = 5;
     for (int i = 0; i < 5; i++)
         fight->enns[i] = set_enn(i);
-    // sfSprite_setPosition(fight->player.player, (sfVector2f){0, 0});
-    // sfSprite_setTextureRect(fight->player.player, (sfIntRect){52, 0, 1920, 1080});
     return (fight);
 }
