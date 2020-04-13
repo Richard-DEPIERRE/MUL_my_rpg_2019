@@ -7,11 +7,24 @@
 
 #include "rpg.h"
 
+void reset_ennemies(fight_t *fight)
+{
+    fight->nb_enn = generate_random(2, 5);
+    for (int i = 0; i < 5; i++) {
+        fight->enns[i].in_live = 1;
+        fight->enns[i].life = 1;
+        fight->enns[i].tmp = 0;
+        fight->enns[i].pos.x = generate_random(100, 1820);
+        fight->enns[i].pos.y = generate_random(100, 980);
+    }
+}
+
 void check_end_fight(fight_t *fight, rpg_t *rpg)
 {
     int count = 0;
 
     if (fight->player.life == 0) {
+        reset_ennemies(fight);
         printf("Player est mort\nGo Afficher écran de Game Over\n");
         rpg->status = 0; // ce status correspondra à l'écran de game over
     }
@@ -21,6 +34,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
         }
     }
     if (count == fight->nb_enn) {
+        reset_ennemies(fight);
         printf("Player a bien gagné son combat\n");
         rpg->status = 3; //le joueur revient au jeu
     }

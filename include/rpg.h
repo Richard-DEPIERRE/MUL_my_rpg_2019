@@ -127,6 +127,7 @@ void clock_event(rpg_t *rpg, clock_s *clock);
 //lib
 int my_strlen(char const *str);
 int my_putstr(char const *str);
+int generate_random(int l, int r);
 
 //menu
 void init_variables_for_particules(rpg_t *rpg);
