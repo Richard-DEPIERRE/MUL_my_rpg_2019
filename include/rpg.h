@@ -58,6 +58,7 @@ typedef struct ennemies
     sfIntRect rect;
     sfVector2f pos;
     int life;
+    int in_live;
     int tmp;
 }ennemies_t;
 
@@ -143,7 +144,7 @@ void check_mouse_pos_menu(rpg_t *rpg);
 void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
 
 //fight
-void display_fights(fight_t *fight, sfRenderWindow *win);
+void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void update_fights(fight_t *fight);
 void draw_fights(fight_t *fight, sfRenderWindow *win);
 void player_deplacements(fight_t *fight);

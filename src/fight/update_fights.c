@@ -50,20 +50,21 @@ void animate_enemy(ennemies_t *ennemies)
 void ennemies_deplacements(fight_t *fight)
 {
     for (int i = 0; i < fight->nb_enn; i++) {
-        float distance = get_distance(fight->enns[i].pos, fight->player.pos);
-        float x = fight->enns[i].pos.x - fight->player.pos.x;
-        float y = fight->enns[i].pos.y - fight->player.pos.y;
+        if (fight->enns[i].in_live == 1) {
+            float distance = get_distance(fight->enns[i].pos, fight->player.pos);
+            float x = fight->enns[i].pos.x - fight->player.pos.x;
+            float y = fight->enns[i].pos.y - fight->player.pos.y;
 
-        float truc1 = (x / distance) * 0.7;
-        float truc2 = (y / distance) * 0.7;
+            float truc1 = (x / distance) * 0.7;
+            float truc2 = (y / distance) * 0.7;
 
-        fight->enns[i].pos.x -= truc1;
-        fight->enns[i].pos.y -= truc2;
-        where_to_move(&fight->enns[i], truc1, truc2);
-        animate_enemy(&fight->enns[i]);
-        printf("AFTER : top : %d | left : %d\n\n", fight->enns[i].rect.top, fight->enns[i].rect.left);
-        sfSprite_setTextureRect(fight->enns[i].enn, fight->enns[i].rect);
-        sfSprite_setPosition(fight->enns[i].enn, fight->enns[i].pos);
+            fight->enns[i].pos.x -= truc1;
+            fight->enns[i].pos.y -= truc2;
+            where_to_move(&fight->enns[i], truc1, truc2);
+            animate_enemy(&fight->enns[i]);
+            sfSprite_setTextureRect(fight->enns[i].enn, fight->enns[i].rect);
+            sfSprite_setPosition(fight->enns[i].enn, fight->enns[i].pos);
+        }
     }
 }
 

@@ -32,6 +32,7 @@ ennemies_t set_enn(int i)
     enn.pos.x = generate_random(100, 1820);
     enn.pos.y = generate_random(100, 980);
     enn.tmp = 0;
+    enn.in_live = 1;
     enn.clock.clock = sfClock_create();
     printf("pos initiale : %f | %f\n", enn.pos.x, enn.pos.y);
     sfSprite_setPosition(enn.enn, enn.pos);
