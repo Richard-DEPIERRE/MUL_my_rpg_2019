@@ -70,6 +70,7 @@ void ennemies_deplacements(fight_t *fight)
 void update_fights(fight_t *fight)
 {
     ennemies_deplacements(fight);
+    player_deplacements(fight);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox
     //en fait de tout pour le fight mise à part le draw
 }

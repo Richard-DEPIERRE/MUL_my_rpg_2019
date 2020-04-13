@@ -62,9 +62,9 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->player.pos.x = (1920 / 2) - (64 / 2);
     fight->player.pos.y = (1080 / 2) - (64 / 2);
     sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
+    sfSprite_setTexture(fight->player.player, fight->player.player_texture, sfTrue);
     sfSprite_setTextureRect(fight->player.player, fight->player.rect);
     sfSprite_setPosition(fight->player.player, fight->player.pos);
-    sfSprite_setTexture(fight->player.player, fight->player.player_texture, sfTrue);
     fight->nb_enn = 5;
     for (int i = 0; i < 5; i++)
         fight->enns[i] = set_enn(i);

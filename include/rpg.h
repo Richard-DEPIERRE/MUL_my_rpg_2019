@@ -146,6 +146,6 @@ void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void display_fights(fight_t *fight, sfRenderWindow *win);
 void update_fights(fight_t *fight);
 void draw_fights(fight_t *fight, sfRenderWindow *win);
-
+void player_deplacements(fight_t *fight);
 
 #endif /* !RPG_H_ */
