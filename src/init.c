@@ -67,6 +67,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     sfSprite_setTextureRect(fight->player.player, fight->player.rect);
     sfSprite_setPosition(fight->player.player, fight->player.pos);
     fight->nb_enn = 5;
+    srand(time(0));
     for (int i = 0; i < 5; i++)
         fight->enns[i] = set_enn(i);
     return (fight);
