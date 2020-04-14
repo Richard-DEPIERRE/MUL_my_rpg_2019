@@ -97,30 +97,37 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
         move_y(pos, obj, rpg->map, mouvement.y);
     pos.x /= 32;
     pos.y /= 32;
-    for (int i = 0; i < 140; i++) {
-        for (int j = 0; j < 140; j++) {
-            if (i == pos.y && j == pos.x) {
-                printf("\033[0;34m");
-                printf("P");
-                printf("\033[0m");
-            } else if (rpg->map[i][j] == 0) {
-                printf("\033[0;31m");
-                printf("%d", rpg->map[i][j]);
-                printf("\033[0m");
-            } else
-                printf("%d", rpg->map[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n\n");
+    // for (int i = 0; i < 140; i++) {
+    //     for (int j = 0; j < 140; j++) {
+    //         if (i == pos.y && j == pos.x) {
+    //             printf("\033[0;34m");
+    //             printf("P");
+    //             printf("\033[0m");
+    //         } else if (rpg->map[i][j] == 0) {
+    //             printf("\033[0;31m");
+    //             printf("%d", rpg->map[i][j]);
+    //             printf("\033[0m");
+    //         } else
+    //             printf("%d", rpg->map[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("\n\n");
     sfSprite_setTextureRect(obj->sprite, obj->rect);
 }
 
 void global_event(rpg_t *rpg, game_obj_t *background)
 {
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
+
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
         analyse_event(rpg);
     }
+    if (mouse.x > 20 && mouse.x < 120 && mouse.y > 20 && mouse.y < 120)
+        rpg->menu[18].rect.left = rpg->menu[18].rect.width;
+    else
+        rpg->menu[18].rect.left = 0;
+    sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
     if (sfKeyboard_isKeyPressed(sfKeyQ))
         move_rect(background, (sfVector2f) {-1, 0}, rpg);
     if (sfKeyboard_isKeyPressed(sfKeyD))

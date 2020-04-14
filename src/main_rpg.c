@@ -50,16 +50,16 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->sound_volume = 50;
     rpg->music_volume = 50;
     rpg->map = get_map();
-    for (int i = 0; i < 140; i++) {
-        for (int j = 0; j < 140; j++)
-            if (rpg->map[i][j] == 0) {
-                printf("\033[0;31m");
-                printf("%d", rpg->map[i][j]);
-                printf("\033[0m");
-            } else
-                printf("%d", rpg->map[i][j]);
-        printf("\n");
-    }
+    // for (int i = 0; i < 140; i++) {
+    //     for (int j = 0; j < 140; j++)
+    //         if (rpg->map[i][j] == 0) {
+    //             printf("\033[0;31m");
+    //             printf("%d", rpg->map[i][j]);
+    //             printf("\033[0m");
+    //         } else
+    //             printf("%d", rpg->map[i][j]);
+    //     printf("\n");
+    // }
 }
 
 void destroy(game_obj_t *obj)

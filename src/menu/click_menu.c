@@ -75,18 +75,7 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
 void click_menu(rpg_t *rpg, sfVector2i mouse)
 {
     if (rpg->menu_status == 0) {
-        if (mouse.x > 152 && mouse.x < 534 &&
-        mouse.y > 200 && mouse.y < 309.2)
-            rpg->status = 3;
-        if (mouse.x > 152 && mouse.x < 534 &&
-        mouse.y > 400 && mouse.y < 509.2)
-            rpg->status = 2;
-        if (mouse.x > 152 && mouse.x < 534 &&
-        mouse.y > 600 && mouse.y < 709.2)
-            rpg->menu_status = 1;
-        if (mouse.x > 152 && mouse.x < 534 &&
-        mouse.y > 800 && mouse.y < 909.2)
-            sfRenderWindow_close(rpg->win);
+        click_menu_zero(rpg, mouse);
     } else if (rpg->menu_status == 1)
         click_menu_one(rpg, mouse);
     else
@@ -94,5 +83,7 @@ void click_menu(rpg_t *rpg, sfVector2i mouse)
             click_menu_two(rpg, mouse);
         else if (rpg->menu_status == 3)
             click_menu_three(rpg, mouse);
+    if (rpg->menu_status == 4)
+        click_start_menu(rpg, mouse);
     check_plus_minus(rpg, mouse);
 }

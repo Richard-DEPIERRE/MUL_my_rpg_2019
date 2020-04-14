@@ -10,7 +10,7 @@
 
 void menu_destroy(rpg_t *rpg)
 {
-    for (int i = 0; i < 18; i += 1) {
+    for (int i = 0; i < 19; i += 1) {
         sfSprite_destroy(rpg->menu[i].sprite);
         sfTexture_destroy(rpg->menu[i].texture);
     }
