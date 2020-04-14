@@ -10,20 +10,6 @@
 
 #include "rpg.h"
 
-typedef struct game_obj_s
-{
-    sfSprite *sprite;
-    sfTexture *texture;
-    sfVector2f pos;
-    sfVector2f scale;
-    sfIntRect rect;
-    sfClock *clock;
-} game_obj_t;
-
-void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
-void global_event(rpg_t *rpg, game_obj_t *);
-void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
-int **get_map(void);
-char *get_next_char(int fd, char c);
+//j'ai tout bougé dans rpg.h parce que zebi c'était relou
 
 #endif /* !RAFIK_H_ */

@@ -50,6 +50,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->sound_volume = 50;
     rpg->music_volume = 50;
     rpg->map = get_map();
+    rpg->save = 0;
     // for (int i = 0; i < 140; i++) {
     //     for (int j = 0; j < 140; j++)
     //         if (rpg->map[i][j] == 0) {
@@ -73,6 +74,7 @@ int main_rpg(void)
     rpg_t *rpg = malloc(sizeof(struct rpg_s));
     clock_s clock;
     game_obj_t background;
+
 
     create_window(rpg);
     init_player(&rpg->player);

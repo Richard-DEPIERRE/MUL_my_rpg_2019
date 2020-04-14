@@ -8,12 +8,12 @@
 #include "rpg.h"
 #include "my.h"
 
-void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg)
+void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
 
     if (rpg->status == 0) {
-        click_menu(rpg, mouse);
+        click_menu(rpg, mouse, obj);
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
         35, (sfVector2f){mouse.x, mouse.y});
     }

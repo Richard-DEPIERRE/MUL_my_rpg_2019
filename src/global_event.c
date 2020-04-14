@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "rpg.h"
 #include "rafik.h"
 
 int player_deplacement(rpg_t *rpg)
@@ -28,14 +29,14 @@ int player_deplacement(rpg_t *rpg)
     return (0);
 }
 
-void analyse_event(rpg_t *rpg)
+void analyse_event(rpg_t *rpg, game_obj_t *obj)
 {
     if (rpg->evnt.type == sfEvtClosed || (rpg->evnt.type == sfEvtKeyPressed \
     && rpg->evnt.key.code == sfKeyEscape)) {
         sfRenderWindow_close(rpg->win);
     }
     if (rpg->evnt.type == sfEvtMouseButtonPressed) {
-        clics_handlings(rpg->evnt.mouseButton, rpg);
+        clics_handlings(rpg->evnt.mouseButton, rpg, obj);
     }
 }
 
@@ -121,7 +122,7 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
 
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
-        analyse_event(rpg);
+        analyse_event(rpg, background);
     }
     if (mouse.x > 20 && mouse.x < 120 && mouse.y > 20 && mouse.y < 120)
         rpg->menu[18].rect.left = rpg->menu[18].rect.width;

@@ -29,6 +29,7 @@
 #include <math.h>
 #include "richard.h"
 #include "particule.h"
+#include "rafik.h"
 
 typedef struct clock_c
 {
@@ -75,8 +76,30 @@ typedef struct rpg_s
     player_t player;
 
     int status;
+    int save;
+    // à modifier
+    int life;
+    //
 }rpg_t;
 
+
+typedef struct game_obj_s
+{
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfIntRect rect;
+    sfClock *clock;
+} game_obj_t;
+
+//rafik
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+void global_event(rpg_t *rpg, game_obj_t *);
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+int **get_map(void);
+char *get_next_char(int fd, char c);
+int init_save(rpg_t *rpg, game_obj_t *obj);
 
 //graphic
 void move_right(player_t *player);
@@ -86,7 +109,7 @@ void move_down(player_t *player);
 void move_up(player_t *player);
 void init_player(player_t *obj);
 void clic_status_zero(sfMouseButtonEvent event, sfVector2i mouse, rpg_t *rpg);
-void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg);
+void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj);
 void draw_options(rpg_t *rpg, sfRenderWindow *win);
 void draw_menu(rpg_t *rpg, sfRenderWindow *win);
 int main_rpg(void);
@@ -95,11 +118,12 @@ void clock_event(rpg_t *rpg, clock_s *clock);
 //lib
 int my_strlen(char const *str);
 int my_putstr(char const *str);
+int my_getnbr(char *str);
 
 //menu
 void set_menu_sprites(rpg_t *rpg);
 void menu_destroy(rpg_t *rpg);
-void click_menu(rpg_t *rpg, sfVector2i mouse);
+void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj);
 char *int_to_char(int nb);
 game_obj_R_t create_object(char *filepath, sfVector2f pos, sfIntRect rect, \
 enum BACK_R_s type);
@@ -111,7 +135,7 @@ void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void press_button(rpg_t *rpg, BACK_R_t type);
 void release_button(rpg_t *rpg, BACK_R_t type);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
-void click_start_menu(rpg_t *rpg, sfVector2i mouse);
+void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
 
 

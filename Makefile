@@ -21,6 +21,7 @@ SRC	=	src/clics_handlings.c		\
 		src/my_strlen.c				\
 		src/options.c				\
 		src/player_rects.c			\
+		src/save.c			\
 		src/menu/check_mouse.c		\
 		src/menu/check_mouse2.c		\
 		src/menu/click_menu.c		\

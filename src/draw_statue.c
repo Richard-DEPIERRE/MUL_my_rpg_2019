@@ -6,6 +6,7 @@
 */
 
 #include "my.h"
+#include "rpg.h"
 #include "rafik.h"
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
