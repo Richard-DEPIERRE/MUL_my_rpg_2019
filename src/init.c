@@ -61,6 +61,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->player.rect = (sfIntRect) {0, 0, 64, 64};
     fight->player.pos.x = (1920 / 2) - (64 / 2);
     fight->player.pos.y = (1080 / 2) - (64 / 2);
+    fight->player.life = 3;
     sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
     sfSprite_setTexture(fight->player.player, fight->player.player_texture, sfTrue);
     sfSprite_setTextureRect(fight->player.player, fight->player.rect);
