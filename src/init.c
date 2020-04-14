@@ -15,6 +15,7 @@ sfVector2f pos)
     fight->player.rect = rect;
     fight->player.pos = pos;
     fight->player.life = 3;
+    fight->player.weapon = SHOVEL;
     fight->player.clock.clock = sfClock_create();
     sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
     sfSprite_setTexture(fight->player.player, fight->player.player_texture,

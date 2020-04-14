@@ -68,10 +68,25 @@ void ennemies_deplacements(fight_t *fight)
     }
 }
 
+void update_weapons(fight_t *fight)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyNum1))
+        fight->player.weapon = SHOVEL;
+    if (sfKeyboard_isKeyPressed(sfKeyNum2))
+        fight->player.weapon = SPELL_ONE;
+    if (sfKeyboard_isKeyPressed(sfKeyNum3))
+        fight->player.weapon = SPELL_TWO;
+    if (sfKeyboard_isKeyPressed(sfKeyNum4))
+        fight->player.weapon = SPELL_THREE;
+    if (sfKeyboard_isKeyPressed(sfKeyNum5))
+        fight->player.weapon = SPELL_FOUR;
+}
+
 void update_fights(fight_t *fight)
 {
     ennemies_deplacements(fight);
     player_deplacements(&fight->player);
+    update_weapons(fight);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox
     //en fait de tout pour le fight mise à part le draw
 }
