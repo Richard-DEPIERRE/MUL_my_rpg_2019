@@ -16,6 +16,6 @@ void menu_destroy(rpg_t *rpg)
     }
     for (int i = 0; i < 3; i += 1)
         sfClock_destroy(rpg->clock[i].clock);
-    for (int i = 0; i < 14; i += 1)
+    for (int i = 0; i < 17; i += 1)
         sfText_destroy(rpg->text[i].text);
 }

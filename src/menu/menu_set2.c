@@ -24,6 +24,18 @@ void initialize_text3(rpg_t *rpg, char **name)
     rpg->text[13].pos.y = 700;
     rpg->text[13].type = SOUND;
     name[13] = int_to_char(rpg->sound_volume);
+    rpg->text[14].size = 50;
+    rpg->text[14].pos.x = 803;
+    rpg->text[14].pos.y = 278;
+    rpg->text[14].type = SAVE;
+    rpg->text[15].size = 50;
+    rpg->text[15].pos.x = 803;
+    rpg->text[15].pos.y = 503;
+    rpg->text[15].type = SAVE;
+    rpg->text[16].size = 50;
+    rpg->text[16].pos.x = 803;
+    rpg->text[16].pos.y = 728;
+    rpg->text[16].type = SAVE;
 }
 
 void initialize_text2(rpg_t *rpg, char **name)
@@ -65,6 +77,22 @@ void initialize_text(rpg_t *rpg, char **name)
     initialize_text2(rpg, name);
 }
 
+void make_saves(rpg_t *rpg)
+{
+    DIR *dir;
+    struct dirent *sd;
+    int tmp = 0;
+
+    if (!(dir = opendir("assets")))
+        exit(84);
+    while ((sd = readdir(dir)) != 0)
+        if (sd->d_name[my_strlen(sd->d_name) - 1] == 't' &&
+        sd->d_name[my_strlen(sd->d_name) - 2] == 'x' &&
+        sd->d_name[my_strlen(sd->d_name) - 3] == 't'){
+            make_text(&rpg->text[14 + tmp++], sd->d_name, "assets/fonts/virus2.TTF");
+        }
+}
+
 void set3(rpg_t *rpg, char **name)
 {
     rpg->menu[14] = create_object("assets/sprites/menu/button.png",
@@ -77,6 +105,7 @@ void set3(rpg_t *rpg, char **name)
     (sfVector2f){-10, -10}, (sfIntRect){0, 0, 1026, 642}, BACKGROUND);
     for (int i = 0; i < 14; i += 1)
         make_text(&rpg->text[i], name[i], "assets/fonts/virus2.TTF");
+    make_saves(rpg);
     for (int i = 0; i < 3; i += 1)
         rpg->clock[i].clock = sfClock_create();
 }

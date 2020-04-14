@@ -63,7 +63,7 @@ void set_menu_sprites(rpg_t *rpg)
 {
     rpg->clock = malloc(sizeof(*rpg->clock) * 3);
     rpg->menu = malloc(sizeof(*rpg->menu) * 19);
-    rpg->text = malloc(sizeof(*rpg->text) * 14);
+    rpg->text = malloc(sizeof(*rpg->text) * 17);
     char *name[] = {"PLAY\0", "CONTINUE\0", "OPTIONS\0", "QUIT\0", "FPS",
     "SOUND", "BACK", "FPS", "NULL", "BACK", "MUSIC", "NULL", "SOUND", "PAUSE", "NULL"};
     initialize_text(rpg, name);

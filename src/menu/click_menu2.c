@@ -24,15 +24,15 @@ void click_menu_zero(rpg_t *rpg, sfVector2i mouse)
         sfRenderWindow_close(rpg->win);
 }
 
-void click_menu_start(rpg_t *rpg, sfVector2i mouse)
+void click_start_menu(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 250 && mouse.y < 359.2)
-        rpg->menu_status = 2;
+        rpg->status = 3;
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2)
-        rpg->menu_status = 3;
+        rpg->status = 3;
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2)
-        rpg->menu_status = 0;
+        rpg->status = 3;
 }
