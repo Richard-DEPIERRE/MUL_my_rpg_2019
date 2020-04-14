@@ -42,9 +42,11 @@ typedef struct player_fight_s
     sfSprite *player;
     sfTexture *player_texture;
 
+    clock_s clock;
+
     sfIntRect rect;
     sfVector2f pos;
-    int direction;
+    int direct; //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
     int life;
 }player_fight_t;
 
@@ -59,6 +61,7 @@ typedef struct ennemies
     sfVector2f pos;
     int life;
     int in_live;
+    float velocity;
     int tmp;
 }ennemies_t;
 
@@ -148,6 +151,11 @@ void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void update_fights(fight_t *fight);
 void draw_fights(fight_t *fight, sfRenderWindow *win);
-void player_deplacements(fight_t *fight);
+void player_deplacements(player_fight_t *player);
+int dont_move_fight(player_fight_t *player);
+int move_down_fight(player_fight_t *player);
+int move_up_fight(player_fight_t *player);
+int move_left_fight(player_fight_t *player);
+int move_right_fight(player_fight_t *player);
 
 #endif /* !RPG_H_ */

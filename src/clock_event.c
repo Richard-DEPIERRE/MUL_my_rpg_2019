@@ -75,7 +75,6 @@ void clock_event(rpg_t *rpg, clock_s *clock)
         }
         sfClock_restart(rpg->player.clock.clock);
     }
-
     if (clock->second > 0.09) {
         change_background_menu_rect(rpg);
         sfClock_restart(clock->clock);

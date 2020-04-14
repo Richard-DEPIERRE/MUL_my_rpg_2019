@@ -9,33 +9,35 @@ CC		=	gcc
 
 CFLAGS	=	-W -Wall -Wextra -lcsfml-graphics -lcsfml-audio -lcsfml-window -lcsfml-system -g3 -I./include -lm
 
-SRC	=	src/clics_handlings.c		\
-		src/clock_event.c			\
-		src/draw_statue.c			\
-		src/global_event.c			\
-		src/init_player.c			\
-		src/main_rpg.c				\
-		src/main.c					\
-		src/mouse_clic_s_0.c		\
-		src/my_putstr.c				\
-		src/my_strlen.c				\
-		src/options.c				\
-		src/player_rects.c			\
-		src/menu/check_mouse.c		\
-		src/menu/check_mouse2.c		\
-		src/menu/click_menu.c		\
-		src/menu/draw_menu.c		\
-		src/menu/menu_destroy.c		\
-		src/menu/menu_set_sprites.c	\
-		src/menu/menu_set2.c		\
-		src/menu/particules.c		\
-		src/get_next_char.c			\
-		src/load_map.c				\
-		src/init.c					\
-		src/fight/draw_fights.c		\
-		src/fight/fights.c			\
-		src/fight/update_fights.c	\
-		src/fight/player_deplacements.c\
+SRC	=	src/clics_handlings.c			\
+		src/clock_event.c				\
+		src/draw_statue.c				\
+		src/global_event.c				\
+		src/init_player.c				\
+		src/main_rpg.c					\
+		src/generate_random.c 			\
+		src/main.c						\
+		src/mouse_clic_s_0.c			\
+		src/my_putstr.c					\
+		src/my_strlen.c					\
+		src/options.c					\
+		src/player_rects.c				\
+		src/menu/check_mouse.c			\
+		src/menu/check_mouse2.c			\
+		src/menu/click_menu.c			\
+		src/menu/draw_menu.c			\
+		src/menu/menu_destroy.c			\
+		src/menu/menu_set_sprites.c		\
+		src/menu/menu_set2.c			\
+		src/menu/particules.c			\
+		src/get_next_char.c				\
+		src/load_map.c					\
+		src/init.c						\
+		src/fight/draw_fights.c			\
+		src/fight/fights.c				\
+		src/fight/update_fights.c		\
+		src/fight/player_deplacements.c	\
+		src/fight/player_fight_rects.c	\
 
 SRC2 =	tests/test_main.c		\
 

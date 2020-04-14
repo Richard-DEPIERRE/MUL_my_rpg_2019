@@ -16,6 +16,8 @@ void reset_ennemies(fight_t *fight)
         fight->enns[i].tmp = 0;
         fight->enns[i].pos.x = generate_random(100, 1820);
         fight->enns[i].pos.y = generate_random(100, 980);
+        fight->enns[i].velocity = generate_random(50, 100) / 10;
+        fight->enns[i].velocity /= 10;
     }
 }
 
