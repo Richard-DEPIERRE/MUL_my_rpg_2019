@@ -29,6 +29,7 @@ SRC	=	src/clics_handlings.c		\
 		src/menu/menu_set_sprites.c	\
 		src/menu/menu_set2.c		\
 		src/menu/particules.c		\
+		src/menu/click_menu2.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
 

@@ -72,6 +72,11 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
         rpg->menu_status = 1;
 }
 
+void click_start_menu(rpg_t *rpg, sfVector2i mouse)
+{
+    printf("Change moi cette merde\n");
+}
+
 void click_menu(rpg_t *rpg, sfVector2i mouse)
 {
     if (rpg->menu_status == 0) {
