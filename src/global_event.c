@@ -90,7 +90,7 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     // pos.y += 1;
     pos.x *= 2;
     pos.y *= 2;
-    printf("\n\npos x : %d | pos y : %d\nleft = %d, top = %d\n", pos.x, pos.y, obj->rect.left, obj->rect.top);
+    //printf("\n\npos x : %d | pos y : %d\nleft = %d, top = %d\n", pos.x, pos.y, obj->rect.left, obj->rect.top);
     if (mouvement.x != 0)
         move_x(pos, obj, rpg->map, mouvement.x);
     if (mouvement.y != 0)

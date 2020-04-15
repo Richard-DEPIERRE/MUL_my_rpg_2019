@@ -34,7 +34,7 @@ void animate_enemy(ennemies_t *ennemies)
     ennemies->clock.time = sfClock_getElapsedTime(ennemies->clock.clock);
     ennemies->clock.second = ennemies->clock.time.microseconds / 1000000.0;
     if (ennemies->clock.second > 0.2) {
-        printf("ennemies->tmp : %d\n", ennemies->tmp);
+        //printf("ennemies->tmp : %d\n", ennemies->tmp);
         if (ennemies->tmp == 0 || ennemies->tmp == 1) {
             ennemies->rect.left += 50;
             ennemies->tmp += 1;
