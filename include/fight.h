@@ -14,23 +14,33 @@
 typedef struct clock_c clock_s;
 typedef struct ennemies ennemies_t;
 
+typedef enum WEAPONS
+{
+    SHOVEL,
+    SPELL_ONE,
+    SPELL_TWO,
+    SPELL_THREE,
+    SPELL_FOUR
+} WEAPONS;
+
 typedef enum spells_names_s {
     FIREBALL,
     SHIELD,
     BLABLA
 }spells_names_t;
 
-
 typedef struct player_fight_s
 {
     sfSprite *player;
     sfTexture *player_texture;
-
+    clock_s clock;
     sfIntRect rect;
     sfVector2f pos;
-    int direction;
+    int direct; //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
     int life;
-}player_fight_t;
+    WEAPONS weapon;
+} player_fight_t;
+
 
 typedef struct spell_s {
     sfSprite *sprite;

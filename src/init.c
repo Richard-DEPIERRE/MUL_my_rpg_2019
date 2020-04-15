@@ -7,9 +7,34 @@
 
 #include "rpg.h"
 
-int generate_random(int l, int r)
+void set_basics_for_fight(fight_t *fight, char *path, sfIntRect rect,
+sfVector2f pos)
 {
-    return ((rand() % (r - l + 1)) + l);
+    fight->player.player_texture = sfTexture_createFromFile(path, NULL);
+    fight->player.player = sfSprite_create();
+    fight->player.rect = rect;
+    fight->player.pos = pos;
+    fight->player.life = 3;
+    fight->player.weapon = SHOVEL;
+    fight->player.clock.clock = sfClock_create();
+    sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
+    sfSprite_setTexture(fight->player.player, fight->player.player_texture,
+    sfTrue);
+    sfSprite_setTextureRect(fight->player.player, fight->player.rect);
+    sfSprite_setPosition(fight->player.player, fight->player.pos);
+    fight->nb_enn = 5;
+}
+
+void set_enn2(ennemies_t *enn)
+{
+    enn->rect.width = 50;
+    enn->rect.height = 70;
+    enn->rect.top = 6;
+    enn->life = 1;
+    enn->velocity = generate_random(50, 100) / 10;
+    enn->velocity /= 10;
+    enn->tmp = 0;
+    enn->in_live = 1;
 }
 
 ennemies_t set_enn(int i)
@@ -20,10 +45,7 @@ ennemies_t set_enn(int i)
     enn.enn_texture = sfTexture_createFromFile(path, NULL);
     enn.enn = sfSprite_create();
     sfSprite_setTexture(enn.enn, enn.enn_texture, sfTrue);
-    enn.rect.width = 50;
-    enn.rect.height = 70;
-    enn.rect.top = 6;
-    enn.life = 1;
+    set_enn2(&enn);
     if (i % 2 == 0) {
         enn.rect.left = 0;
     } else
@@ -31,8 +53,6 @@ ennemies_t set_enn(int i)
     sfSprite_setTextureRect(enn.enn, enn.rect);
     enn.pos.x = generate_random(100, 1820);
     enn.pos.y = generate_random(100, 980);
-    enn.tmp = 0;
-    enn.in_live = 1;
     enn.clock.clock = sfClock_create();
     sfSprite_setPosition(enn.enn, enn.pos);
     sfSprite_setOrigin(enn.enn, (sfVector2f) {25, 35});
@@ -59,17 +79,9 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->spell[1].sprite = NULL;
     sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
     sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
-    fight->player.player_texture = sfTexture_createFromFile("assets/sprites/character.png", NULL);
-    fight->player.player = sfSprite_create();
-    fight->player.rect = (sfIntRect) {0, 0, 64, 64};
-    fight->player.pos.x = (1920 / 2) - (64 / 2);
-    fight->player.pos.y = (1080 / 2) - (64 / 2);
-    fight->player.life = 3;
-    sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
-    sfSprite_setTexture(fight->player.player, fight->player.player_texture, sfTrue);
-    sfSprite_setTextureRect(fight->player.player, fight->player.rect);
-    sfSprite_setPosition(fight->player.player, fight->player.pos);
-    fight->nb_enn = 5;
+    set_basics_for_fight(fight, "assets/sprites/character.png",
+    (sfIntRect) {0, 0, 64, 64}, (sfVector2f) {(1920 / 2) - (64 / 2),
+    (1080 / 2) - (64 / 2)});
     srand(time(0));
     for (int i = 0; i < 5; i++)
         fight->enns[i] = set_enn(i);

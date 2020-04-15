@@ -55,8 +55,8 @@ void ennemies_deplacements(fight_t *fight)
             float x = fight->enns[i].pos.x - fight->player.pos.x;
             float y = fight->enns[i].pos.y - fight->player.pos.y;
 
-            float truc1 = (x / distance) * 0.7;
-            float truc2 = (y / distance) * 0.7;
+            float truc1 = (x / distance) * fight->enns[i].velocity;
+            float truc2 = (y / distance) * fight->enns[i].velocity; //0.7
 
             fight->enns[i].pos.x -= truc1;
             fight->enns[i].pos.y -= truc2;
@@ -68,11 +68,26 @@ void ennemies_deplacements(fight_t *fight)
     }
 }
 
+void update_weapons(fight_t *fight)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyNum1))
+        fight->player.weapon = SHOVEL;
+    if (sfKeyboard_isKeyPressed(sfKeyNum2))
+        fight->player.weapon = SPELL_ONE;
+    if (sfKeyboard_isKeyPressed(sfKeyNum3))
+        fight->player.weapon = SPELL_TWO;
+    if (sfKeyboard_isKeyPressed(sfKeyNum4))
+        fight->player.weapon = SPELL_THREE;
+    if (sfKeyboard_isKeyPressed(sfKeyNum5))
+        fight->player.weapon = SPELL_FOUR;
+}
+
 void update_fights(fight_t *fight)
 {
     ennemies_deplacements(fight);
-    player_deplacements(fight);
     launch_spell(fight);
+    player_deplacements(&fight->player);
+    update_weapons(fight);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox
     //en fait de tout pour le fight mise à part le draw
 }

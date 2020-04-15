@@ -13,16 +13,16 @@ void fireball(fight_t *fight, sfVector2f player_pos)
 {
   sfVector2f final_pos = {0, 0};
   if (fight->spell[0].activated == 1) {
-    if (fight->player.direction == 0 || fight->player.direction == 5) {
+    if (fight->player.direct == 0 || fight->player.direct == 5) {
       final_pos.y += player_pos.y + 200;
       final_pos.x = player_pos.x;
-    } else if (fight->player.direction == 1) {
+    } else if (fight->player.direct == 1) {
       final_pos.y -= player_pos.y - 200;
       final_pos.x = player_pos.x;
-    } else if (fight->player.direction == 3) {
+    } else if (fight->player.direct == 3) {
         final_pos.y -= player_pos.y;
         final_pos.x = player_pos.x + 200;
-    } else if (fight->player.direction == 7) {
+    } else if (fight->player.direct == 7) {
         final_pos.y -= player_pos.y;
         final_pos.x = player_pos.x - 200;
     }
