@@ -54,6 +54,9 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->background_texture = sfTexture_createFromFile("assets/maps/fight_map.png", NULL);
     fight->background = sfSprite_create();
     sfSprite_setPosition(fight->background, (sfVector2f){0, 0});
+    fight->spell = malloc(sizeof(fight->spell) * (2));
+    fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
+    fight->spell[1].sprite = NULL;
     sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
     sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
     fight->player.player_texture = sfTexture_createFromFile("assets/sprites/character.png", NULL);

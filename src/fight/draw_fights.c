@@ -15,6 +15,9 @@ void draw_fights(fight_t *fight, sfRenderWindow *win)
     for (int i = 0; i < fight->nb_enn; i++)
         if (fight->enns[i].in_live)
             sfRenderWindow_drawSprite(win, fight->enns[i].enn, NULL);
+    for (int i = 0; fight->spell[i].sprite != NULL; i++)
+        if (fight->spell[i].activated == 1)
+            sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
     sfRenderWindow_drawSprite(win, fight->player.player, NULL);
     sfRenderWindow_display(win);
 }

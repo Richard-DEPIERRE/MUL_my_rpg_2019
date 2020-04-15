@@ -35,7 +35,9 @@ SRC	=	src/clics_handlings.c		\
 		src/fight/draw_fights.c		\
 		src/fight/fights.c			\
 		src/fight/update_fights.c	\
-		src/fight/player_deplacements.c\
+		src/fight/player_deplacements.c	\
+		src/fight/spells.c				\
+		src/fight/launch_spell.c\
 
 SRC2 =	tests/test_main.c		\
 

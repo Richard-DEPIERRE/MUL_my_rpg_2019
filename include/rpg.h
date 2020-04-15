@@ -37,16 +37,7 @@ typedef struct clock_c
     float second;
 } clock_s;
 
-typedef struct player_fight_s
-{
-    sfSprite *player;
-    sfTexture *player_texture;
-
-    sfIntRect rect;
-    sfVector2f pos;
-    int direction;
-    int life;
-}player_fight_t;
+#include "fight.h"
 
 typedef struct ennemies
 {
@@ -62,15 +53,6 @@ typedef struct ennemies
     int tmp;
 }ennemies_t;
 
-typedef struct fight_s
-{
-    sfSprite *background;
-    sfTexture *background_texture;
-
-    player_fight_t player;
-    ennemies_t *enns;
-    int nb_enn;
-}fight_t;
 
 typedef struct player_s
 {
