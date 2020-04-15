@@ -39,8 +39,9 @@ SRC	=	src/clics_handlings.c		\
 		src/fight/spells.c				\
 		src/fight/launch_spell.c\
 		src/fight/player_fight_rects.c	\
-		src/generate_random.c\
-		
+		src/generate_random.c	\
+		src/fight/update_spell.c	\
+
 
 SRC2 =	tests/test_main.c		\
 

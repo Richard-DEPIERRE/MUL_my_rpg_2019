@@ -138,4 +138,5 @@ int move_up_fight(player_fight_t *player);
 int move_left_fight(player_fight_t *player);
 int move_right_fight(player_fight_t *player);
 
+
 #endif /* !RPG_H_ */

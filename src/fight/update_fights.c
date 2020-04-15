@@ -85,8 +85,9 @@ void update_weapons(fight_t *fight)
 void update_fights(fight_t *fight)
 {
     ennemies_deplacements(fight);
-    launch_spell(fight);
     player_deplacements(&fight->player);
+    launch_spell(fight);
+    update_spell(fight);
     update_weapons(fight);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox
     //en fait de tout pour le fight mise à part le draw
