@@ -52,6 +52,7 @@ typedef struct spell_s {
     int velocity;
     int protection;
     int activated;
+    int direction;
 
     sfVector2f final_pos;
 

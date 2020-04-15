@@ -7,13 +7,14 @@
 
 #include "rpg.h"
 
-void animation_spell(spell_t *spell, clock_s *clock)
+void animation_spell(spell_t *spell)
 {
     if (spell->rect.left < 393) {
         spell->rect.left += 56.125;
     } else {
         spell->rect.left = 0;
     }
+    sfSprite_setTextureRect(spell->sprite, spell->rect);
 }
 
 void update_fireball(spell_t *spell, clock_s *clock)
@@ -22,12 +23,17 @@ void update_fireball(spell_t *spell, clock_s *clock)
         clock->time = sfClock_getElapsedTime(clock->clock);
         clock->second = clock->time.microseconds / 1000000.0;
         if (clock->second > 0.09) {
-            animation_spell(spell, &spell->clock);
-            if (spell->final_pos.x != spell->pos.x && spell->final_pos.y != spell->pos.y) {
-                if (spell->pos.x == spell->final_pos.x)
+            animation_spell(spell);
+            if (spell->pos.x != spell->pos.x && spell->final_pos.y != spell->pos.y) {
+                if (spell->direction == 0 || spell->direction == 5) {
                     spell->pos.y += 5;
-                if (spell->pos.y == spell->final_pos.y)
+                } else if (spell->direction == 1) {
+                    spell->pos.y -= 5;
+                } else if (spell->direction == 3) {
                     spell->pos.x += 5;
+                } else if (spell->direction == 7) {
+                    spell->pos.x -= 5;
+                }
             } else {
                 spell->activated = 0;
             }

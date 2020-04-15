@@ -20,13 +20,14 @@ void fireball(fight_t *fight, sfVector2f player_pos)
       final_pos.y -= player_pos.y - 200;
       final_pos.x = player_pos.x;
     } else if (fight->player.direct == 3) {
-        final_pos.y -= player_pos.y;
-        final_pos.x = player_pos.x + 200;
+        final_pos.y = player_pos.y;
+        final_pos.x += player_pos.x + 200;
     } else if (fight->player.direct == 7) {
-        final_pos.y -= player_pos.y;
-        final_pos.x = player_pos.x - 200;
+        final_pos.y = player_pos.y;
+        final_pos.x -= player_pos.x - 200;
     }
     fight->spell[0].pos = player_pos;
+    fight->spell[0].direction = fight->player.direct;
     sfSprite_setPosition(fight->spell[0].sprite, fight->spell[0].pos);
     fight->spell[0].final_pos = final_pos;
     fight->spell[0].activated = 1;
