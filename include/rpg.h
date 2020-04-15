@@ -49,6 +49,16 @@ typedef struct player_s
     int life;
 } player_t;
 
+typedef struct game_obj_s
+{
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f pos;
+    sfVector2f scale;
+    sfIntRect rect;
+    sfClock *clock;
+} game_obj_t;
+
 typedef struct rpg_s
 {
     sfRenderWindow *win;
@@ -66,8 +76,7 @@ typedef struct rpg_s
 
     sfSprite *cop;
 
-    sfSprite *delete_me;
-    sfTexture *delete_me_too;
+    game_obj_t perspec;
 
     // sfClock *clock;
     // sfTime time;
@@ -83,15 +92,6 @@ typedef struct rpg_s
 }rpg_t;
 
 
-typedef struct game_obj_s
-{
-    sfSprite *sprite;
-    sfTexture *texture;
-    sfVector2f pos;
-    sfVector2f scale;
-    sfIntRect rect;
-    sfClock *clock;
-} game_obj_t;
 
 //rafik
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
@@ -114,6 +114,7 @@ void draw_options(rpg_t *rpg, sfRenderWindow *win);
 void draw_menu(rpg_t *rpg, sfRenderWindow *win);
 int main_rpg(void);
 void clock_event(rpg_t *rpg, clock_s *clock);
+void create_perspec(game_obj_t *perspec);
 
 //lib
 int my_strlen(char const *str);

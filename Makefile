@@ -33,6 +33,7 @@ SRC	=	src/clics_handlings.c		\
 		src/menu/click_menu2.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
+		src/create_perspective.c	\
 
 SRC2 =	tests/test_main.c		\
 

@@ -47,6 +47,7 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     i = 0;
     rpg->life = my_getnbr(tmp);
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
+    free(tmp);
     tmp = malloc(sizeof(char) * (size + 1));
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
         tmp[i++] = str[size];
@@ -55,6 +56,7 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     i = 0;
     top = my_getnbr(tmp);
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
+    free(tmp);
     tmp = malloc(sizeof(char) * (size + 1));
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
         tmp[i++] = str[size];
@@ -63,6 +65,7 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     i = 0;
     left = my_getnbr(tmp);
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
+    free(tmp);
     tmp = malloc(sizeof(char) * (size + 1));
     for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
         tmp[i++] = str[size];
@@ -70,8 +73,11 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     size_tmp = ++size;
     i = 0;
     rpg->status = my_getnbr(tmp);
+    free(tmp);
     obj->rect = (sfIntRect){top, left,  1920, 1080};
+    rpg->perspec.rect = obj->rect,
     sfSprite_setTextureRect(obj->sprite, obj->rect);
+    sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
 
 int init_save(rpg_t *rpg, game_obj_t *obj)

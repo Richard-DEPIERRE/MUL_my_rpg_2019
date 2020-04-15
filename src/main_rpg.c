@@ -22,15 +22,8 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     init_particle_environment(&rpg->screen->particle_environment, \
     (sfVector2f){PARICULE_ANGLE_MIN, PARICULE_ANGLE_MAX}, \
     (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
-    //ici on set tout ce qui est sprite en début de programme
     set_menu_sprites(rpg);
-    rpg->delete_me_too = sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);
-    // rpg->delete_me_too = sfTexture_createFromFile("assets/maps/map.png", NULL);
-    rpg->delete_me_too = sfTexture_createFromFile("map/Map.png", NULL);
-    rpg->delete_me = sfSprite_create();
-    sfSprite_setTexture(rpg->delete_me, rpg->delete_me_too, sfTrue);
-    sfSprite_setScale(rpg->delete_me, (sfVector2f) {2, 2});
-    // obj->texture = sfTexture_createFromFile("map/Map.png", NULL);
+    create_perspec(&rpg->perspec);
     obj->texture = sfTexture_createFromFile("map/Map.png", NULL);
     obj->sprite = sfSprite_create();
     sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);

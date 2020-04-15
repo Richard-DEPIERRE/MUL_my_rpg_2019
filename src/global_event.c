@@ -76,22 +76,13 @@ void move_y(sfVector2i pos, game_obj_t *obj, int **map, int offset)
 
 void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
 {
-    // static int **map = NULL;
     sfVector2i pos = {((obj->rect.left) + 480 - 16),
     ((obj->rect.top) + 270 - 16)};
-
-    // sfVector2i pos = {((obj->rect.left)) / 32,
-    // ((obj->rect.top)) / 32};
-    //je pense que c'est 29.etc et pas 16 puisque la map d'origine est scale *2 pour la zoomer
-    //donc la taille de la collision augmente -> au lieu que ce soit 16 pixels par colision
-    //c'est 29 et quelques car l'image fait 2033x2033 (la dernière version) ainsi, 2033 * 2 -> 4066
-    //et 4066 % 140 -> 29.0428
 
     // pos.x += 1;
     // pos.y += 1;
     pos.x *= 2;
     pos.y *= 2;
-    printf("\n\npos x : %d | pos y : %d\nleft = %d, top = %d\n", pos.x, pos.y, obj->rect.left, obj->rect.top);
     if (mouvement.x != 0)
         move_x(pos, obj, rpg->map, mouvement.x);
     if (mouvement.y != 0)
@@ -115,6 +106,8 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     // }
     // printf("\n\n");
     sfSprite_setTextureRect(obj->sprite, obj->rect);
+    rpg->perspec.rect = obj->rect;
+    sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
 
 void global_event(rpg_t *rpg, game_obj_t *background)

@@ -13,7 +13,8 @@ void init_player(player_t *obj)
     pos.x = (1920 / 2) - (64 / 2);
     pos.y = (1080 / 2) - (64 / 2);
     obj->sprite = sfSprite_create();
-    obj->texture = sfTexture_createFromFile("assets/sprites/character.png", NULL);
+    obj->texture = sfTexture_createFromFile("assets/sprites/character.png",
+    NULL);
     obj->clock.clock = sfClock_create();
     sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
     obj->rect = (sfIntRect){0, 0, 64, 64};
