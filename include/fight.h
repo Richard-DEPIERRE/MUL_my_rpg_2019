@@ -56,7 +56,7 @@ typedef struct spell_s {
 
     sfVector2f final_pos;
 
-    clock_s clock;
+    sfClock *clock;
 }spell_t;
 
 typedef struct fight_s
@@ -73,7 +73,7 @@ typedef struct fight_s
 
 
 
-spell_t init_spell(char *path, enum spells_names_s type);
+struct spell_s init_spell(char *path, enum spells_names_s type);
 void launch_spell(fight_t *fight);
 void fireball(fight_t *fight, sfVector2f player_pos);
 void update_spell(fight_t *fight);
