@@ -79,8 +79,6 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     sfVector2i pos = {((obj->rect.left) + 480 - 16),
     ((obj->rect.top) + 270 - 16)};
 
-    // pos.x += 1;
-    // pos.y += 1;
     pos.x *= 2;
     pos.y *= 2;
     if (mouvement.x != 0)
@@ -89,22 +87,6 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
         move_y(pos, obj, rpg->map, mouvement.y);
     pos.x /= 32;
     pos.y /= 32;
-    // for (int i = 0; i < 140; i++) {
-    //     for (int j = 0; j < 140; j++) {
-    //         if (i == pos.y && j == pos.x) {
-    //             printf("\033[0;34m");
-    //             printf("P");
-    //             printf("\033[0m");
-    //         } else if (rpg->map[i][j] == 0) {
-    //             printf("\033[0;31m");
-    //             printf("%d", rpg->map[i][j]);
-    //             printf("\033[0m");
-    //         } else
-    //             printf("%d", rpg->map[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-    // printf("\n\n");
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     rpg->perspec.rect = obj->rect;
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
@@ -122,15 +104,19 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     else
         rpg->menu[18].rect.left = 0;
     sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
-        move_rect(background, (sfVector2f) {-1, 0}, rpg);
-    if (sfKeyboard_isKeyPressed(sfKeyD))
-        move_rect(background, (sfVector2f) {1, 0}, rpg);
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
-        move_rect(background, (sfVector2f) {0, -1}, rpg);
-    if (sfKeyboard_isKeyPressed(sfKeyS))
-        move_rect(background, (sfVector2f) {0, 1}, rpg);
+    if (rpg->status == 3) {
+        if (sfKeyboard_isKeyPressed(sfKeyQ))
+            move_rect(background, (sfVector2f) {-1, 0}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyD))
+            move_rect(background, (sfVector2f) {1, 0}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyZ))
+            move_rect(background, (sfVector2f) {0, -1}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyS))
+            move_rect(background, (sfVector2f) {0, 1}, rpg);
+        player_deplacement(rpg);
+    }
+    if (rpg->status == 7)
+        tuto(rpg, background);
     if (rpg->status == 0)
         check_mouse_pos_menu(rpg);
-    player_deplacement(rpg);
 }

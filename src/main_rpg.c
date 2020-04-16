@@ -44,16 +44,11 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->music_volume = 50;
     rpg->map = get_map();
     rpg->save = 0;
-    // for (int i = 0; i < 140; i++) {
-    //     for (int j = 0; j < 140; j++)
-    //         if (rpg->map[i][j] == 0) {
-    //             printf("\033[0;31m");
-    //             printf("%d", rpg->map[i][j]);
-    //             printf("\033[0m");
-    //         } else
-    //             printf("%d", rpg->map[i][j]);
-    //     printf("\n");
-    // }
+    //status correspondant au tuto = 7
+    rpg->tuto = malloc(sizeof(rpg->tuto));
+    rpg->tuto->action = 0; //pour voir à quel étape on en est du tuto
+    rpg->tuto->executed = 0; //pour dire si le tuto a déjà été fait ou non
+    rpg->tuto->clock = sfClock_create();
 }
 
 void destroy(game_obj_t *obj)

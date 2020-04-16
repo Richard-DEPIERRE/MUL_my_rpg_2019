@@ -34,6 +34,8 @@ SRC	=	src/clics_handlings.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
 		src/create_perspective.c	\
+		src/tuto/draw_tuto.c		\
+		src/tuto/tuto.c				\
 
 SRC2 =	tests/test_main.c		\
 

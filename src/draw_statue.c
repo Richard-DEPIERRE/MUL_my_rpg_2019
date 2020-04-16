@@ -26,4 +26,7 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
                 rpg->screen->particle_environment.circle_shape);
         sfRenderWindow_display(win);
     }
+    if (rpg->status == 7) {
+        draw_tuto(win, rpg, obj);
+    }
 }
