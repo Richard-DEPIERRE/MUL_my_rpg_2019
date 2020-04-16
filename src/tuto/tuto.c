@@ -19,8 +19,10 @@ void action_three(rpg_t *rpg, game_obj_t *background)
     } else if (rpg->tuto.tmp < 25) {
         rpg->tuto.rect_friend.top = 216;
         rpg->tuto.pos.y -= 5;
-    } else
+    } else {
         rpg->status = 3;
+        rpg->tuto.action = 0;
+    }
     rpg->tuto.rect_friend.left += 50;
     if (rpg->tuto.rect_friend.left > 100)
         rpg->tuto.rect_friend.left = 0;
