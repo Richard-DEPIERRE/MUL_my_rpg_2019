@@ -17,7 +17,7 @@ void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj)
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
         35, (sfVector2f){mouse.x, mouse.y});
     }
-    if (rpg->status == 3 || rpg->status == 4) {
+    if (rpg->status == 3 || rpg->status == 4 || rpg->status == 7) {
         if (mouse.x > 20 && mouse.x < 220 && mouse.y > 20 && mouse.y < 220)
             rpg->status = 0;
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,

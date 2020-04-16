@@ -21,7 +21,7 @@
 #define GRAVITY_Y (1.0f * 0)
 #define ALPHA (1)
 
-#define PARICULE_MAX (10000)
+#define PARICULE_MAX (1000)
 #define SPEED (2.0f)
 
 typedef struct particle_environment_s particle_environment_t;

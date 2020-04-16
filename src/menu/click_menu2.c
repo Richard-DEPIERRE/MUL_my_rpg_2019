@@ -32,7 +32,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
         rpg->save = 1;
         rpg->status = 3;
         init_save(rpg, obj);
-        if (rpg->tuto->executed == 0)
+        if (rpg->tuto.executed == 0)
             rpg->status = 7;
         printf("on est bien là\n");
     }
@@ -41,7 +41,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
         rpg->save = 2;
         rpg->status = 3;
         init_save(rpg, obj);
-        if (rpg->tuto->executed == 0)
+        if (rpg->tuto.executed == 0)
             rpg->status = 7;
         printf("on est bien là2\n");
     }
@@ -50,7 +50,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
         rpg->save = 3;
         rpg->status = 3;
         init_save(rpg, obj);
-        if (rpg->tuto->executed == 0)
+        if (rpg->tuto.executed == 0)
             rpg->status = 7;
         printf("on est bien là3\n");
     }

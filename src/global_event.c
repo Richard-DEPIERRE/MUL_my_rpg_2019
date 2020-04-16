@@ -38,6 +38,9 @@ void analyse_event(rpg_t *rpg, game_obj_t *obj)
     if (rpg->evnt.type == sfEvtMouseButtonPressed) {
         clics_handlings(rpg->evnt.mouseButton, rpg, obj);
     }
+    if (rpg->evnt.type == sfEvtKeyPressed) {
+        keys_handlings(rpg->evnt, rpg, obj);
+    }
 }
 
 void move_x(sfVector2i pos, game_obj_t *obj, int **map, int offset)

@@ -66,6 +66,15 @@ typedef struct tuto_s
     int tmp;
 
     sfClock *clock;
+
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect rect;
+
+    sfSprite *friend;
+    sfTexture *friend_t;
+    sfIntRect rect_friend;
+    sfVector2f pos;
 }tuto_t;
 
 typedef struct rpg_s
@@ -74,7 +83,7 @@ typedef struct rpg_s
     sfEvent evnt;
     screen_t *screen;
 
-    tuto_t *tuto;
+    tuto_t tuto;
 
     game_obj_R_t *menu;
     text_R_t *text;
@@ -127,6 +136,7 @@ int main_rpg(void);
 void clock_event(rpg_t *rpg, clock_s *clock);
 void create_perspec(game_obj_t *perspec);
 void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg);
+void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj);
 
 //lib
 int my_strlen(char const *str);

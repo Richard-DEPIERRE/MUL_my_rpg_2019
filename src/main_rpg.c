@@ -33,6 +33,28 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     sfSprite_setTextureRect(obj->sprite, obj->rect);
 }
 
+tuto_t *set_rpg_tuto(tuto_t *tuto)
+{
+    char path[] = "assets/sprites/friend.png";
+    char path2[] = "assets/sprites/tuto.png";
+
+    tuto->action = 0; //pour voir à quel étape on en est du tuto
+    tuto->executed = 0; //pour dire si le tuto a déjà été fait ou non
+    tuto->friend = sfSprite_create();
+    tuto->friend_t = sfTexture_createFromFile(path, NULL);
+    sfSprite_setTexture(tuto->friend, tuto->friend_t, sfTrue);
+    tuto->clock = sfClock_create();
+    tuto->sprite = sfSprite_create();
+    tuto->texture = sfTexture_createFromFile(path2, NULL);
+    sfSprite_setTexture(tuto->sprite, tuto->texture, sfTrue);
+    tuto->rect.top = 0;
+    tuto->rect.height = 0;
+    tuto->rect.left = 0;
+    tuto->rect.width = 0;
+    sfSprite_setTextureRect(tuto->sprite, tuto->rect);
+    return (tuto);
+}
+
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
@@ -45,10 +67,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->map = get_map();
     rpg->save = 0;
     //status correspondant au tuto = 7
-    rpg->tuto = malloc(sizeof(rpg->tuto));
-    rpg->tuto->action = 0; //pour voir à quel étape on en est du tuto
-    rpg->tuto->executed = 0; //pour dire si le tuto a déjà été fait ou non
-    rpg->tuto->clock = sfClock_create();
+    set_rpg_tuto(&rpg->tuto);
 }
 
 void destroy(game_obj_t *obj)
