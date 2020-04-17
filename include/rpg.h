@@ -77,6 +77,19 @@ typedef struct tuto_s
     sfVector2f pos;
 }tuto_t;
 
+typedef struct quest_s
+{
+    sfTexture *items;
+
+    sfSprite *sprite;
+    int act;
+
+    int x;
+    int y;
+    sfVector2f pos;
+    sfIntRect rect;
+}quest_t;
+
 typedef struct rpg_s
 {
     sfRenderWindow *win;
@@ -84,6 +97,7 @@ typedef struct rpg_s
     screen_t *screen;
 
     tuto_t tuto;
+    quest_t quest;
 
     game_obj_R_t *menu;
     text_R_t *text;
@@ -93,6 +107,8 @@ typedef struct rpg_s
     int music_volume;
     int sound_volume;
     int **map;
+
+
 
     sfSprite *cop;
 

@@ -75,7 +75,9 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     rpg->status = my_getnbr(tmp);
     free(tmp);
     obj->rect = (sfIntRect){top, left,  1920, 1080};
-    rpg->perspec.rect = obj->rect,
+    rpg->perspec.rect = obj->rect;
+    rpg->quest.x = obj->rect.left;
+    rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }

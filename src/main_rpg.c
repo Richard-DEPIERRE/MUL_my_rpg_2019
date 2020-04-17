@@ -30,10 +30,12 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     sfSprite_setScale(obj->sprite, (sfVector2f) {2, 2});
     obj->pos = (sfVector2f) {0, 0};
     obj->rect = (sfIntRect) {200, 100, 1920, 1080};
+    rpg->quest.x = obj->rect.left;
+    rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
 }
 
-tuto_t *set_rpg_tuto(tuto_t *tuto)
+void set_rpg_tuto(tuto_t *tuto)
 {
     char path[] = "assets/sprites/friend.png";
     char path2[] = "assets/sprites/tuto.png";
@@ -52,8 +54,25 @@ tuto_t *set_rpg_tuto(tuto_t *tuto)
     tuto->rect.left = 0;
     tuto->rect.width = 0;
     sfSprite_setTextureRect(tuto->sprite, tuto->rect);
-    return (tuto);
 }
+
+void set_quest(quest_t *quest)
+{
+    char path[] = "assets/sprites/items.png";
+
+    quest->sprite = sfSprite_create();
+    quest->items = sfTexture_createFromFile(path, NULL);
+    quest->pos.x = 192;
+    quest->pos.y = 128;
+    quest->rect.height = 30;
+    quest->rect.width = 30;
+    quest->rect.left = 0;
+    quest->rect.top = 0;
+    quest->act = 1;
+    sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
+    sfSprite_setTextureRect(quest->sprite, quest->rect);
+}
+
 
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
@@ -68,6 +87,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->save = 0;
     //status correspondant au tuto = 7
     set_rpg_tuto(&rpg->tuto);
+    set_quest(&rpg->quest);
 }
 
 void destroy(game_obj_t *obj)

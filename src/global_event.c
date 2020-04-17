@@ -43,37 +43,45 @@ void analyse_event(rpg_t *rpg, game_obj_t *obj)
     }
 }
 
-void move_x(sfVector2i pos, game_obj_t *obj, int **map, int offset)
+void move_x(sfVector2i pos, game_obj_t *obj, rpg_t *rpg, int offset)
 {
     if (offset > 0) {
         pos.x -= 16;
         pos.x /= 32;
         pos.y /= 32;
-        if (pos.x + 1 < 140 && map[pos.y][pos.x + 1])
+        if (pos.x + 1 < 140 && rpg->map[pos.y][pos.x + 1]) {
             obj->rect.left += offset;
+            rpg->quest.x += offset;
+        }
     } else {
         pos.x += 16;
         pos.x /= 32;
         pos.y /= 32;
-        if (pos.x > 0 && map[pos.y][pos.x - 1])
+        if (pos.x > 0 && rpg->map[pos.y][pos.x - 1]) {
             obj->rect.left += offset;
+            rpg->quest.x += offset;
+        }
     }
 }
 
-void move_y(sfVector2i pos, game_obj_t *obj, int **map, int offset)
+void move_y(sfVector2i pos, game_obj_t *obj, rpg_t *rpg, int offset)
 {
     if (offset > 0) {
         pos.y -= 16;
         pos.y /= 32;
         pos.x /= 32;
-        if (pos.y + 1 < 140 && map[pos.y + 1][pos.x])
+        if (pos.y + 1 < 140 && rpg->map[pos.y + 1][pos.x]) {
             obj->rect.top += offset;
+            rpg->quest.y += offset;
+        }
     } else {
         pos.y += 16;
         pos.y /= 32;
         pos.x /= 32;
-        if (pos.y > 0 && map[pos.y - 1][pos.x])
+        if (pos.y > 0 && rpg->map[pos.y - 1][pos.x]) {
             obj->rect.top += offset;
+            rpg->quest.y += offset;
+        }
     }
 }
 
@@ -85,9 +93,9 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     pos.x *= 2;
     pos.y *= 2;
     if (mouvement.x != 0)
-        move_x(pos, obj, rpg->map, mouvement.x);
+        move_x(pos, obj, rpg, mouvement.x);
     if (mouvement.y != 0)
-        move_y(pos, obj, rpg->map, mouvement.y);
+        move_y(pos, obj, rpg, mouvement.y);
     pos.x /= 32;
     pos.y /= 32;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
