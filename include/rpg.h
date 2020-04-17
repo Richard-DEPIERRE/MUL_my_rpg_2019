@@ -83,6 +83,9 @@ typedef struct quest_s
 
     sfSprite *sprite;
     sfSprite *msg;
+    sfSprite *arrow;
+    sfTexture *arr_t;
+
     sfTexture *msg_t;
     int act;
 

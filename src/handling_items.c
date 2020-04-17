@@ -7,6 +7,15 @@
 
 #include "rpg.h"
 
+float angle(rpg_t *rpg, sfVector2f pos)
+{
+    double diff_x = (960 - pos.x);
+    double diff_y =  (540 - pos.y);
+    float angle = atan2f(diff_y, diff_x) * (180.0 / M_PI) - 90;
+
+    return (angle);
+}
+
 void change_item(rpg_t *rpg)
 {
     if (rpg->quest.act == 1) {
@@ -26,8 +35,9 @@ void change_item(rpg_t *rpg)
     } else if (rpg->quest.act == 3) {
         rpg->quest.rect.width = 0;
         rpg->quest.act = 0;
+        rpg->quest.pos = (sfVector2f) {527, 1867};
         sfSprite_setTextureRect(rpg->quest.sprite, rpg->quest.rect);
-        sfSprite_setPosition(rpg->quest.sprite, (sfVector2f) {0, 0});
+        sfSprite_setPosition(rpg->quest.sprite, rpg->quest.pos);
     }
 }
 
@@ -36,9 +46,7 @@ void handling_items(rpg_t *rpg)
     sfVector2f pos;
     pos.x = (rpg->quest.pos.x - rpg->quest.x) * 2;
     pos.y = (rpg->quest.pos.y - rpg->quest.y) * 2;
-
-    printf("%f %f\n", (rpg->quest.pos.x - rpg->quest.x) * 2, (rpg->quest.pos.y - rpg->quest.y) * 2);
-    printf("%d %d\n\n\n", rpg->quest.x, rpg->quest.y);
+    // printf("x : %f | y : %f\n", pos.x, pos.y);
     if (rpg->player.pos.x > pos.x - 20 && rpg->player.pos.x < pos.x + 40 &&
     rpg->player.pos.y > pos.y - 20 && rpg->player.pos.y < pos.y + 40) {
         rpg->quest.message = 1;
@@ -47,4 +55,5 @@ void handling_items(rpg_t *rpg)
     } else {
         rpg->quest.message = 0;
     }
+    sfSprite_setRotation(rpg->quest.arrow, angle(rpg, pos));
 }

@@ -56,6 +56,19 @@ void set_rpg_tuto(tuto_t *tuto)
     sfSprite_setTextureRect(tuto->sprite, tuto->rect);
 }
 
+void create_arrow(quest_t *quest)
+{
+    char path[] = "assets/sprites/arrow.png";
+    sfVector2f pos = {935, 950};
+
+    quest->arrow = sfSprite_create();
+    quest->arr_t = sfTexture_createFromFile(path, NULL);
+    sfSprite_setTexture(quest->arrow, quest->arr_t, sfTrue);
+    sfSprite_setPosition(quest->arrow, pos);
+    sfSprite_setOrigin(quest->arrow, (sfVector2f) {165, 170});
+    sfSprite_setScale(quest->arrow, (sfVector2f) {0.45, 0.45});
+}
+
 void set_quest(quest_t *quest)
 {
     char path[] = "assets/sprites/items.png";
@@ -76,6 +89,7 @@ void set_quest(quest_t *quest)
     quest->message = 0;
     sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
     sfSprite_setTextureRect(quest->sprite, quest->rect);
+    create_arrow(quest);
 }
 
 
