@@ -74,7 +74,9 @@ void set_tuto(rpg_t *rpg, game_obj_t *background)
     rpg->tuto.tmp = 0;
     background->rect.top = 950;
     background->rect.left = 1280;
-    rpg->quest.rect = background->rect;
+    rpg->quest.x = background->rect.left;
+    rpg->quest.y = background->rect.top;
+    // rpg->quest.rect = background->rect; je sais pas pourquoi j'ai mis ça ici du coup je laisse
     rpg->perspec.rect = background->rect;
     sfSprite_setTextureRect(background->sprite, background->rect);
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);

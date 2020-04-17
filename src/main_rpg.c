@@ -59,16 +59,21 @@ void set_rpg_tuto(tuto_t *tuto)
 void set_quest(quest_t *quest)
 {
     char path[] = "assets/sprites/items.png";
+    char path2[] = "assets/sprites/msg.png";
 
     quest->sprite = sfSprite_create();
     quest->items = sfTexture_createFromFile(path, NULL);
-    quest->pos.x = 192;
-    quest->pos.y = 128;
+    quest->msg = sfSprite_create();
+    quest->msg_t = sfTexture_createFromFile(path2, NULL);
+    sfSprite_setTexture(quest->msg, quest->msg_t, sfTrue);
+    quest->pos.x = 195;
+    quest->pos.y = 84;
     quest->rect.height = 30;
     quest->rect.width = 30;
     quest->rect.left = 0;
     quest->rect.top = 0;
     quest->act = 1;
+    quest->message = 0;
     sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
     sfSprite_setTextureRect(quest->sprite, quest->rect);
 }

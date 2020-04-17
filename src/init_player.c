@@ -12,6 +12,7 @@ void init_player(player_t *obj)
     sfVector2f pos;
     pos.x = (1920 / 2) - (64 / 2);
     pos.y = (1080 / 2) - (64 / 2);
+    obj->pos = pos;
     obj->sprite = sfSprite_create();
     obj->texture = sfTexture_createFromFile("assets/sprites/character.png",
     NULL);

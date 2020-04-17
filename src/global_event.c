@@ -110,21 +110,22 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
         analyse_event(rpg, background);
     }
-    if (mouse.x > 20 && mouse.x < 120 && mouse.y > 20 && mouse.y < 120)
+    if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120)
         rpg->menu[18].rect.left = rpg->menu[18].rect.width;
     else
         rpg->menu[18].rect.left = 0;
     sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
     if (rpg->status == 3) {
         if (sfKeyboard_isKeyPressed(sfKeyQ))
-            move_rect(background, (sfVector2f) {-1, 0}, rpg);
+            move_rect(background, (sfVector2f) {-7, 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyD))
-            move_rect(background, (sfVector2f) {1, 0}, rpg);
+            move_rect(background, (sfVector2f) {7, 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyZ))
-            move_rect(background, (sfVector2f) {0, -1}, rpg);
+            move_rect(background, (sfVector2f) {0, -7}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyS))
-            move_rect(background, (sfVector2f) {0, 1}, rpg);
+            move_rect(background, (sfVector2f) {0, 7}, rpg);
         player_deplacement(rpg);
+        handling_items(rpg);
     }
     if (rpg->status == 7)
         tuto(rpg, background);
