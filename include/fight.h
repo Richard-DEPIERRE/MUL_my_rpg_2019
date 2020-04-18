@@ -57,7 +57,15 @@ typedef struct spell_s {
     sfVector2f final_pos;
 
     sfClock *clock;
-}spell_t;
+} spell_t;
+
+typedef struct inventory_s
+{
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfRectangleShape *show;
+    sfVector2f pos;
+} inventory_t;
 
 typedef struct fight_s
 {
@@ -67,6 +75,7 @@ typedef struct fight_s
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
+    inventory_t inventory;
     int nb_enn;
 }fight_t;
 

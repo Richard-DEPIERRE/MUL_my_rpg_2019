@@ -48,7 +48,6 @@ void fireball(fight_t *fight, sfVector2f player_pos)
     sfSprite_setPosition(fight->spell[0].sprite, fight->spell[0].pos);
     fight->spell[0].final_pos = final_pos;
     fight->spell[0].activated = 1;
-    printf("coucou\n");
   }
 }
 

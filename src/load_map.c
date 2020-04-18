@@ -5,7 +5,7 @@
 ** load_map
 */
 
-#include "rafik.h"
+#include "rpg.h"
 
 int my_getnbr(char *str)
 {

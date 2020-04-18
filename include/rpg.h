@@ -27,6 +27,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <math.h>
+#include "rafik.h"
 #include "richard.h"
 #include "particule.h"
 
@@ -137,6 +138,12 @@ int move_down_fight(player_fight_t *player);
 int move_up_fight(player_fight_t *player);
 int move_left_fight(player_fight_t *player);
 int move_right_fight(player_fight_t *player);
+
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+void global_event(rpg_t *rpg, game_obj_t *);
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+int **get_map(void);
+char *get_next_char(int fd, char c);
 
 
 #endif /* !RPG_H_ */

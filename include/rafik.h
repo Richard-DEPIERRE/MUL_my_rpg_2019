@@ -8,7 +8,15 @@
 #ifndef RAFIK_H_
 #define RAFIK_H_
 
-#include "rpg.h"
+#include <SFML/Graphics.h>
+#include <SFML/Graphics/RenderWindow.h>
+#include <SFML/Graphics/Export.h>
+#include <SFML/Audio.h>
+#include <SFML/Window/Export.h>
+#include <SFML/Graphics/Rect.h>
+#include <SFML/Window/Context.h>
+#include <SFML/Window/JoystickIdentification.h>
+#include <SFML/Graphics/Export.h>
 
 typedef struct game_obj_s
 {
@@ -19,11 +27,5 @@ typedef struct game_obj_s
     sfIntRect rect;
     sfClock *clock;
 } game_obj_t;
-
-void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
-void global_event(rpg_t *rpg, game_obj_t *);
-void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
-int **get_map(void);
-char *get_next_char(int fd, char c);
 
 #endif /* !RAFIK_H_ */

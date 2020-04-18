@@ -6,7 +6,7 @@
 */
 
 #include "my.h"
-#include "rafik.h"
+#include "rpg.h"
 
 int player_deplacement(rpg_t *rpg)
 {
