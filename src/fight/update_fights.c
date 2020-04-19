@@ -70,6 +70,12 @@ void ennemies_deplacements(fight_t *fight)
 
 void update_weapons(fight_t *fight)
 {
+    int r = 0;
+
+    for (int i = 0; i < 3; i += 1)
+        r += fight->spell[i].activated;
+    if (r != 0)
+        return;
     if (sfKeyboard_isKeyPressed(sfKeyNum1))
         fight->player.weapon = SHOVEL;
     if (sfKeyboard_isKeyPressed(sfKeyNum2))

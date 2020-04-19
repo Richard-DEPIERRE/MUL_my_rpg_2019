@@ -28,7 +28,6 @@ spell_t update_fireball(spell_t spell)
 {
     if (spell.activated == 1) {
         // spell = animation_spell(spell);
-        printf("heyy\n");
         // printf("pos x : %f\npos y : %f\n", spell.pos.x, spell.pos.y);
         // printf("objectif : %f %f\n", spell.final_pos.x, spell.final_pos.y);
         if (spell.final_pos.x != spell.pos.x || spell.final_pos.y != spell.pos.y) {
@@ -53,7 +52,13 @@ spell_t update_fireball(spell_t spell)
 
 void update_spell(fight_t *fight)
 {
+    WEAPONS current = fight->player.weapon;
+
+    if (current == SHOVEL)
+      return;
+    if (current > SPELL_THREE)
+      current = SPELL_ONE;
     // printf("AVANT : pos x %f | pos y %f\n", fight->spell[0].pos.x);
-    fight->spell[0] = update_fireball(fight->spell[0]);
+    fight->spell[current - 1] = update_fireball(fight->spell[current - 1]);
     // printf("APRES : pos x %f | pos y %f\n", fight->spell[0].pos.x);
 }

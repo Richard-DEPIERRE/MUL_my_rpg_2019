@@ -83,9 +83,10 @@ fight_t *init_variables_for_fights(fight_t *fight)
     sfSprite_setTexture(fight->inventory.sprite, fight->inventory.texture, sfTrue);
     sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
     sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
-    fight->spell = malloc(sizeof(spell_t) * (2));
+    fight->spell = malloc(sizeof(spell_t) * (3));
     fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
-    fight->spell[1].sprite = NULL;
+    fight->spell[1] = init_spell("assets/sprites/spells/spell2.png", SHIELD);
+    fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE);
     sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
     sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
     set_basics_for_fight(fight, "assets/sprites/character.png",
