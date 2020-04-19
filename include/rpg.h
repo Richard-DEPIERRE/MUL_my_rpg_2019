@@ -188,5 +188,10 @@ void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void draw_tuto(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj);
 void tuto(rpg_t *rpg, game_obj_t *obj);
 
+//death
+void script_death(rpg_t *rpg, game_obj_t *background);
+void set_script_death(rpg_t *rpg, game_obj_t *background);
+void draw_death(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj);
+int script1_death(rpg_t *rpg, game_obj_t *background);
 
 #endif /* !RPG_H_ */
