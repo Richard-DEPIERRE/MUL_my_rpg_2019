@@ -83,7 +83,7 @@ void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
             click_menu_two(rpg, mouse);
         else if (rpg->menu_status == 3)
             click_menu_three(rpg, mouse);
-    if (rpg->menu_status == 4)
+    if (rpg->menu_status == 4 || rpg->menu_status == 5)
         click_start_menu(rpg, mouse, obj);
     check_plus_minus(rpg, mouse);
 }

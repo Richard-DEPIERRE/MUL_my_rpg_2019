@@ -73,9 +73,13 @@ int main_rpg(void)
     init_player(&rpg->player);
     my_set_ints(rpg, &clock);
     my_set_sprites(&background,rpg);
+    sfMusic* music;
+    // music = sfMusic_createFromFile("assets/music/music1.ogg");
+    // sfMusic_play(music);
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);
+        sfMusic_setVolume(music, (float)(rpg->music_volume));
         draw_statue(rpg, rpg->win, &background);
     }
     destroy(&background);

@@ -8,6 +8,17 @@
 #include "rpg.h"
 #include "my.h"
 
+void display_name(rpg_t *rpg)
+{
+    sfVector2f menu_position = {970, 490};
+
+    sfText_setString(rpg->text[17].text, rpg->text[17].text);
+    sfText_setFont(rpg->text[17].text, "assets/fonts/virus2.TTF");
+    sfText_setCharacterSize(rpg->text[17].text, 50);
+    sfText_setColor(rpg->text[17].text, sfRed);
+    sfText_setPosition(rpg->text[17].text, menu_position);
+}
+
 void draw_menu2(rpg_t *rpg, sfRenderWindow *win)
 {
     if (rpg->menu_status == 2) {
@@ -26,12 +37,18 @@ void draw_menu2(rpg_t *rpg, sfRenderWindow *win)
         sfRenderWindow_drawText(win, rpg->text[12].text, NULL);
         sfRenderWindow_drawText(win, rpg->text[13].text, NULL);
     }
-    if (rpg->menu_status == 4) {
+    if (rpg->menu_status == 4 || rpg->menu_status == 5) {
         for (int i = 5; i < 8; i += 1)
             sfRenderWindow_drawSprite(win, rpg->menu[i].sprite, NULL);
         for (int i = 14; i < 17; i += 1)
             sfRenderWindow_drawText(win, rpg->text[i].text, NULL);
     }
+    // if (rpg->menu_status == 5) {
+    //     sfRenderWindow_clear(win, sfBlack);
+    //     display_name(rpg);
+    //     sfRenderWindow_drawText(win, rpg->text[17].text, NULL);
+    //     sfRenderWindow_display(win);
+    // }
 }
 
 void draw_menu(rpg_t *rpg, sfRenderWindow *win)

@@ -36,6 +36,10 @@ void initialize_text3(rpg_t *rpg, char **name)
     rpg->text[16].pos.x = 803;
     rpg->text[16].pos.y = 728;
     rpg->text[16].type = SAVE;
+    rpg->text[17].size = 50;
+    rpg->text[17].pos.x = 803;
+    rpg->text[17].pos.y = 728;
+    rpg->text[17].type = SAVE;
 }
 
 void initialize_text2(rpg_t *rpg, char **name)
