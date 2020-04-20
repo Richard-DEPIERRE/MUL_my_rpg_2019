@@ -25,12 +25,16 @@ int keys(player_fight_t *player)
         player->pos.y += 2;
         return (move_down_fight(player));
     }
-    return (dont_move_fight(player));
+    return (0);
 }
 
 void animation_player_fight(player_fight_t *player, clock_s *clock)
 {
-    keys(player);
+    if (keys(player) == 0) {
+        player->rect.left = 0;
+        sfSprite_setTextureRect(player->player, player->rect);
+        return;
+    }
     int direct = player->direct;
     clock->time = sfClock_getElapsedTime(clock->clock);
     clock->second = clock->time.microseconds / 1000000.0;

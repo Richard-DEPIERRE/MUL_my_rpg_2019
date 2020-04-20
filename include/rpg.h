@@ -82,14 +82,10 @@ typedef struct rpg_s
     int music_volume;
     int sound_volume;
     int **map;
-
     sfSprite *cop;
-
     sfSprite *delete_me;
     sfTexture *delete_me_too;
-
     player_t player;
-
     int status;
 }rpg_t;
 

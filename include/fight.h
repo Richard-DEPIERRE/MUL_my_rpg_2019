@@ -27,7 +27,7 @@ typedef enum spells_names_s {
     FIREBALL,
     SHIELD,
     BLACK_HOLE
-}spells_names_t;
+} spells_names_t;
 
 typedef struct player_fight_s
 {
@@ -47,15 +47,12 @@ typedef struct spell_s {
     sfTexture *texture;
     sfVector2f pos;
     sfIntRect rect;
-
     int damage;
     int velocity;
     int protection;
     int activated;
     int direction;
-
     sfVector2f final_pos;
-
     sfClock *clock;
 }  spell_t;
 
@@ -71,16 +68,12 @@ typedef struct fight_s
 {
     sfSprite *background;
     sfTexture *background_texture;
-
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
     inventory_t inventory;
     int nb_enn;
 }fight_t;
-
-
-
 
 struct spell_s init_spell(char *path, enum spells_names_s type);
 void launch_spell(fight_t *fight);

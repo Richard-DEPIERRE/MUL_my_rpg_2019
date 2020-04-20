@@ -58,7 +58,7 @@ void fireball(fight_t *fight, sfVector2f player_pos)
     printf("3\n");
 }
 
-struct spell_s init_spell(char *path, enum spells_names_s type)
+spell_t init_spell(char *path, spells_names_t type)
 {
     spell_t spell;
     static int heigth = 31;
@@ -75,10 +75,15 @@ struct spell_s init_spell(char *path, enum spells_names_s type)
     spell.clock = sfClock_create();
     if (type == FIREBALL) {
         spell.damage = 10;
-    } else if (type == SHIELD)
+        spell.protection = 0;
+    } else if (type == SHIELD) {
         spell.protection = 10;
-    if (type == BLACK_HOLE)
+        spell.damage = 0;
+    }
+    if (type == BLACK_HOLE) {
         spell.damage = 15;
+        spell.protection = 0;
+    }
     spell.activated = 0;
     return (spell);
 }
