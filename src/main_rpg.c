@@ -30,8 +30,68 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     sfSprite_setScale(obj->sprite, (sfVector2f) {2, 2});
     obj->pos = (sfVector2f) {0, 0};
     obj->rect = (sfIntRect) {200, 100, 1920, 1080};
+    rpg->quest.x = obj->rect.left;
+    rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
 }
+
+void set_rpg_tuto(tuto_t *tuto)
+{
+    char path[] = "assets/sprites/friend.png";
+    char path2[] = "assets/sprites/tuto.png";
+
+    tuto->action = 0; //pour voir à quel étape on en est du tuto
+    tuto->executed = 0; //pour dire si le tuto a déjà été fait ou non
+    tuto->friend = sfSprite_create();
+    tuto->friend_t = sfTexture_createFromFile(path, NULL);
+    sfSprite_setTexture(tuto->friend, tuto->friend_t, sfTrue);
+    tuto->clock = sfClock_create();
+    tuto->sprite = sfSprite_create();
+    tuto->texture = sfTexture_createFromFile(path2, NULL);
+    sfSprite_setTexture(tuto->sprite, tuto->texture, sfTrue);
+    tuto->rect.top = 0;
+    tuto->rect.height = 0;
+    tuto->rect.left = 0;
+    tuto->rect.width = 0;
+    sfSprite_setTextureRect(tuto->sprite, tuto->rect);
+}
+
+void create_arrow(quest_t *quest)
+{
+    char path[] = "assets/sprites/arrow.png";
+    sfVector2f pos = {935, 950};
+
+    quest->arrow = sfSprite_create();
+    quest->arr_t = sfTexture_createFromFile(path, NULL);
+    sfSprite_setTexture(quest->arrow, quest->arr_t, sfTrue);
+    sfSprite_setPosition(quest->arrow, pos);
+    sfSprite_setOrigin(quest->arrow, (sfVector2f) {165, 170});
+    sfSprite_setScale(quest->arrow, (sfVector2f) {0.45, 0.45});
+}
+
+void set_quest(quest_t *quest)
+{
+    char path[] = "assets/sprites/items.png";
+    char path2[] = "assets/sprites/msg.png";
+
+    quest->sprite = sfSprite_create();
+    quest->items = sfTexture_createFromFile(path, NULL);
+    quest->msg = sfSprite_create();
+    quest->msg_t = sfTexture_createFromFile(path2, NULL);
+    sfSprite_setTexture(quest->msg, quest->msg_t, sfTrue);
+    quest->pos.x = 195;
+    quest->pos.y = 84;
+    quest->rect.height = 30;
+    quest->rect.width = 30;
+    quest->rect.left = 0;
+    quest->rect.top = 0;
+    quest->act = 1;
+    quest->message = 0;
+    sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
+    sfSprite_setTextureRect(quest->sprite, quest->rect);
+    create_arrow(quest);
+}
+
 
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
@@ -44,16 +104,9 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->music_volume = 50;
     rpg->map = get_map();
     rpg->save = 0;
-    // for (int i = 0; i < 140; i++) {
-    //     for (int j = 0; j < 140; j++)
-    //         if (rpg->map[i][j] == 0) {
-    //             printf("\033[0;31m");
-    //             printf("%d", rpg->map[i][j]);
-    //             printf("\033[0m");
-    //         } else
-    //             printf("%d", rpg->map[i][j]);
-    //     printf("\n");
-    // }
+    //status correspondant au tuto = 7
+    set_rpg_tuto(&rpg->tuto);
+    set_quest(&rpg->quest);
 }
 
 void destroy(game_obj_t *obj)

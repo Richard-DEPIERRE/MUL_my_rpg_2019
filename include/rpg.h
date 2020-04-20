@@ -59,11 +59,51 @@ typedef struct game_obj_s
     sfClock *clock;
 } game_obj_t;
 
+typedef struct tuto_s
+{
+    int executed;
+    int action;
+    int tmp;
+
+    sfClock *clock;
+
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfIntRect rect;
+
+    sfSprite *friend;
+    sfTexture *friend_t;
+    sfIntRect rect_friend;
+    sfVector2f pos;
+}tuto_t;
+
+typedef struct quest_s
+{
+    sfTexture *items;
+
+    sfSprite *sprite;
+    sfSprite *msg;
+    sfSprite *arrow;
+    sfTexture *arr_t;
+
+    sfTexture *msg_t;
+    int act;
+
+    int x;
+    int y;
+    int message;
+    sfVector2f pos;
+    sfIntRect rect;
+}quest_t;
+
 typedef struct rpg_s
 {
     sfRenderWindow *win;
     sfEvent evnt;
     screen_t *screen;
+
+    tuto_t tuto;
+    quest_t quest;
 
     game_obj_R_t *menu;
     text_R_t *text;
@@ -73,6 +113,8 @@ typedef struct rpg_s
     int music_volume;
     int sound_volume;
     int **map;
+
+
 
     sfSprite *cop;
 
@@ -115,11 +157,15 @@ void draw_menu(rpg_t *rpg, sfRenderWindow *win);
 int main_rpg(void);
 void clock_event(rpg_t *rpg, clock_s *clock);
 void create_perspec(game_obj_t *perspec);
+void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg);
+void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj);
+void handling_items(rpg_t *rpg);
 
 //lib
 int my_strlen(char const *str);
 int my_putstr(char const *str);
 int my_getnbr(char *str);
+int save_to_file(rpg_t *rpg, game_obj_t *obj);
 
 //menu
 void set_menu_sprites(rpg_t *rpg);
@@ -138,6 +184,10 @@ void release_button(rpg_t *rpg, BACK_R_t type);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
+
+//tuto
+void draw_tuto(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj);
+void tuto(rpg_t *rpg, game_obj_t *obj);
 
 
 #endif /* !RPG_H_ */

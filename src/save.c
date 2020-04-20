@@ -29,53 +29,44 @@ char *my_strcat(char *dest, char *src)
     return (res);
 }
 
-void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
+char *stock_info2(char *str, char *tmp, int *size_tmp)
 {
     int size = 0;
+    for (size = *size_tmp; str[size] && str[size] != ':'; size += 1);
+    tmp = malloc(sizeof(char) * (size - *size_tmp + 1));
+    tmp[size - *size_tmp] = '\0';
+    for (size = *size_tmp; str[size] && str[size] != ':'; size += 1)
+        tmp[size - *size_tmp] = str[size];
+    if (str[size])
+        *size_tmp = size + 1;
+    return (tmp);
+}
+
+void get_str2(char *str, rpg_t *rpg, game_obj_t *obj)
+{
     int size_tmp = 0;
-    int left = 0;
-    int top = 0;
-    int i = 0;
     char *tmp = NULL;
 
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
-    tmp = malloc(sizeof(char) * (size + 1));
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
-        tmp[i++] = str[size];
-    tmp[i] = '\0';
-    size_tmp = ++size;
-    i = 0;
-    rpg->life = my_getnbr(tmp);
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
-    free(tmp);
-    tmp = malloc(sizeof(char) * (size + 1));
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
-        tmp[i++] = str[size];
-    tmp[i] = '\0';
-    size_tmp = ++size;
-    i = 0;
-    top = my_getnbr(tmp);
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
-    free(tmp);
-    tmp = malloc(sizeof(char) * (size + 1));
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
-        tmp[i++] = str[size];
-    tmp[i] = '\0';
-    size_tmp = ++size;
-    i = 0;
-    left = my_getnbr(tmp);
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1);
-    free(tmp);
-    tmp = malloc(sizeof(char) * (size + 1));
-    for (size = size_tmp; str[size] != ':' && str[size]; size += 1)
-        tmp[i++] = str[size];
-    tmp[i] = '\0';
-    size_tmp = ++size;
-    i = 0;
+    tmp = stock_info2(str, tmp, &size_tmp);
     rpg->status = my_getnbr(tmp);
-    free(tmp);
-    obj->rect = (sfIntRect){top, left,  1920, 1080};
-    rpg->perspec.rect = obj->rect,
+    tmp = stock_info2(str, tmp, &size_tmp);
+    obj->rect.left = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    obj->rect.top = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.act = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->life = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->tuto.executed = my_getnbr(tmp);
+}
+
+void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
+{
+    get_str2(str, rpg, obj);
+    rpg->perspec.rect = obj->rect;
+    rpg->quest.x = obj->rect.left;
+    rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
@@ -101,6 +92,5 @@ int init_save(rpg_t *rpg, game_obj_t *obj)
         return (84);
     }
     get_init(rpg, str, obj);
-    rpg->save = 0;
     return (0);
 }
