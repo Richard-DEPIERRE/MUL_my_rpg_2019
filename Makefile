@@ -39,6 +39,7 @@ SRC	=	src/clics_handlings.c		\
 		src/tuto/tuto.c				\
 		src/keys_handlings.c		\
 		src/handling_items.c		\
+		src/death/script_death.c			\
 
 SRC2 =	tests/test_main.c		\
 

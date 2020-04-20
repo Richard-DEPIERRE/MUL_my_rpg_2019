@@ -127,6 +127,8 @@ void global_event(rpg_t *rpg, game_obj_t *background)
         player_deplacement(rpg);
         handling_items(rpg);
     }
+    if (rpg->status == 8)
+        script_death(rpg, background);
     if (rpg->status == 7)
         tuto(rpg, background);
     if (rpg->status == 0)

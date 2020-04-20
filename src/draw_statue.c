@@ -44,4 +44,7 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
     if (rpg->status == 7) {
         draw_tuto(win, rpg, obj);
     }
+    if (rpg->status == 8) {
+        draw_death(win, rpg, obj);
+    }
 }
