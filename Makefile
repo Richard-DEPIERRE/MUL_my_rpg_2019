@@ -23,6 +23,7 @@ SRC	=	src/clics_handlings.c		\
 		src/player_rects.c			\
 		src/save.c			\
 		src/save_to_file.c			\
+		src/menu/click_menu2.c		\
 		src/menu/check_mouse.c		\
 		src/menu/check_mouse2.c		\
 		src/menu/click_menu.c		\
@@ -31,7 +32,6 @@ SRC	=	src/clics_handlings.c		\
 		src/menu/menu_set_sprites.c	\
 		src/menu/menu_set2.c		\
 		src/menu/particules.c		\
-		src/menu/click_menu2.c		\
 		src/get_next_char.c			\
 		src/load_map.c				\
 		src/create_perspective.c	\
@@ -40,6 +40,17 @@ SRC	=	src/clics_handlings.c		\
 		src/keys_handlings.c		\
 		src/handling_items.c		\
 		src/death/script_death.c			\
+		src/init.c					\
+		src/fight/draw_fights.c		\
+		src/fight/fights.c			\
+		src/fight/update_fights.c	\
+		src/fight/player_deplacements.c	\
+		src/fight/spells.c				\
+		src/fight/launch_spell.c\
+		src/fight/player_fight_rects.c	\
+		src/generate_random.c	\
+		src/fight/update_spell.c	\
+
 
 SRC2 =	tests/test_main.c		\
 

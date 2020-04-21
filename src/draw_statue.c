@@ -41,10 +41,10 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
                 rpg->screen->particle_environment.circle_shape);
         sfRenderWindow_display(win);
     }
-    if (rpg->status == 7) {
+    if (rpg->status == 7)
         draw_tuto(win, rpg, obj);
-    }
-    if (rpg->status == 8) {
+    if (rpg->status == 8)
         draw_death(win, rpg, obj);
-    }
+    if (rpg->status == 4)
+        display_fights(rpg->fight, win, rpg);
 }

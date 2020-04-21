@@ -27,6 +27,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <math.h>
+#include "rafik.h"
 #include "richard.h"
 #include "particule.h"
 #include "rafik.h"
@@ -37,6 +38,24 @@ typedef struct clock_c
     sfTime time;
     float second;
 } clock_s;
+
+#include "fight.h"
+
+typedef struct ennemies
+{
+    sfSprite *enn;
+    sfTexture *enn_texture;
+
+    clock_s clock;
+
+    sfIntRect rect;
+    sfVector2f pos;
+    int life;
+    int in_live;
+    float velocity;
+    int tmp;
+}ennemies_t;
+
 
 typedef struct player_s
 {
@@ -101,6 +120,7 @@ typedef struct rpg_s
     sfRenderWindow *win;
     sfEvent evnt;
     screen_t *screen;
+    fight_t *fight;
 
     tuto_t tuto;
     quest_t quest;
@@ -116,7 +136,7 @@ typedef struct rpg_s
 
 
 
-    sfSprite *cop;
+    // sfSprite *cop;
 
     game_obj_t perspec;
 
@@ -124,8 +144,10 @@ typedef struct rpg_s
     // sfTime time;
     // float sec;
 
+    sfSprite *cop;
+    sfSprite *delete_me;
+    sfTexture *delete_me_too;
     player_t player;
-
     int status;
     int save;
     // à modifier
@@ -166,8 +188,11 @@ int my_strlen(char const *str);
 int my_putstr(char const *str);
 int my_getnbr(char *str);
 int save_to_file(rpg_t *rpg, game_obj_t *obj);
+int generate_random(int l, int r);
 
 //menu
+void init_variables_for_particules(rpg_t *rpg);
+fight_t *init_variables_for_fights(fight_t *fight);
 void set_menu_sprites(rpg_t *rpg);
 void menu_destroy(rpg_t *rpg);
 void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj);
@@ -194,5 +219,23 @@ void script_death(rpg_t *rpg, game_obj_t *background);
 void set_script_death(rpg_t *rpg, game_obj_t *background);
 void draw_death(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj);
 int script1_death(rpg_t *rpg, game_obj_t *background);
+
+//fight
+void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
+void update_fights(fight_t *fight);
+void draw_fights(fight_t *fight, sfRenderWindow *win);
+void player_deplacements(player_fight_t *player);
+int dont_move_fight(player_fight_t *player);
+int move_down_fight(player_fight_t *player);
+int move_up_fight(player_fight_t *player);
+int move_left_fight(player_fight_t *player);
+int move_right_fight(player_fight_t *player);
+
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+void global_event(rpg_t *rpg, game_obj_t *);
+void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
+int **get_map(void);
+char *get_next_char(int fd, char c);
+
 
 #endif /* !RPG_H_ */
