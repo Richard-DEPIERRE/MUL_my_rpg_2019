@@ -20,6 +20,23 @@ void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj)
     }
 }
 
+void display_inventory(sfRenderWindow *win, rpg_t *rpg)
+{
+    printf("ACT:%d\n", rpg->quest.act);
+    if (rpg->quest.act == 1) {
+        rpg->quest.invent_rect.left = 0;
+    } else if (rpg->quest.act == 2) {
+        rpg->quest.invent_rect.left = 1920;
+    } else if (rpg->quest.act == 3) {
+        rpg->quest.invent_rect.left = 3840;
+    } else if (rpg->quest.act == 3) {
+        rpg->quest.invent_rect.left = 5760;
+    }
+    printf("LEFT:%d\n", rpg->quest.invent_rect.left);
+    sfSprite_setTextureRect(rpg->quest.invent_s, rpg->quest.invent_rect);
+    sfRenderWindow_drawSprite(win, rpg->quest.invent_s, NULL);
+}
+
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
     if (rpg->status == 0)
@@ -34,6 +51,7 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
+        display_inventory(win, rpg);
         if (rpg->quest.message == 1)
             sfRenderWindow_drawSprite(win, rpg->quest.msg, NULL);
         for (size_t index = 0; index < PARICULE_MAX; index++)

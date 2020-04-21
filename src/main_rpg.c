@@ -80,6 +80,7 @@ void set_quest(quest_t *quest)
 {
     char path[] = "assets/sprites/items.png";
     char path2[] = "assets/sprites/msg.png";
+    char path3[] = "assets/sprites/inventory_sheet.png";
 
     quest->sprite = sfSprite_create();
     quest->items = sfTexture_createFromFile(path, NULL);
@@ -97,6 +98,13 @@ void set_quest(quest_t *quest)
     sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
     sfSprite_setTextureRect(quest->sprite, quest->rect);
     create_arrow(quest);
+    quest->invent_s = sfSprite_create();
+    quest->invent_t = sfTexture_createFromFile(path3, NULL);
+    quest->invent_rect = (sfIntRect) {0, 0, 1920, 1080};
+    sfSprite_setTexture(quest->invent_s, quest->invent_t, sfTrue);
+    sfSprite_setScale(quest->invent_s, (sfVector2f) {0.5, 0.5});
+    // sfSprite_setTextureRect(quest->invent_s, quest->invent_rect);
+    sfSprite_setPosition(quest->invent_s, (sfVector2f) {950, 10});
 }
 
 

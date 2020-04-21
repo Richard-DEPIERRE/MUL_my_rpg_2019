@@ -51,7 +51,7 @@ void handling_items(rpg_t *rpg)
     rpg->player.pos.y > pos.y - 20 && rpg->player.pos.y < pos.y + 40) {
         rpg->quest.message = 1;
         if (sfKeyboard_isKeyPressed(sfKeySpace)) {
-            rpg->status = 8;
+            // rpg->status = 8; qu'est-ce que ça fout là ça
             change_item(rpg);
         }
     } else {

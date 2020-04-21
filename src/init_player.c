@@ -18,7 +18,7 @@ void init_player(player_t *obj)
     NULL);
     obj->clock.clock = sfClock_create();
     sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
-    obj->rect = (sfIntRect){0, 0, 64, 64};
+    obj->rect = (sfIntRect) {0, 0, 64, 64};
     sfSprite_setOrigin(obj->sprite, (sfVector2f) {32, 32});
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     sfSprite_setPosition(obj->sprite, pos);

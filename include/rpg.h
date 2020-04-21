@@ -113,6 +113,10 @@ typedef struct quest_s
     int message;
     sfVector2f pos;
     sfIntRect rect;
+
+    sfSprite *invent_s;
+    sfTexture *invent_t;
+    sfIntRect invent_rect;
 }quest_t;
 
 typedef struct rpg_s
