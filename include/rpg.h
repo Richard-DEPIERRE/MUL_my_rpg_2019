@@ -237,5 +237,8 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 int **get_map(void);
 char *get_next_char(int fd, char c);
 
+//spawn
+void fights_spawns(rpg_t *rpg, game_obj_t *obj);
+
 
 #endif /* !RPG_H_ */

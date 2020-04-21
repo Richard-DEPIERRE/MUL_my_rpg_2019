@@ -50,6 +50,7 @@ SRC	=	src/clics_handlings.c		\
 		src/fight/player_fight_rects.c	\
 		src/generate_random.c	\
 		src/fight/update_spell.c	\
+		src/fights_spawns.c				\
 
 
 SRC2 =	tests/test_main.c		\

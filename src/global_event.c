@@ -126,6 +126,7 @@ void global_event(rpg_t *rpg, game_obj_t *background)
         if (sfKeyboard_isKeyPressed(sfKeyS))
             move_rect(background, (sfVector2f) {0, 1}, rpg);
         player_deplacement(rpg);
+        fights_spawns(rpg, background);
         handling_items(rpg);
     }
     if (rpg->status == 8)
