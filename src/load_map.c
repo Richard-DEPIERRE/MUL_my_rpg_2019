@@ -34,7 +34,7 @@ int my_getnbr(char *str)
 int **get_map(void)
 {
     int **obj = NULL;
-    int fd = open("map/colli.txt", O_RDONLY);
+    int fd = open("map/colli_with_spawns.txt", O_RDONLY);
 
     obj = malloc(sizeof(int *) * 141);
     obj[140] = NULL;

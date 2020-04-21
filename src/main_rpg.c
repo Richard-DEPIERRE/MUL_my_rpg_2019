@@ -27,11 +27,11 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     rpg->fight = init_variables_for_fights(rpg->fight);
     set_menu_sprites(rpg);
     rpg->delete_me_too = sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);
-    rpg->delete_me_too = sfTexture_createFromFile("map/Map.png", NULL);
+    rpg->delete_me_too = sfTexture_createFromFile("assets/maps/map_with_spawns.png", NULL);
     rpg->delete_me = sfSprite_create();
     sfSprite_setTexture(rpg->delete_me, rpg->delete_me_too, sfTrue);
     sfSprite_setScale(rpg->delete_me, (sfVector2f) {2, 2});
-    obj->texture = sfTexture_createFromFile("map/Map.png", NULL);
+    obj->texture = sfTexture_createFromFile("assets/maps/map_with_spawns.png", NULL);
     obj->sprite = sfSprite_create();
     sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
     sfSprite_setScale(obj->sprite, (sfVector2f) {2, 2});
@@ -144,7 +144,6 @@ int main_rpg(void)
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);
-        sfMusic_setVolume(music, (float)(rpg->music_volume));
         draw_statue(rpg, rpg->win, &background);
     }
     destroy(&background, rpg);
