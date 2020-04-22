@@ -66,7 +66,7 @@ void clock_event(rpg_t *rpg, clock_s *clock)
     rpg->player.clock.time = sfClock_getElapsedTime(rpg->player.clock.clock);
     rpg->player.clock.second = rpg->player.clock.time.microseconds / 1000000.0;
 
-    if (rpg->player.clock.second > 0.06) {
+    if (rpg->player.clock.second > 0.06 && rpg->status != 9) {
         // printf("compte\n");
         if (rpg->player.direct != 0) {
             // printf("yolo\n");
@@ -75,7 +75,11 @@ void clock_event(rpg_t *rpg, clock_s *clock)
         }
         sfClock_restart(rpg->player.clock.clock);
     }
-    if (clock->second > 0.09) {
+    if (clock->second > 3 && rpg->status == 9) {
+        rpg->status = 8;
+        sfClock_restart(rpg->player.clock.clock);
+    }
+    if (clock->second > 0.09 && rpg->status != 9) {
         change_background_menu_rect(rpg);
         sfClock_restart(clock->clock);
         //tu fais tes animations ici

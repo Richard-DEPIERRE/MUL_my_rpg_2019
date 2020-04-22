@@ -22,5 +22,6 @@ void draw_fights(fight_t *fight, sfRenderWindow *win)
     for (int i = 0; i < 3; i++)
         if (fight->spell[i].activated == 1)
             sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
+    sfRenderWindow_drawSprite(win, fight->buttons[0].sprite, NULL);
     sfRenderWindow_display(win);
 }

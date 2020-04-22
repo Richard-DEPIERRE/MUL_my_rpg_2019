@@ -34,6 +34,7 @@ typedef struct player_fight_s
     sfSprite *player;
     sfTexture *player_texture;
     clock_s clock;
+    clock_s clock2;
     sfIntRect rect;
     sfVector2f pos;
     int direct; //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
@@ -66,6 +67,7 @@ typedef struct inventory_s
 
 typedef struct fight_s
 {
+    game_obj_R_t *buttons;
     sfSprite *background;
     sfTexture *background_texture;
     player_fight_t player;

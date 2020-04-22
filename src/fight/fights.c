@@ -27,8 +27,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
 
     if (fight->player.life == 0) {
         reset_ennemies(fight);
-        printf("Player est mort\nGo Afficher écran de Game Over\n");
-        rpg->status = 0; // ce status correspondra à l'écran de game over
+        rpg->status = 9; // ce status correspondra à l'écran de game over
     }
     for (int i = 0; i < fight->nb_enn; i++) {
         if (fight->enns[i].in_live == 0) {

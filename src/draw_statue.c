@@ -47,4 +47,10 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         draw_death(win, rpg, obj);
     if (rpg->status == 4)
         display_fights(rpg->fight, win, rpg);
+    if (rpg->status == 9) {
+        sfRenderWindow_clear(win, sfBlack);
+        sfRenderWindow_drawSprite(win, rpg->fight->buttons[1].sprite, NULL);
+        sfRenderWindow_display(win);
+    }
+        
 }

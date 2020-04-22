@@ -103,7 +103,7 @@ void set_quest(quest_t *quest)
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 0;
+    rpg->status = 4;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
@@ -116,8 +116,12 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     set_quest(&rpg->quest);
 }
 
-void destroy(game_obj_t *obj)
+void destroy(game_obj_t *obj, rpg_t *rpg)
 {
+    sfSprite_destroy(rpg->fight->buttons[0].sprite);
+    sfTexture_destroy(rpg->fight->buttons[0].texture);
+    sfSprite_destroy(rpg->fight->buttons[1].sprite);
+    sfTexture_destroy(rpg->fight->buttons[1].texture);
     sfSprite_destroy(obj->sprite);
     sfTexture_destroy(obj->texture);
 }
@@ -139,9 +143,9 @@ int main_rpg(void)
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);
-        sfMusic_setVolume(music, (float)(rpg->music_volume));
+        // sfMusic_setVolume(music, (float)(rpg->music_volume));
         draw_statue(rpg, rpg->win, &background);
     }
-    destroy(&background);
+    destroy(&background, rpg);
     return (0);
 }

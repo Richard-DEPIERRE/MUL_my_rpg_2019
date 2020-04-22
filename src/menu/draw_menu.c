@@ -8,17 +8,6 @@
 #include "rpg.h"
 #include "my.h"
 
-void display_name(rpg_t *rpg)
-{
-    sfVector2f menu_position = {970, 490};
-
-    sfText_setString(rpg->text[17].text, rpg->text[17].text);
-    sfText_setFont(rpg->text[17].text, "assets/fonts/virus2.TTF");
-    sfText_setCharacterSize(rpg->text[17].text, 50);
-    sfText_setColor(rpg->text[17].text, sfRed);
-    sfText_setPosition(rpg->text[17].text, menu_position);
-}
-
 void draw_menu2(rpg_t *rpg, sfRenderWindow *win)
 {
     if (rpg->menu_status == 2) {

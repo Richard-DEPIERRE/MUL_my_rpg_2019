@@ -14,9 +14,10 @@ sfVector2f pos)
     fight->player.player = sfSprite_create();
     fight->player.rect = rect;
     fight->player.pos = pos;
-    fight->player.life = 3;
+    fight->player.life = 100;
     fight->player.weapon = SHOVEL;
     fight->player.clock.clock = sfClock_create();
+    fight->player.clock2.clock = sfClock_create();
     sfSprite_setOrigin(fight->player.player, (sfVector2f) {32, 32});
     sfSprite_setTexture(fight->player.player, fight->player.player_texture,
     sfTrue);
@@ -67,6 +68,22 @@ void init_variables_for_particules(rpg_t *rpg)
     (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
 }
 
+game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect, \
+enum BACK_R_s type)
+{
+    game_obj_R_t object;
+
+    object.texture = sfTexture_createFromFile(filepath, NULL);
+    object.sprite = sfSprite_create();
+    sfSprite_setPosition(object.sprite, pos);
+    sfSprite_setTexture(object.sprite, object.texture, sfTrue);
+    sfSprite_setTextureRect(object.sprite, rect);
+    object.rect = rect;
+    object.pos = pos;
+    object.type = type;
+    return (object);
+}
+
 fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
@@ -87,6 +104,11 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
     fight->spell[1] = init_spell("assets/sprites/spells/spell2.png", SHIELD);
     fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE);
+    fight->buttons = malloc(sizeof(game_obj_t) * 2);
+    fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
+    (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
+    fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
+    (sfVector2f){530, 485}, (sfIntRect){0, 0, 860, 110}, BACK);
     sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
     sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
     set_basics_for_fight(fight, "assets/sprites/character.png",
