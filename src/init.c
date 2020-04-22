@@ -108,7 +108,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
     fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
-    (sfVector2f){530, 485}, (sfIntRect){0, 0, 860, 110}, BACK);
+    (sfVector2f){530, 485}, (sfIntRect){0, 0, 870, 120}, BACK);
     sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
     sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
     set_basics_for_fight(fight, "assets/sprites/character.png",
