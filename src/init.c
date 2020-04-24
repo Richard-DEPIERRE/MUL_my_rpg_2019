@@ -76,7 +76,7 @@ void create_and_set_background(fight_t *fight)
     fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",\
     NULL);
     fight->gel = sfTexture_createFromFile("assets/sprites/arena/gel.png", NULL);
-    fight->boss = sfTexture_createFromFile("assets/sprite/arena/boss.png",\
+    fight->boss = sfTexture_createFromFile("assets/sprites/arena/boss.png",\
     NULL);
     sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
 }
