@@ -41,18 +41,40 @@ void change_item(rpg_t *rpg)
     }
 }
 
+void change_background_fight(fight_t *fight, int i, quest_t quest)
+{
+    if (i == 0) {
+        sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
+    } else {
+        if (quest.act == 1)
+            sfSprite_setTexture(fight->background, fight->condom, sfTrue);
+        if (quest.act == 2)
+            sfSprite_setTexture(fight->background, fight->corona, sfTrue);
+        if (quest.act == 3)
+            sfSprite_setTexture(fight->background, fight->gel, sfTrue);
+        if (quest.act == 0)
+            sfSprite_setTexture(fight->background, fight->boss, sfTrue);
+    }
+}
+
 void handling_items(rpg_t *rpg)
 {
     sfVector2f pos;
     pos.x = (rpg->quest.pos.x - rpg->quest.x) * 2;
     pos.y = (rpg->quest.pos.y - rpg->quest.y) * 2;
     // printf("x : %f | y : %f\n", pos.x, pos.y);
+    if (rpg->quest.tmp == 1) {
+        rpg->quest.tmp = 0;
+        change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
+        change_item(rpg);
+    }
     if (rpg->player.pos.x > pos.x - 20 && rpg->player.pos.x < pos.x + 40 &&
     rpg->player.pos.y > pos.y - 20 && rpg->player.pos.y < pos.y + 40) {
         rpg->quest.message = 1;
         if (sfKeyboard_isKeyPressed(sfKeySpace)) {
-            // rpg->status = 8; qu'est-ce que ça fout là ça
-            change_item(rpg);
+            rpg->quest.tmp = 1;
+            change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
+            rpg->status = 4;
         }
     } else {
         rpg->quest.message = 0;

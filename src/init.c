@@ -67,11 +67,24 @@ void init_variables_for_particules(rpg_t *rpg)
     (sfVector2f){GRAVITY_X, GRAVITY_Y}, ALPHA);
 }
 
+void create_and_set_background(fight_t *fight)
+{
+    fight->defaultt = sfTexture_createFromFile(\
+        "assets/sprites/arena/default.png", NULL);
+    fight->condom = sfTexture_createFromFile("assets/sprites/arena/condom.png",\
+    NULL);
+    fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",\
+    NULL);
+    fight->gel = sfTexture_createFromFile("assets/sprites/arena/gel.png", NULL);
+    fight->boss = sfTexture_createFromFile("assets/sprite/arena/boss.png",\
+    NULL);
+    sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
+}
+
 fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
     fight->enns = malloc(sizeof(ennemies_t) * 5);
-    fight->background_texture = sfTexture_createFromFile("assets/maps/fight_map.png", NULL);
     fight->background = sfSprite_create();
     fight->inventory.sprite = sfSprite_create();
     fight->inventory.texture = sfTexture_createFromFile("assets/sprites/inventory.png", NULL);
@@ -87,8 +100,8 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
     fight->spell[1] = init_spell("assets/sprites/spells/spell2.png", SHIELD);
     fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE);
-    sfSprite_setTexture(fight->background, fight->background_texture, sfTrue);
-    sfSprite_setTextureRect(fight->background, (sfIntRect){52, 0, 1920, 1080});
+    create_and_set_background(fight);
+    sfSprite_setTextureRect(fight->background, (sfIntRect){0, 0, 1920, 1080});
     set_basics_for_fight(fight, "assets/sprites/character.png",
     (sfIntRect) {0, 0, 64, 64}, (sfVector2f) {(1920 / 2) - (64 / 2),
     (1080 / 2) - (64 / 2)});

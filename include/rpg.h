@@ -111,6 +111,7 @@ typedef struct quest_s
     int x;
     int y;
     int message;
+    int tmp;
     sfVector2f pos;
     sfIntRect rect;
 

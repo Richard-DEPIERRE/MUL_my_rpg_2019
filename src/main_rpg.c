@@ -96,6 +96,7 @@ void set_quest(quest_t *quest)
     quest->rect.left = 0;
     quest->rect.top = 0;
     quest->act = 1;
+    quest->tmp = 0; //richard doit save cette donnée
     quest->message = 0;
     sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
     sfSprite_setTextureRect(quest->sprite, quest->rect);

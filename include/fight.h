@@ -67,7 +67,11 @@ typedef struct inventory_s
 typedef struct fight_s
 {
     sfSprite *background;
-    sfTexture *background_texture;
+    sfTexture *defaultt;
+    sfTexture *condom;
+    sfTexture *corona;
+    sfTexture *gel;
+    sfTexture *boss;
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
