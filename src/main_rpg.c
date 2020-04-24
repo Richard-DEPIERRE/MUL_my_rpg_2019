@@ -118,10 +118,10 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
 
 void destroy(game_obj_t *obj, rpg_t *rpg)
 {
-    sfSprite_destroy(rpg->fight->buttons[0].sprite);
-    sfTexture_destroy(rpg->fight->buttons[0].texture);
-    sfSprite_destroy(rpg->fight->buttons[1].sprite);
-    sfTexture_destroy(rpg->fight->buttons[1].texture);
+    for (int i = 0; i < 10; i += 1) {
+        sfSprite_destroy(rpg->fight->buttons[i].sprite);
+    sfTexture_destroy(rpg->fight->buttons[i].texture);
+    }
     sfSprite_destroy(obj->sprite);
     sfTexture_destroy(obj->texture);
 }

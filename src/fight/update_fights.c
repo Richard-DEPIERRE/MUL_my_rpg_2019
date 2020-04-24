@@ -103,19 +103,19 @@ int pos_zombie(player_fight_t *player, float truc1, float truc2, int tmp2)
     static int tmp = 5;
     if (tmp < 30) {
         if (truc1 >= truc2 && truc1 >= 0 && player->pos.x > 10) {
-            player->pos.x -= 2;
+            player->pos.x -= 5;
             return (move_left_touch(player));
         }
         if (truc1 >= truc2 && truc1 < 0 && player->pos.x < 1910) {
-            player->pos.x += 2;
+            player->pos.x += 5;
             return (move_right_touch(player));
         }
         if (truc1 < truc2 && truc1 >= 0 && player->pos.y > 10) {
-            player->pos.y -= 2;
+            player->pos.y -= 5;
             return (move_up_touch(player));
         }
         if (truc1 < truc2 && truc1 < 0 && player->pos.y < 1040) {
-            player->pos.y += 2;
+            player->pos.y += 5;
             return (move_down_touch(player));
         }
         tmp += 5;
@@ -169,29 +169,24 @@ void ennemies_deplacements(fight_t *fight)
             animate_enemy(&fight->enns[i]);
             sfSprite_setTextureRect(fight->enns[i].enn, fight->enns[i].rect);
             sfSprite_setPosition(fight->enns[i].enn, fight->enns[i].pos);
-            if (fight->enns[i].pos.x > fight->player.pos.x - 25 &&
+            fight->enns[i].buttons[1].pos.x = fight->enns[i].pos.x - 50;
+            fight->enns[i].buttons[1].pos.y = fight->enns[i].pos.y - 51;
+            sfSprite_setPosition(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].pos); // give death bar to mob
+            fight->enns[i].buttons[0].pos.x = fight->enns[i].pos.x - 50;
+            fight->enns[i].buttons[0].pos.y = fight->enns[i].pos.y - 51;
+            sfSprite_setPosition(fight->enns[i].buttons[0].sprite, fight->enns[i].buttons[0].pos); //give life bar to mob
+            if (fight->enns[i].pos.x > fight->player.pos.x - 25 && // Collision player mob
             fight->enns[i].pos.x < fight->player.pos.x + 25 &&
             fight->enns[i].pos.y > fight->player.pos.y - 35 &&
-        fight->enns[i].pos.y < fight->player.pos.y + 35) {
+            fight->enns[i].pos.y < fight->player.pos.y + 35)
                 lol = 1;
-            }
         }
         if (lol >= 1) {
             knock_back(&fight->player, &fight->player.clock, truc1, truc2, lol);
             if (lol < 2) {
-                fight->player.life -= 5;
-                if (fight->buttons[0].rect.top >= 280) {
-                    fight->buttons[0].rect.top = 280;
-                    fight->buttons[0].rect.left = 0;
-                }
-                if (((100 - fight->player.life) / 5) % 2 == 0 && fight->buttons[0].rect.top < 280) {
-                    fight->buttons[0].rect.top = (100 - fight->player.life) / 5 / 2 * 28;
-                    fight->buttons[0].rect.left = 0;
-                } else if (((100 - fight->player.life) / 5) % 2 == 1 && fight->buttons[0].rect.top < 280) {
-                    fight->buttons[0].rect.top = ((100 - fight->player.life) / 5 - 1) / 2 * 28;
-                    fight->buttons[0].rect.left = 168;
-                }
-                sfSprite_setTextureRect(fight->buttons[0].sprite, fight->buttons[0].rect);
+                fight->player.life -= 1;
+                fight->buttons[3].rect.width = fight->player.life * 2 + 4;
+                sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect); // give life to player
             }
             lol +=  1;
         }
@@ -208,19 +203,25 @@ void update_weapons(fight_t *fight)
     if (r != 0)
         return;
     if (sfKeyboard_isKeyPressed(sfKeyNum1))
-        fight->player.weapon = SHOVEL;
-    if (sfKeyboard_isKeyPressed(sfKeyNum2))
         fight->player.weapon = SPELL_ONE;
-    if (sfKeyboard_isKeyPressed(sfKeyNum3))
+    if (sfKeyboard_isKeyPressed(sfKeyNum2))
         fight->player.weapon = SPELL_TWO;
-    if (sfKeyboard_isKeyPressed(sfKeyNum4))
+    if (sfKeyboard_isKeyPressed(sfKeyNum3))
         fight->player.weapon = SPELL_THREE;
+    if (sfKeyboard_isKeyPressed(sfKeyNum4))
+        fight->player.weapon = SPELL_FOUR;
     if (sfKeyboard_isKeyPressed(sfKeyNum5))
+        fight->player.weapon = SPELL_FOUR;
+    if (sfKeyboard_isKeyPressed(sfKeyNum6))
         fight->player.weapon = SPELL_FOUR;
 }
 
 void update_fights(fight_t *fight)
 {
+    for (int i = 0; i < fight->nb_enn; i++) {
+        if (fight->enns[i].in_live == 1 && fight->enns[i].life <= 0)
+            fight->enns[i].in_live = 0;
+    }
     ennemies_deplacements(fight);
     player_deplacements(&fight->player);
     launch_spell(fight);

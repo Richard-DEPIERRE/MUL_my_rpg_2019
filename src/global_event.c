@@ -111,11 +111,15 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
         analyse_event(rpg, background);
     }
-    if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120)
+    if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120) {
         rpg->menu[18].rect.left = rpg->menu[18].rect.width;
-    else
+        rpg->fight->buttons[5].rect.left = rpg->fight->buttons[5].rect.width;
+    } else {
         rpg->menu[18].rect.left = 0;
+        rpg->fight->buttons[5].rect.left = 0;
+    }
     sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
+    sfSprite_setTextureRect(rpg->fight->buttons[5].sprite, rpg->fight->buttons[5].rect);
     if (rpg->status == 3) {
         if (sfKeyboard_isKeyPressed(sfKeyQ))
             move_rect(background, (sfVector2f) {-1, 0}, rpg);
