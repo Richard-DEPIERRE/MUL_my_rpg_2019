@@ -122,13 +122,13 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     sfSprite_setTextureRect(rpg->fight->buttons[5].sprite, rpg->fight->buttons[5].rect);
     if (rpg->status == 3) {
         if (sfKeyboard_isKeyPressed(sfKeyQ))
-            move_rect(background, (sfVector2f) {-1, 0}, rpg);
+            move_rect(background, (sfVector2f) {-5, 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyD))
-            move_rect(background, (sfVector2f) {1, 0}, rpg);
+            move_rect(background, (sfVector2f) {5, 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyZ))
-            move_rect(background, (sfVector2f) {0, -1}, rpg);
+            move_rect(background, (sfVector2f) {0, -5}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyS))
-            move_rect(background, (sfVector2f) {0, 1}, rpg);
+            move_rect(background, (sfVector2f) {0, 5}, rpg);
         player_deplacement(rpg);
         handling_items(rpg);
     }

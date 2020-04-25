@@ -224,7 +224,7 @@ int script1_death(rpg_t *rpg, game_obj_t *background);
 
 //fight
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
-void update_fights(fight_t *fight);
+void update_fights(fight_t *fight, rpg_t *rpg);
 void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void player_deplacements(player_fight_t *player);
 int dont_move_fight(player_fight_t *player);

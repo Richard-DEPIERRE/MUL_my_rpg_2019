@@ -103,7 +103,7 @@ void set_quest(quest_t *quest)
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 4;
+    rpg->status = 0;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;

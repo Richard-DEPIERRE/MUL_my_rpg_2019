@@ -92,8 +92,37 @@ enum BACK_R_s type)
     return (object);
 }
 
-fight_t *init_var2(fight_t *fight)
+fight_t *init_variables_for_fights(fight_t *fight)
 {
+    fight = malloc(sizeof(fight_t));
+    fight->enns = malloc(sizeof(ennemies_t) * 5);
+    fight->background_texture = sfTexture_createFromFile("assets/maps/fight_map.png", NULL);
+    fight->background = sfSprite_create();
+    fight->inventory.sprite = sfSprite_create();
+    fight->inventory.texture = sfTexture_createFromFile("assets/sprites/inventory.png", NULL);
+    fight->inventory.show = sfRectangleShape_create();
+    sfRectangleShape_setSize(fight->inventory.show, (sfVector2f) {110 - 12, 90 - 22});
+    sfRectangleShape_setOutlineThickness(fight->inventory.show, 6);
+    sfRectangleShape_setFillColor(fight->inventory.show, sfColor_fromRGBA(0, 0, 0, 0));
+    sfRectangleShape_setOutlineColor(fight->inventory.show, sfColor_fromRGBA(50, 50, 50, 255));
+    sfSprite_setTexture(fight->inventory.sprite, fight->inventory.texture, sfTrue);
+    sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
+    sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
+    fight->spell = malloc(sizeof(spell_t) * (3));
+    fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
+    fight->spell[1] = init_spell("assets/sprites/spells/spell2.png", SHIELD);
+    fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE);
+    fight->buttons = malloc(sizeof(game_obj_t) * 10);
+    fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
+    (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
+    fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
+    (sfVector2f){530, 485}, (sfIntRect){0, 0, 870, 120}, BACK);
+    fight->buttons[2] = create_object_fight("assets/sprites/red_life.png", 
+    (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
+    fight->buttons[3] = create_object_fight("assets/sprites/green_life.png", 
+    (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
+    fight->buttons[4] = create_object_fight("assets/sprites/arene_default.png", 
+    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, BACK);
     fight->buttons[5] = create_object_fight("assets/sprites/menu/pause.png",
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, BACK);
     fight->buttons[6] = create_object_fight("assets/sprites/fire.png",
@@ -113,43 +142,4 @@ fight_t *init_var2(fight_t *fight)
     for (int i = 0; i < 5; i++)
         fight->enns[i] = set_enn(i);
     return (fight);
-}
-
-fight_t *init_var1(fight_t *fight)
-{
-    fight->spell = malloc(sizeof(spell_t) * (3));
-    fight->spell[0] = init_spell("assets/sprites/spells/fireball.png", FIREBALL);
-    fight->spell[1] = init_spell("assets/sprites/spells/spell2.png", SHIELD);
-    fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE);
-    fight->buttons = malloc(sizeof(game_obj_t) * 10);
-    fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
-    (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
-    fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
-    (sfVector2f){530, 485}, (sfIntRect){0, 0, 870, 120}, BACK);
-    fight->buttons[2] = create_object_fight("assets/sprites/red_life.png", 
-    (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
-    fight->buttons[3] = create_object_fight("assets/sprites/green_life.png", 
-    (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
-    fight->buttons[4] = create_object_fight("assets/sprites/arene_default.png", 
-    (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, BACK);
-    return (init_var2(fight));
-}
-
-fight_t *init_variables_for_fights(fight_t *fight)
-{
-    fight = malloc(sizeof(fight_t));
-    fight->enns = malloc(sizeof(ennemies_t) * 5);
-    fight->background_texture = sfTexture_createFromFile("assets/maps/fight_map.png", NULL);
-    fight->background = sfSprite_create();
-    fight->inventory.sprite = sfSprite_create();
-    fight->inventory.texture = sfTexture_createFromFile("assets/sprites/inventory.png", NULL);
-    fight->inventory.show = sfRectangleShape_create();
-    sfRectangleShape_setSize(fight->inventory.show, (sfVector2f) {110 - 12, 90 - 22});
-    sfRectangleShape_setOutlineThickness(fight->inventory.show, 6);
-    sfRectangleShape_setFillColor(fight->inventory.show, sfColor_fromRGBA(0, 0, 0, 0));
-    sfRectangleShape_setOutlineColor(fight->inventory.show, sfColor_fromRGBA(50, 50, 50, 255));
-    sfSprite_setTexture(fight->inventory.sprite, fight->inventory.texture, sfTrue);
-    sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
-    sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
-    return (init_var1(fight));
 }

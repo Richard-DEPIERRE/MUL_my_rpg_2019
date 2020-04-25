@@ -31,6 +31,7 @@ void where_to_move(ennemies_t *ennemies, float truc1, float truc2)
 
 void animate_enemy(ennemies_t *ennemies)
 {
+    printf("rect : LEFT %d | TOP %d\n", ennemies->rect.left, ennemies->rect.top);
     ennemies->clock.time = sfClock_getElapsedTime(ennemies->clock.clock);
     ennemies->clock.second = ennemies->clock.time.microseconds / 1000000.0;
     if (ennemies->clock.second > 0.2) {
@@ -151,7 +152,7 @@ void knock_back(player_fight_t *player, clock_s *clock, float truc1, float truc2
 
 void ennemies_deplacements(fight_t *fight)
 {
-    static int lol = 0;
+    static int tmp = 0;
     float truc1 = 0;
     float truc2 = 0;
     for (int i = 0; i < fight->nb_enn; i++) {
@@ -171,27 +172,27 @@ void ennemies_deplacements(fight_t *fight)
             sfSprite_setPosition(fight->enns[i].enn, fight->enns[i].pos);
             fight->enns[i].buttons[1].pos.x = fight->enns[i].pos.x - 50;
             fight->enns[i].buttons[1].pos.y = fight->enns[i].pos.y - 51;
-            sfSprite_setPosition(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].pos); // give death bar to mob
+            sfSprite_setPosition(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].pos);
             fight->enns[i].buttons[0].pos.x = fight->enns[i].pos.x - 50;
             fight->enns[i].buttons[0].pos.y = fight->enns[i].pos.y - 51;
-            sfSprite_setPosition(fight->enns[i].buttons[0].sprite, fight->enns[i].buttons[0].pos); //give life bar to mob
-            if (fight->enns[i].pos.x > fight->player.pos.x - 25 && // Collision player mob
+            sfSprite_setPosition(fight->enns[i].buttons[0].sprite, fight->enns[i].buttons[1].pos);
+            if (fight->enns[i].pos.x > fight->player.pos.x - 25 &&
             fight->enns[i].pos.x < fight->player.pos.x + 25 &&
             fight->enns[i].pos.y > fight->player.pos.y - 35 &&
             fight->enns[i].pos.y < fight->player.pos.y + 35)
-                lol = 1;
+                tmp = 1;
         }
-        if (lol >= 1) {
-            knock_back(&fight->player, &fight->player.clock, truc1, truc2, lol);
-            if (lol < 2) {
+        if (tmp >= 1) {
+            knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);
+            if (tmp < 2) {
                 fight->player.life -= 1;
                 fight->buttons[3].rect.width = fight->player.life * 2 + 4;
-                sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect); // give life to player
+                sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
             }
-            lol +=  1;
+            tmp +=  1;
         }
     }
-    lol = 0;
+    tmp = 0;
 }
 
 void update_weapons(fight_t *fight)
@@ -216,13 +217,15 @@ void update_weapons(fight_t *fight)
         fight->player.weapon = SPELL_FOUR;
 }
 
-void update_fights(fight_t *fight)
+void update_fights(fight_t *fight, rpg_t *rpg)
 {
-    for (int i = 0; i < fight->nb_enn; i++) {
-        if (fight->enns[i].in_live == 1 && fight->enns[i].life <= 0)
-            fight->enns[i].in_live = 0;
+    if (rpg->status != 10) {
+        for (int i = 0; i < fight->nb_enn; i++) {
+            if (fight->enns[i].in_live == 1 && fight->enns[i].life <= 0)
+                fight->enns[i].in_live = 0;
+        }
+        ennemies_deplacements(fight);
     }
-    ennemies_deplacements(fight);
     player_deplacements(&fight->player);
     launch_spell(fight);
     update_spell(fight);
