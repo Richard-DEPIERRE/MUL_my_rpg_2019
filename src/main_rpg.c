@@ -129,17 +129,65 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
 
 void destroy(game_obj_t *obj, rpg_t *rpg)
 {
+    sfClock_destroy(rpg->clock->clock);
+
     for (int i = 0; i < 140; i++)
         free(rpg->map[i]);
     free(rpg->map);
+
     sfSprite_destroy(rpg->delete_me);
     sfTexture_destroy(rpg->delete_me_too);
+
     for (int i = 0; i < 10; i += 1) {
         sfSprite_destroy(rpg->fight->buttons[i].sprite);
     sfTexture_destroy(rpg->fight->buttons[i].texture);
     }
     sfSprite_destroy(obj->sprite);
     sfTexture_destroy(obj->texture);
+    sfSprite_destroy(rpg->menu->sprite);
+
+    sfSprite_destroy(rpg->quest.msg);
+    sfSprite_destroy(rpg->quest.sprite);
+    sfSprite_destroy(rpg->quest.arrow);
+    sfTexture_destroy(rpg->quest.arr_t);
+    sfTexture_destroy(rpg->quest.invent_t);
+    sfTexture_destroy(rpg->quest.msg_t);
+    sfSprite_destroy(rpg->quest.invent_s);
+
+    sfTexture_destroy(rpg->fight->boss);
+    sfTexture_destroy(rpg->fight->condom);
+    sfTexture_destroy(rpg->fight->corona);
+    sfTexture_destroy(rpg->fight->gel);
+    sfTexture_destroy(rpg->fight->defaultt);
+    sfSprite_destroy(rpg->fight->background);
+    sfSprite_destroy(rpg->fight->player.player);
+    sfTexture_destroy(rpg->fight->player.player_texture);
+    sfClock_destroy(rpg->fight->player.clock2.clock);
+    sfClock_destroy(rpg->fight->player.clock.clock);
+    for (int i = 0; i < 5; i++) {
+        sfClock_destroy(rpg->fight->enns[i].clock.clock);
+        sfTexture_destroy(rpg->fight->enns[i].enn_texture);
+        sfSprite_destroy(rpg->fight->enns[i].enn);
+    }
+    sfSprite_destroy(rpg->fight->inventory.sprite);
+    sfTexture_destroy(rpg->fight->inventory.texture);
+    for (int i = 0; i < 3; i++) { //faut changer i < x -> x étant le nb de sort
+        sfSprite_destroy(rpg->fight->spell[i].sprite);
+        sfTexture_destroy(rpg->fight->spell[i].texture);
+        sfClock_destroy(rpg->fight->spell[i].clock);
+    }
+
+    sfSprite_destroy(rpg->tuto.sprite);
+    sfTexture_destroy(rpg->tuto.texture);
+    sfSprite_destroy(rpg->tuto.friend);
+    sfTexture_destroy(rpg->tuto.friend_t);
+    sfClock_destroy(rpg->tuto.clock);
+
+    sfSprite_destroy(rpg->player.sprite);
+    sfTexture_destroy(rpg->player.texture);
+    sfClock_destroy(rpg->player.clock.clock);
+
+    //il faut destroy le game obj sachant que je ne connais pas la limite du game obj
 }
 
 int main_rpg(void)
