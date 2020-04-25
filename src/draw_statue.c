@@ -37,6 +37,21 @@ void display_inventory(sfRenderWindow *win, rpg_t *rpg)
     sfRenderWindow_drawSprite(win, rpg->quest.invent_s, NULL);
 }
 
+void draw_statues(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
+{
+    if (rpg->status == 7)
+        draw_tuto(win, rpg, obj);
+    if (rpg->status == 8)
+        draw_death(win, rpg, obj);
+    if (rpg->status == 4 || rpg->status == 10)
+        display_fights(rpg->fight, win, rpg);
+    if (rpg->status == 9) {
+        sfRenderWindow_clear(win, sfBlack);
+        sfRenderWindow_drawSprite(win, rpg->fight->buttons[1].sprite, NULL);
+        sfRenderWindow_display(win);
+    }
+}
+
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
     if (rpg->status == 0)
@@ -59,10 +74,5 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
                 rpg->screen->particle_environment.circle_shape);
         sfRenderWindow_display(win);
     }
-    if (rpg->status == 7)
-        draw_tuto(win, rpg, obj);
-    if (rpg->status == 8)
-        draw_death(win, rpg, obj);
-    if (rpg->status == 4)
-        display_fights(rpg->fight, win, rpg);
+    draw_statues(rpg, win, obj);
 }

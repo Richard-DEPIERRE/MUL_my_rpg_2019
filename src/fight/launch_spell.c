@@ -10,7 +10,7 @@
 void launch_spell(fight_t *fight)
 {
     if (sfKeyboard_isKeyPressed(sfKeySpace)) {
-        printf("ici\n");
+        // printf("ici\n");
         fireball(fight, fight->player.pos);
     }
 }

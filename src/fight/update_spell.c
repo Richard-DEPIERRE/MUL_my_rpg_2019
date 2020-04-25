@@ -24,7 +24,7 @@ spell_t animation_spell(spell_t spell)
     return (spell);
 }
 
-spell_t update_fireball(spell_t spell, sfVector2f pos)
+spell_t update_fireball(spell_t spell, sfVector2f pos, fight_t *fight)
 {
     static int test = 0;
     sfTime time;
@@ -60,6 +60,16 @@ spell_t update_fireball(spell_t spell, sfVector2f pos)
             spell.activated = 0;
         }
         sfSprite_setPosition(spell.sprite, spell.pos);
+        for (int i = 0; i < fight->nb_enn; i++) {
+            if (fight->enns[i].in_live == 1)
+                if (spell.pos.x > fight->enns[i].pos.x - 25 &&
+                spell.pos.x < fight->enns[i].pos.x + 25 &&
+                spell.pos.y > fight->enns[i].pos.y - 35 &&
+                spell.pos.y < fight->enns[i].pos.y + 35)
+                    fight->enns[i].life -= spell.damage;
+            fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
+            sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].rect);
+        }
     }
     return (spell);
     // si la firaball n'est tjs pas arrivé à l'endroit de fin, += 10
@@ -75,6 +85,6 @@ void update_spell(fight_t *fight)
     if (current > SPELL_THREE)
       current = SPELL_ONE;
     // printf("AVANT : pos x %f | pos y %f\n", fight->spell[0].pos.x);
-    fight->spell[current - 1] = update_fireball(fight->spell[current - 1], fight->player.pos);
+    fight->spell[current - 1] = update_fireball(fight->spell[current - 1], fight->player.pos, fight);
     // printf("APRES : pos x %f | pos y %f\n", fight->spell[0].pos.x);
 }

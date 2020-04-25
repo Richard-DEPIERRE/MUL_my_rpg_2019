@@ -55,7 +55,7 @@ void fireball(fight_t *fight, sfVector2f player_pos)
         fight->spell[current - 1].final_pos = final_pos;
         fight->spell[current - 1].activated = 1;
     }
-    printf("3\n");
+    // printf("3\n");
 }
 
 spell_t init_spell(char *path, spells_names_t type)
@@ -74,7 +74,7 @@ spell_t init_spell(char *path, spells_names_t type)
     spell.velocity = 0.5;
     spell.clock = sfClock_create();
     if (type == FIREBALL) {
-        spell.damage = 10;
+        spell.damage = 2;
         spell.protection = 0;
     } else if (type == SHIELD) {
         spell.protection = 10;

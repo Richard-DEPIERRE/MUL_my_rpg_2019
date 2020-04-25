@@ -48,6 +48,8 @@ typedef struct ennemies
 
     clock_s clock;
 
+    game_obj_R_t *buttons;
+
     sfIntRect rect;
     sfVector2f pos;
     int life;
@@ -227,8 +229,8 @@ int script1_death(rpg_t *rpg, game_obj_t *background);
 
 //fight
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
-void update_fights(fight_t *fight);
-void draw_fights(fight_t *fight, sfRenderWindow *win);
+void update_fights(fight_t *fight, rpg_t *rpg);
+void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void player_deplacements(player_fight_t *player);
 int dont_move_fight(player_fight_t *player);
 int move_down_fight(player_fight_t *player);

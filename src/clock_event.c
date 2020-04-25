@@ -8,34 +8,28 @@
 #include "my.h"
 #include "rpg.h"
 
-void last_check(rpg_t *rpg)
-{
-    if (rpg->menu[17].rect.left < 4104)
-        rpg->menu[17].rect.left += 1026;
-    else if (rpg->menu[17].rect.left == 4104) {
-        rpg->menu[17].rect.top = 0;
-        rpg->menu[17].rect.left = 5130;
-    }
-}
-
 void change_background_menu_rect(rpg_t *rpg)
 {
-    if (rpg->menu[17].rect.top < 4494 && rpg->menu[17].rect.left < 5132)
-        if (rpg->menu[17].rect.left < 4104)
+    // printf("START:TOP:%d | LEFT : %d\n", rpg->menu[17].rect.top, rpg->menu[17].rect.left);
+    if (rpg->menu[17].rect.top < 642 * 7 && rpg->menu[17].rect.left < 1026 * 5)
+        if (rpg->menu[17].rect.left < 1026 * 4)
             rpg->menu[17].rect.left += 1026;
         else {
-            rpg->menu[17].rect.top += 642;
             rpg->menu[17].rect.left = 0;
+            rpg->menu[17].rect.top += 642;
         }
-    else if (rpg->menu[17].rect.left == 5130)
-        if (rpg->menu[17].rect.top < 1284)
+    else {
+        rpg->menu[17].rect.left = 1026 * 5;
+        if (rpg->menu[17].rect.top >= 642 * 7)
+            rpg->menu[17].rect.top = 0;
+        else if (rpg->menu[17].rect.top < 642 * 2)
             rpg->menu[17].rect.top += 642;
         else {
             rpg->menu[17].rect.top = 0;
             rpg->menu[17].rect.left = 0;
         }
-    else
-        last_check(rpg);
+    }
+    // printf("menu top = %d, left = %d\n\n", rpg->menu[17].rect.top, rpg->menu[17].rect.left);
     sfSprite_setTextureRect(rpg->menu[17].sprite, rpg->menu[17].rect);
 }
 
@@ -66,7 +60,7 @@ void clock_event(rpg_t *rpg, clock_s *clock)
     rpg->player.clock.time = sfClock_getElapsedTime(rpg->player.clock.clock);
     rpg->player.clock.second = rpg->player.clock.time.microseconds / 1000000.0;
 
-    if (rpg->player.clock.second > 0.06) {
+    if (rpg->player.clock.second > 0.06 && rpg->status != 9) {
         // printf("compte\n");
         if (rpg->player.direct != 0) {
             // printf("yolo\n");
@@ -75,7 +69,11 @@ void clock_event(rpg_t *rpg, clock_s *clock)
         }
         sfClock_restart(rpg->player.clock.clock);
     }
-    if (clock->second > 0.09) {
+    if (clock->second > 3 && rpg->status == 9) {
+        rpg->status = 8;
+        sfClock_restart(rpg->player.clock.clock);
+    }
+    if (clock->second > 0.09 && rpg->status != 9) {
         change_background_menu_rect(rpg);
         sfClock_restart(clock->clock);
         //tu fais tes animations ici

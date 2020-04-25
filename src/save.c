@@ -59,14 +59,16 @@ void get_str2(char *str, rpg_t *rpg, game_obj_t *obj)
     rpg->life = my_getnbr(tmp);
     tmp = stock_info2(str, tmp, &size_tmp);
     rpg->tuto.executed = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.x = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.y = my_getnbr(tmp);
 }
 
 void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
 {
     get_str2(str, rpg, obj);
     rpg->perspec.rect = obj->rect;
-    rpg->quest.x = obj->rect.left;
-    rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }

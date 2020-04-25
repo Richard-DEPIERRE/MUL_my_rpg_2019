@@ -47,6 +47,10 @@ int save_to_file(rpg_t *rpg, game_obj_t *obj)
     write(fd, ":", 1);
     put_in_file(rpg->tuto.executed, fd);
     write(fd, ":", 1);
+    put_in_file(rpg->quest.x, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.y, fd);
+    write(fd, ":", 1);
     rpg->save = 0;
     return (0);
 }

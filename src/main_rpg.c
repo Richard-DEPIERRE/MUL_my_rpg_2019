@@ -134,6 +134,10 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     free(rpg->map);
     sfSprite_destroy(rpg->delete_me);
     sfTexture_destroy(rpg->delete_me_too);
+    for (int i = 0; i < 10; i += 1) {
+        sfSprite_destroy(rpg->fight->buttons[i].sprite);
+    sfTexture_destroy(rpg->fight->buttons[i].texture);
+    }
     sfSprite_destroy(obj->sprite);
     sfTexture_destroy(obj->texture);
 }
