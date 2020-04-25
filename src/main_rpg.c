@@ -154,11 +154,11 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     sfTexture_destroy(rpg->quest.msg_t);
     sfSprite_destroy(rpg->quest.invent_s);
 
-    sfTexture_destroy(rpg->fight->boss);
-    sfTexture_destroy(rpg->fight->condom);
-    sfTexture_destroy(rpg->fight->corona);
-    sfTexture_destroy(rpg->fight->gel);
-    sfTexture_destroy(rpg->fight->defaultt);
+    // sfTexture_destroy(rpg->fight->boss);
+    // sfTexture_destroy(rpg->fight->condom);
+    // sfTexture_destroy(rpg->fight->corona);
+    // sfTexture_destroy(rpg->fight->gel);
+    // sfTexture_destroy(rpg->fight->defaultt);
     sfSprite_destroy(rpg->fight->background);
     sfSprite_destroy(rpg->fight->player.player);
     sfTexture_destroy(rpg->fight->player.player_texture);

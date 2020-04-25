@@ -44,19 +44,18 @@ void change_item(rpg_t *rpg)
 void change_background_fight(fight_t *fight, int i, quest_t quest)
 {
     if (i == 0) {
-        sfSprite_setTexture(fight->buttons[4].sprite, fight->defaultt, sfTrue);
+        fight->rect.left = 0;
     } else {
         if (quest.act == 1)
-            sfSprite_setTexture(fight->buttons[4].sprite, \
-            fight->condom, sfTrue);
+            fight->rect.left = 1920;
         if (quest.act == 2)
-            sfSprite_setTexture(fight->buttons[4].sprite, \
-            fight->corona, sfTrue);
+            fight->rect.left = 1920 * 2;
         if (quest.act == 3)
-            sfSprite_setTexture(fight->buttons[4].sprite, fight->gel, sfTrue);
+            fight->rect.left = 1920 * 3;
         if (quest.act == 0)
-            sfSprite_setTexture(fight->buttons[4].sprite, fight->boss, sfTrue);
+            fight->rect.left = 1920 * 4;
     }
+    sfSprite_setTextureRect(fight->buttons[4].sprite, fight->rect);
 }
 
 void handling_items(rpg_t *rpg)

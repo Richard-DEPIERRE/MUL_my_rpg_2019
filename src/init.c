@@ -78,16 +78,21 @@ void init_variables_for_particules(rpg_t *rpg)
 
 void create_and_set_background(fight_t *fight)
 {
-    fight->defaultt = sfTexture_createFromFile(\
-        "assets/sprites/arena/default.png", NULL);
-    fight->condom = sfTexture_createFromFile("assets/sprites/arena/condom.png",\
-    NULL);
-    fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",\
-    NULL);
-    fight->gel = sfTexture_createFromFile("assets/sprites/arena/gel.png", NULL);
-    fight->boss = sfTexture_createFromFile("assets/sprites/arena/boss.png",\
-    NULL);
-    sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
+    // fight->defaultt = sfTexture_createFromFile(\
+    //     "assets/sprites/arena/arenas.png", NULL);
+    fight->rect.top = 0;
+    fight->rect.left = 0;
+    fight->rect.width = 1920;
+    fight->rect.height = 1080;
+    // fight->condom = sfTexture_createFromFile("assets/sprites/arena/condom.png",\
+    // NULL);
+    // fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",\
+    // NULL);
+    // fight->gel = sfTexture_createFromFile("assets/sprites/arena/gel.png", NULL);
+    // fight->boss = sfTexture_createFromFile("assets/sprites/arena/boss.png",\
+    // NULL);
+//     sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
+//     sfSprite_setTextureRect(fight->background, fight->rect);
 }
 
 game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect, \
@@ -136,7 +141,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
     fight->buttons[3] = create_object_fight("assets/sprites/green_life.png", 
     (sfVector2f){1676, 40}, (sfIntRect){0, 0, 204, 28}, BACK);
-    fight->buttons[4] = create_object_fight("assets/sprites/arene_default.png", 
+    fight->buttons[4] = create_object_fight("assets/sprites/arena/arenas.png", 
     (sfVector2f){0, 0}, (sfIntRect){0, 0, 1920, 1080}, BACK);
     fight->buttons[5] = create_object_fight("assets/sprites/menu/pause.png",
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, BACK);
