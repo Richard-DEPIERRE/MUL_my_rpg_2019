@@ -88,8 +88,8 @@ spell_t init_spell(char *path, spells_names_t type)
         spell.sec = 0.5;
     } else if (type == SHIELD) {
         spell.protection = 10;
-        spell.damage = 0;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {23, heigth / 2});
+        spell.damage = 10;
+        sfSprite_setOrigin(spell.sprite, (sfVector2f) {18, heigth / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
         spell.sec = 5;
     }
