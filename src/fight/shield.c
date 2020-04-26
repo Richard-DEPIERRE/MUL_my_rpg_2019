@@ -7,7 +7,22 @@
 
 #include "rpg.h"
 
-void launch_shield(fight_t *fight)
+void update_shield(fight_t *fight)
 {
-    
+
 }
+
+void launch_first_shield(fight_t *fight, sfVector2f player_pos)
+{
+    fight->spell[1].activated = 1;
+}
+
+void launch_shield(fight_t *fight, rpg_t *rpg)
+{
+    if (fight->spell[1].activated == 0) {
+        launch_first_shield(fight, fight->player.pos);
+    } else {
+        update_shield(fight);
+    }
+}
+

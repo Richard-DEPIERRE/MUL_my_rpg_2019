@@ -9,61 +9,61 @@
 
 //0 ne bouge pas, 1 monte, 3 à droite, 5 descends, 7 à gauche
 
-void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
-{
-    if (rad == 90) {
-        pos->y = player_pos.y + 300;
-        pos->x = player_pos.x;
-        sfSprite_setRotation(sprt, rad);
-    } else if (rad == 270) {
-        pos->y = player_pos.y - 300;
-        pos->x = player_pos.x;
-        sfSprite_setRotation(sprt, rad);
-    } else if (rad == 0) {
-        pos->y = player_pos.y;
-        pos->x = player_pos.x + 300;
-        sfSprite_setRotation(sprt, rad);
-    } else if (rad == 180) {
-        pos->y = player_pos.y;
-        pos->x = player_pos.x - 300;
-        sfSprite_setRotation(sprt, rad);
-    }
-}
+// void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
+// {
+//     if (rad == 90) {
+//         pos->y = player_pos.y + 300;
+//         pos->x = player_pos.x;
+//         sfSprite_setRotation(sprt, rad);
+//     } else if (rad == 270) {
+//         pos->y = player_pos.y - 300;
+//         pos->x = player_pos.x;
+//         sfSprite_setRotation(sprt, rad);
+//     } else if (rad == 0) {
+//         pos->y = player_pos.y;
+//         pos->x = player_pos.x + 300;
+//         sfSprite_setRotation(sprt, rad);
+//     } else if (rad == 180) {
+//         pos->y = player_pos.y;
+//         pos->x = player_pos.x - 300;
+//         sfSprite_setRotation(sprt, rad);
+//     }
+// }
 
-void fireball(fight_t *fight, sfVector2f player_pos)
-{
-    sfVector2f final_pos = {0, 0};
-    WEAPONS current = fight->player.weapon;
+// void fireball(fight_t *fight, sfVector2f player_pos)
+// {
+//     sfVector2f final_pos = {0, 0};
+//     WEAPONS current = fight->player.weapon;
 
-    if (current == SHOVEL)
-      return;
-    if (current > SPELL_THREE)
-      current = SPELL_ONE;
-    if (fight->spell[current - 1].activated == 0 && current != SPELL_TWO) {
-        if (fight->player.direct == 0 || fight->player.direct == 5) {
-          pos_rotat(&final_pos, player_pos, 90, fight->spell[current - 1].sprite);
-        } else if (fight->player.direct == 1) {
-          pos_rotat(&final_pos, player_pos, 270, fight->spell[current - 1].sprite);
-        } else if (fight->player.direct == 3) {
-            pos_rotat(&final_pos, player_pos, 0, fight->spell[current - 1].sprite);
-        } else if (fight->player.direct == 7) {
-            pos_rotat(&final_pos, player_pos, 180, fight->spell[current - 1].sprite);
-        }
-        fight->spell[current - 1].pos = player_pos;
-        fight->spell[current - 1].direction = fight->player.direct;
-        sfSprite_setPosition(fight->spell[current - 1].sprite, fight->spell[current - 1].pos);
-        fight->spell[current - 1].final_pos = final_pos;
-        fight->spell[current - 1].activated = 1;
-    }
-    if (fight->spell[current - 1].activated == 0 && current == SPELL_TWO) {
-        fight->spell[current - 1].pos.x = player_pos.x + 50;
-        fight->spell[current - 1].pos.x = player_pos.y + 50;
-        sfSprite_setPosition(fight->spell[current - 1].sprite, fight->spell[current - 1].pos);
-        fight->spell[current - 1].final_pos = final_pos;
-        fight->spell[current - 1].activated = 1;
-    }
-    // printf("3\n");
-}
+//     if (current == SHOVEL)
+//       return;
+//     if (current > SPELL_THREE)
+//       current = SPELL_ONE;
+//     if (fight->spell[current - 1].activated == 0 && current != SPELL_TWO) {
+//         if (fight->player.direct == 0 || fight->player.direct == 5) {
+//           pos_rotat(&final_pos, player_pos, 90, fight->spell[current - 1].sprite);
+//         } else if (fight->player.direct == 1) {
+//           pos_rotat(&final_pos, player_pos, 270, fight->spell[current - 1].sprite);
+//         } else if (fight->player.direct == 3) {
+//             pos_rotat(&final_pos, player_pos, 0, fight->spell[current - 1].sprite);
+//         } else if (fight->player.direct == 7) {
+//             pos_rotat(&final_pos, player_pos, 180, fight->spell[current - 1].sprite);
+//         }
+//         fight->spell[current - 1].pos = player_pos;
+//         fight->spell[current - 1].direction = fight->player.direct;
+//         sfSprite_setPosition(fight->spell[current - 1].sprite, fight->spell[current - 1].pos);
+//         fight->spell[current - 1].final_pos = final_pos;
+//         fight->spell[current - 1].activated = 1;
+//     }
+//     if (fight->spell[current - 1].activated == 0 && current == SPELL_TWO) {
+//         fight->spell[current - 1].pos.x = player_pos.x + 50;
+//         fight->spell[current - 1].pos.x = player_pos.y + 50;
+//         sfSprite_setPosition(fight->spell[current - 1].sprite, fight->spell[current - 1].pos);
+//         fight->spell[current - 1].final_pos = final_pos;
+//         fight->spell[current - 1].activated = 1;
+//     }
+//     // printf("3\n");
+// }
 
 spell_t init_spell(char *path, spells_names_t type)
 {
@@ -96,7 +96,7 @@ spell_t init_spell(char *path, spells_names_t type)
     if (type == BLACK_HOLE) {
         spell.damage = 15;
         spell.protection = 0;
-        spell.sec = (float){10};
+        spell.sec = 10;
     }
     spell.activated = 0;
     return (spell);

@@ -7,7 +7,21 @@
 
 #include "rpg.h"
 
-void launch_black_hole(fight_t *fight)
+void update_black_hole(fight_t *fight)
 {
 
+}
+
+void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
+{
+    fight->spell[2].activated = 1;
+}
+
+void launch_black_hole(fight_t *fight, rpg_t *rpg)
+{
+    if (fight->spell[2].activated == 0) {
+        launch_first_black_hole(fight, fight->player.pos);
+    } else {
+        update_black_hole(fight);
+    }
 }

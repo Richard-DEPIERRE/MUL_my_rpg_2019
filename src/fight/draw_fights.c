@@ -26,6 +26,13 @@ void display_enns(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
         }
 }
 
+void display_spells(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
+{
+    for (int i = 0; i < 3; i++)
+        if (fight->spell[i].activated == 1)
+            sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
+}
+
 void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
 {
     sfRenderWindow_clear(win, sfBlack);
@@ -44,9 +51,10 @@ void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
     //         sfRenderWindow_drawSprite(win, fight->enns[i].enn, NULL);
     //     }
     sfRenderWindow_drawSprite(win, fight->player.player, NULL);
-    for (int i = 0; i < 3; i++)
-        if (fight->spell[i].activated == 1)
-            sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
+    display_spells(fight, win, rpg);
+    // for (int i = 0; i < 3; i++)
+    //     if (fight->spell[i].activated == 1)
+    //         sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
     sfRenderWindow_drawSprite(win, fight->buttons[2].sprite, NULL);
     sfRenderWindow_drawSprite(win, fight->buttons[3].sprite, NULL);
     sfRenderWindow_drawSprite(win, fight->inventory.sprite, NULL);
