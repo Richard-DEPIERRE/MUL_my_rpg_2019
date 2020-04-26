@@ -136,13 +136,13 @@ int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 
 void launch_fireball(fight_t *fight, rpg_t *rpg)
 {
-    static int tmp = 0;
+    // static int tmp = 0;
 
-    if (fight->spell[0].activated == 0 && tmp == 0 &&
+    if (fight->spell[0].activated == 0 && fight->spell[0].tmp == 0 &&
     sfKeyboard_isKeyPressed(sfKeySpace)) {
         launch_first_fireball(fight, fight->player.pos);
-        tmp += 1;
-    } else if (fight->spell[0].activated > 0 && tmp == 1) {
-        tmp = update_fireballs(&fight->spell[0], fight->player.pos, fight, rpg);
-    }
+        fight->spell[0].tmp += 1;
+    } /*else if (fight->spell[0].activated > 0 && fight->spell[0].tmp == 1) {
+        fight->spell[0].tmp = update_fireballs(&fight->spell[0], fight->player.pos, fight, rpg);
+    }*/
 }

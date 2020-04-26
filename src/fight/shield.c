@@ -40,7 +40,7 @@ void set_cooldown_shield(float res, spell_t *spell)
     char str[4];
 
     spell->text.str = "activate";
-    spell->text.str = ftoa(res, str, 2);
+    ftoa(res, str, 2);
     sfText_setString(spell->text.text, str);
 }
 
@@ -97,23 +97,21 @@ void change_position_shield(spell_t *spell, sfVector2f pos)
 
 int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
-    // if (spell->activated == 1) {
-        change_position_shield(spell, pos);
-        check_touch_ennemie_shield(fight, rpg, spell);
-        return (cooldown_shield(spell));
-    // }
+    change_position_shield(spell, pos);
+    check_touch_ennemie_shield(fight, rpg, spell);
+    return (cooldown_shield(spell));
 }
 
 void launch_shield(fight_t *fight, rpg_t *rpg)
 {
-    static int tmp = 0;
+    // static int tmp = 0;
 
     if (sfKeyboard_isKeyPressed(sfKeySpace) && fight->spell[1].activated == 0
-    && tmp == 0) {
+    && fight->spell[1].tmp == 0) {
         launch_first_shield(fight, fight->player.pos);
-        tmp += 1;
-    } else if (fight->spell[1].activated > 0 && tmp == 1){
-        tmp = update_shield(&fight->spell[1], fight->player.pos, fight, rpg);
-    }
+        fight->spell[1].tmp += 1;
+    } /*else if (fight->spell[1].activated > 0 && fight->spell[1].tmp == 1){
+        fight->spell[1].tmp = update_shield(&fight->spell[1], fight->player.pos, fight, rpg);
+        }
+    }*/
 }
-

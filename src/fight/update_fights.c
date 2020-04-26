@@ -183,9 +183,9 @@ void ennemies_deplacements(fight_t *fight)
                 tmp = 1;
         }
         if (tmp >= 1) {
-            knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);
             if (tmp < 2 && (fight->spell[fight->player.weapon - 1].protection == 0
             || fight->spell[fight->player.weapon - 1].activated != 1)) {
+                knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);
                 fight->player.life -= 1;
                 fight->buttons[3].rect.width = fight->player.life * 2 + 4;
                 sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
