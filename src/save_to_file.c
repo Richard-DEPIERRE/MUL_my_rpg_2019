@@ -28,13 +28,15 @@ void put_in_file(int nb, int fd)
 
 int save_to_file(rpg_t *rpg, game_obj_t *obj)
 {
-    char *str = malloc(sizeof(char) * 2);
     struct stat fileStat;
     int fd = 0;
 
-    str[0] = rpg->save + 48;
-    str[1] = '\0';
-    fd = open(my_strcat(my_strcat("assets/", str), "save.txt"), O_WRONLY | O_TRUNC);
+    if (rpg->save == 1)
+        fd = open("First", O_WRONLY | O_TRUNC);
+    if (rpg->save == 2)
+        fd = open("Second", O_WRONLY | O_TRUNC);
+    if (rpg->save == 3)
+        fd = open("Third", O_WRONLY | O_TRUNC);
     put_in_file(rpg->status, fd);
     write(fd, ":", 1);
     put_in_file(obj->rect.left, fd);

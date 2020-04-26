@@ -10,6 +10,45 @@
 game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect, \
 enum BACK_R_s type);
 
+void set_int_seconds_quests(scd_quest_t *quest)
+{   
+    quest->nb_win = 0;
+    quest->nb_kills = 0;
+
+    quest->pos1 = (sfVector2f) {50, 300};
+    quest->pos2 = (sfVector2f) {1600, 300};
+    quest->pos3 = quest->pos2;
+    for (int i = 0; i < 3; i++) {
+        quest->text[i].size = 20;
+    }
+    quest->text[0].pos.x = quest->pos1.x + 30;
+    quest->text[0].pos.y = quest->pos1.y + 70;
+
+    quest->text[1].pos.x = quest->pos2.x + 30;
+    quest->text[1].pos.y = quest->pos2.y + 70;
+
+    quest->text[2].pos.x = quest->pos2.x + 30;
+    quest->text[2].pos.y = quest->pos2.y + 70;
+}
+
+void set_seconds_quests(scd_quest_t *quest)
+{
+    char path[] = "assets/fonts/good_font.ttf";
+    quest->text = malloc(sizeof(*quest->text) * 3);
+    quest->sprite = sfSprite_create();
+    quest->texture = sfTexture_createFromFile("./assets/sprites/scd_quest.png",\
+    NULL);
+    sfSprite_setTexture(quest->sprite, quest->texture, sfTrue);
+
+    set_int_seconds_quests(quest);
+    make_text(&quest->text[0], "  Win 3 fights\n\nto unlock a heal\n\n     \
+ spell\n\n\n\n  fights won : ", path);
+    make_text(&quest->text[1], " Kill 15 ennemies\n\nto unlock a speed\n\n\
+      spell\n\n\n\n     ennemies\n\n    killed : ", path);
+    make_text(&quest->text[2], " Kill 30 ennemies\n\n to unlock a\n\nblack \
+hole    spell\n\n\n\n     ennemies\n\n    killed : ", path);
+}
+
 void set_basics_for_fight(fight_t *fight, char *path, sfIntRect rect,
 sfVector2f pos)
 {

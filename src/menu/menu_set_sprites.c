@@ -52,6 +52,7 @@ void make_text(text_R_t *text, char *str, char *file)
 {
     text->font = sfFont_createFromFile(file);
     text->text = sfText_create();
+    text->str = my_strcpy(str);
     sfText_setString(text->text, str);
     sfText_setFont(text->text, text->font);
     sfText_setCharacterSize(text->text, text->size);
@@ -62,10 +63,11 @@ void make_text(text_R_t *text, char *str, char *file)
 void set_menu_sprites(rpg_t *rpg)
 {
     rpg->clock = malloc(sizeof(*rpg->clock) * 3);
-    rpg->menu = malloc(sizeof(*rpg->menu) * 19);
-    rpg->text = malloc(sizeof(*rpg->text) * 18);
+    rpg->menu = malloc(sizeof(*rpg->menu) * 22);
+    rpg->text = malloc(sizeof(*rpg->text) * 22);
     char *name[] = {"PLAY\0", "CONTINUE\0", "OPTIONS\0", "QUIT\0", "FPS",
-    "SOUND", "BACK", "FPS", "NULL", "BACK", "MUSIC", "NULL", "SOUND", "PAUSE", "NULL"};
+    "SOUND", "BACK", "FPS", "NULL", "BACK", "MUSIC", "NULL", "SOUND", "PAUSE",
+    "HOME", "RESUME", "QUIT", "PAUSE", NULL};
     initialize_text(rpg, name);
     rpg->menu[0] = create_object("assets/sprites/menu/logo.png",
     (sfVector2f){1550, 50}, (sfIntRect){0, 0, 200, 200}, SIDONIA);
@@ -77,6 +79,10 @@ void set_menu_sprites(rpg_t *rpg)
         rpg->menu[i] = create_object("assets/sprites/menu/button.png",
         (sfVector2f){743, 250 + ((i - 5) * 225)},
         (sfIntRect){0, 0, 310, 78}, SIDONIA + i);
+    for (int i = 19; i < 22; i += 1)
+        rpg->menu[i] = create_object("assets/sprites/menu/button.png",
+        (sfVector2f){743, 250 + (((i - 14) - 5) * 225)},
+        (sfIntRect){0, 0, 310, 78}, SIDONIA + (i - 14));
     rpg->menu[18] = create_object("assets/sprites/menu/pause.png",
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, PAUSE);
     set2(rpg, name);

@@ -98,8 +98,27 @@ typedef struct tuto_s
     sfVector2f pos;
 }tuto_t;
 
+typedef struct scd_quest_s
+{
+    int nb_kills;
+    int nb_win;
+
+    /*sfText *text;
+    sfFont *font;*/
+
+    sfSprite *sprite;
+    sfTexture *texture;
+
+    text_R_t *text;
+
+    sfVector2f pos1;
+    sfVector2f pos2;
+    sfVector2f pos3;
+}scd_quest_t;
+
 typedef struct quest_s
 {
+    scd_quest_t scd_quest;
     sfTexture *items;
 
     sfSprite *sprite;
@@ -162,7 +181,11 @@ typedef struct rpg_s
     //
 }rpg_t;
 
-
+//lib
+char *my_strcat(char *dest, char *src);
+char *my_strcpy(char *src);
+char *int_to_string(int num);
+int my_strlength(char *str);
 
 //rafik
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
@@ -189,6 +212,7 @@ void create_perspec(game_obj_t *perspec);
 void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg);
 void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj);
 void handling_items(rpg_t *rpg);
+void set_seconds_quests(scd_quest_t *quest);
 
 //lib
 int my_strlen(char const *str);
@@ -237,6 +261,7 @@ int move_down_fight(player_fight_t *player);
 int move_up_fight(player_fight_t *player);
 int move_left_fight(player_fight_t *player);
 int move_right_fight(player_fight_t *player);
+void update_spell(fight_t *fight, rpg_t *rpg);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

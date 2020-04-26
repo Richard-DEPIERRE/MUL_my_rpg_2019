@@ -68,8 +68,8 @@ void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj)
     }
     if (rpg->status == 3 || rpg->status == 4 || rpg->status == 7 || rpg->status == 10) {
         if (mouse.x > 20 && mouse.x < 220 && mouse.y > 20 && mouse.y < 220) {
-            save_to_file(rpg, obj);
             rpg->status = 0;
+            rpg->menu_status = 6;
         }
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
         35, (sfVector2f){mouse.x, mouse.y});

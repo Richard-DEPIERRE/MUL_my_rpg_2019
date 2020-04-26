@@ -55,6 +55,9 @@ typedef struct spell_s {
     int direction;
     sfVector2f final_pos;
     sfClock *clock;
+    clock_R_t clock_cd;
+    spells_names_t type;
+    float sec;
 }  spell_t;
 
 typedef struct inventory_s
@@ -85,6 +88,5 @@ typedef struct fight_s
 struct spell_s init_spell(char *path, enum spells_names_s type);
 void launch_spell(fight_t *fight);
 void fireball(fight_t *fight, sfVector2f player_pos);
-void update_spell(fight_t *fight);
 
 #endif /* !FIGHT_H_ */

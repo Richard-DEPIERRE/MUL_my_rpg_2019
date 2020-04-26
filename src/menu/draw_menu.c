@@ -31,13 +31,14 @@ void draw_menu2(rpg_t *rpg, sfRenderWindow *win)
             sfRenderWindow_drawSprite(win, rpg->menu[i].sprite, NULL);
         for (int i = 14; i < 17; i += 1)
             sfRenderWindow_drawText(win, rpg->text[i].text, NULL);
+        sfRenderWindow_drawText(win, rpg->text[9].text, NULL);
     }
-    // if (rpg->menu_status == 5) {
-    //     sfRenderWindow_clear(win, sfBlack);
-    //     display_name(rpg);
-    //     sfRenderWindow_drawText(win, rpg->text[17].text, NULL);
-    //     sfRenderWindow_display(win);
-    // }
+    if (rpg->menu_status == 6) {
+        for (int i = 19; i < 22; i += 1)
+            sfRenderWindow_drawSprite(win, rpg->menu[i].sprite, NULL);
+        for (int i = 18; i < 22; i += 1)
+            sfRenderWindow_drawText(win, rpg->text[i].text, NULL);
+    }
 }
 
 void draw_menu(rpg_t *rpg, sfRenderWindow *win)

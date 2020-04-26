@@ -60,4 +60,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
         }
         printf("on est bien là3\n");
     }
+    if (mouse.x > 1510 && mouse.x < 1920 &&
+    mouse.y > 910 && mouse.y < 1080)
+        rpg->menu_status = 0;
 }

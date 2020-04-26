@@ -22,7 +22,7 @@ void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj)
 
 void display_inventory(sfRenderWindow *win, rpg_t *rpg)
 {
-    printf("ACT:%d\n", rpg->quest.act);
+    // printf("ACT:%d\n", rpg->quest.act);
     if (rpg->quest.act == 1) {
         rpg->quest.invent_rect.left = 0;
     } else if (rpg->quest.act == 2) {
@@ -32,7 +32,7 @@ void display_inventory(sfRenderWindow *win, rpg_t *rpg)
     } else if (rpg->quest.act == 3) {
         rpg->quest.invent_rect.left = 5760;
     }
-    printf("LEFT:%d\n", rpg->quest.invent_rect.left);
+    // printf("LEFT:%d\n", rpg->quest.invent_rect.left);
     sfSprite_setTextureRect(rpg->quest.invent_s, rpg->quest.invent_rect);
     sfRenderWindow_drawSprite(win, rpg->quest.invent_s, NULL);
 }
@@ -52,6 +52,43 @@ void draw_statues(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
     }
 }
 
+void update_count(scd_quest_t *quest)
+{
+    if (quest->nb_win < 3) {
+        sfText_setString(quest->text[0].text, my_strcat(quest->text[0].str,\
+         int_to_string(quest->nb_win)));
+    }
+    if (quest->nb_kills < 15) {
+        sfText_setString(quest->text[1].text, my_strcat(quest->text[1].str,\
+         int_to_string(quest->nb_kills)));
+    } else if (quest->nb_kills < 30) {
+        sfText_setString(quest->text[2].text, my_strcat(quest->text[2].str,\
+         int_to_string(quest->nb_kills)));
+    }
+}
+
+void display_seconds_quests(sfRenderWindow *win, scd_quest_t *quest)
+{
+    if (!sfKeyboard_isKeyPressed(sfKeyZ) && !sfKeyboard_isKeyPressed(sfKeyS) &&
+    !sfKeyboard_isKeyPressed(sfKeyQ) && !sfKeyboard_isKeyPressed(sfKeyD)) {
+        update_count(quest);
+        if (quest->nb_win < 3) {
+            sfSprite_setPosition(quest->sprite, quest->pos1);
+            sfRenderWindow_drawSprite(win, quest->sprite, NULL);
+            sfRenderWindow_drawText(win, quest->text[0].text, NULL);
+        }
+        if (quest->nb_kills < 15) {
+            sfSprite_setPosition(quest->sprite, quest->pos2);
+            sfRenderWindow_drawSprite(win, quest->sprite, NULL);
+            sfRenderWindow_drawText(win, quest->text[1].text, NULL);
+        } else if (quest->nb_kills < 30) {
+            sfSprite_setPosition(quest->sprite, quest->pos3);
+            sfRenderWindow_drawSprite(win, quest->sprite, NULL);
+            sfRenderWindow_drawText(win, quest->text[2].text, NULL);
+        }
+    }
+}
+
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
     if (rpg->status == 0)
@@ -67,6 +104,7 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
         display_inventory(win, rpg);
+        display_seconds_quests(win, &rpg->quest.scd_quest);
         if (rpg->quest.message == 1)
             sfRenderWindow_drawSprite(win, rpg->quest.msg, NULL);
         for (size_t index = 0; index < PARICULE_MAX; index++)

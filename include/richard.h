@@ -36,6 +36,7 @@ typedef struct text_R_s {
     sfFont *font;
     sfVector2f pos;
     int size;
+    char *str;
     enum BACK_R_s type;
 } text_R_t;
 

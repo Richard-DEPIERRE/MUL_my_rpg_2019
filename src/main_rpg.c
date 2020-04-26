@@ -42,6 +42,8 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     rpg->quest.x = obj->rect.left;
     rpg->quest.y = obj->rect.top;
     sfSprite_setTextureRect(obj->sprite, obj->rect);
+
+    set_seconds_quests(&rpg->quest.scd_quest);
 }
 
 void set_rpg_tuto(tuto_t *tuto)

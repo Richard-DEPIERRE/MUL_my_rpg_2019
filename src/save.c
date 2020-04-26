@@ -9,26 +9,6 @@
 #include "rafik.h"
 #include "my.h"
 
-char *my_strcat(char *dest, char *src)
-{
-    int count = 0;
-    int i = 0;
-    char *res = NULL;
-
-    count = my_strlen(dest) ;
-    res = malloc(sizeof(char) * (count + my_strlen(src) + 1));
-    while (dest[i] != '\0' && dest != NULL) {
-        res[i] = dest[i];
-        i += 1;
-    }
-    for (int j = 0; src[j]; j += 1) {
-        res[i] = src[j];
-        i += 1;
-    }
-    res[i] = '\0';
-    return (res);
-}
-
 char *stock_info2(char *str, char *tmp, int *size_tmp)
 {
     int size = 0;
@@ -75,17 +55,32 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
 
 int init_save(rpg_t *rpg, game_obj_t *obj)
 {
-    char *str = malloc(sizeof(char) * 2);
     struct stat fileStat;
+    char *str = NULL;
     int fd = 0;
 
-    str[0] = rpg->save + 48;
-    str[1] = '\0';
-    fd = open(my_strcat(my_strcat("assets/", str), "save.txt"), O_RDONLY);
-    if (fd == 84)
-        return (84);
-    if (stat(my_strcat(my_strcat("assets/", str), "save.txt"), &fileStat) < 0)
-        return (84);
+
+    if (rpg->save == 1) {
+        fd = open("First", O_RDONLY);
+        if (fd == 84)
+            return (84);
+        if (stat("First", &fileStat) < 0)
+            return (84);
+    }
+    if (rpg->save == 2) {
+        fd = open("Second", O_RDONLY);
+        if (fd == 84)
+            return (84);
+        if (stat("Second", &fileStat) < 0)
+            return (84);
+    }
+    if (rpg->save == 3) {
+        fd = open("Third", O_RDONLY);
+        if (fd == 84)
+            return (84);
+        if (stat("Third", &fileStat) < 0)
+            return (84);
+    }
     str = malloc(sizeof(char) * (fileStat.st_size));
     int a = read(fd, str, fileStat.st_size);
     str[fileStat.st_size - 1] = '\0';

@@ -31,7 +31,7 @@ void where_to_move(ennemies_t *ennemies, float truc1, float truc2)
 
 void animate_enemy(ennemies_t *ennemies)
 {
-    printf("rect : LEFT %d | TOP %d\n", ennemies->rect.left, ennemies->rect.top);
+    // printf("rect : LEFT %d | TOP %d\n", ennemies->rect.left, ennemies->rect.top);
     ennemies->clock.time = sfClock_getElapsedTime(ennemies->clock.clock);
     ennemies->clock.second = ennemies->clock.time.microseconds / 1000000.0;
     if (ennemies->clock.second > 0.2) {
@@ -184,7 +184,7 @@ void ennemies_deplacements(fight_t *fight)
         }
         if (tmp >= 1) {
             knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);
-            if (tmp < 2) {
+            if (tmp < 2 && fight->spell[fight->player.weapon - 1].protection == 0) {
                 fight->player.life -= 1;
                 fight->buttons[3].rect.width = fight->player.life * 2 + 4;
                 sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
@@ -200,7 +200,8 @@ void update_weapons(fight_t *fight)
     int r = 0;
 
     for (int i = 0; i < 3; i += 1)
-        r += fight->spell[i].activated;
+        if (fight->spell[i].activated == 1)
+            r += 1;
     if (r != 0)
         return;
     if (sfKeyboard_isKeyPressed(sfKeyNum1))
@@ -228,7 +229,7 @@ void update_fights(fight_t *fight, rpg_t *rpg)
     }
     player_deplacements(&fight->player);
     launch_spell(fight);
-    update_spell(fight);
+    update_spell(fight, rpg);
     update_weapons(fight);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox
     //en fait de tout pour le fight mise à part le draw
