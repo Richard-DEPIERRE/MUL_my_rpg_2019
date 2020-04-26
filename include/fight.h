@@ -89,7 +89,7 @@ typedef struct fight_s
     int nb_enn;
 }fight_t;
 
-struct spell_s init_spell(char *path, enum spells_names_s type);
+spell_t init_spell(char *path, spells_names_t type, sfIntRect rect);
 void fireball(fight_t *fight, sfVector2f player_pos);
 
 #endif /* !FIGHT_H_ */

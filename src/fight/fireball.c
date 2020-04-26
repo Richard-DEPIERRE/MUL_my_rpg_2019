@@ -9,6 +9,23 @@
 
 //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
 
+// void animation_spell(spell_t *spell)
+// {
+//     sfTime time = sfClock_getElapsedTime(spell->clock);
+//     float second = time.microseconds / 1000000.0;
+//     printf("seconds:%f\n", second);
+//     if (second > 0.09) {
+//         if (spell->rect.left < 393) {
+//             spell->rect.left += 56.125;
+//         } else {
+//             spell->rect.left = 0;
+//         }
+//         sfClock_restart(spell->clock);
+//     }
+//     sfSprite_setTextureRect(spell->sprite, spell->rect);
+//     return (spell);
+// }
+
 void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
 {
     if (rad == 90) {
@@ -57,14 +74,15 @@ void change_position_fireball(spell_t *spell, sfVector2f pos)
     // if (spell->final_pos.x != spell->pos.x || spell->final_pos.y != spell->pos.y) {
         // if (spell->protection != 0)
         //     spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
-        if (spell->direction == 0 || spell->direction == 5)
-            spell->pos.y += 5;
-        if (spell->direction == 1)
-            spell->pos.y -= 5;
-        if (spell->direction == 3)
-            spell->pos.x += 5;
-        if (spell->direction == 7)
-            spell->pos.x -= 5;
+    // animation_spell(spell);
+    if (spell->direction == 0 || spell->direction == 5)
+        spell->pos.y += 5;
+    if (spell->direction == 1)
+        spell->pos.y -= 5;
+    if (spell->direction == 3)
+        spell->pos.x += 5;
+    if (spell->direction == 7)
+        spell->pos.x -= 5;
     // } else
     //     spell->activated = 2;
     sfSprite_setPosition(spell->sprite, spell->pos);

@@ -74,18 +74,16 @@ void set_txt_cooldown(text_R_t *txt, spells_names_t type)
     txt->str = NULL;
 }
 
-spell_t init_spell(char *path, spells_names_t type)
+spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
 {
     spell_t spell;
-    static int heigth = 31;
 
     spell.sprite = sfSprite_create();
     spell.texture = sfTexture_createFromFile(path, NULL);
     sfSprite_setTexture(spell.sprite, spell.texture, sfTrue);
     sfSprite_setPosition(spell.sprite, (sfVector2f) {0, 0});
     sfSprite_setScale(spell.sprite, (sfVector2f) {1, 1});
-    sfSprite_setTextureRect(spell.sprite, (sfIntRect) {0, 0, 56, heigth});
-    heigth = (heigth == 31) ? 42 : 49;
+    sfSprite_setTextureRect(spell.sprite, rect);
     sfSprite_setOrigin(spell.sprite, (sfVector2f) {28, 15.5});
     spell.velocity = 0.5;
     spell.clock = sfClock_create();
@@ -100,6 +98,7 @@ spell_t init_spell(char *path, spells_names_t type)
     } else if (type == SHIELD) {
         spell.protection = 10;
         spell.damage = 10;
+        sfSprite_setTextureRect(spell.sprite, (sfIntRect) {0, 0, 56, heigth});
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {18, heigth / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
         spell.sec = 8;

@@ -7,6 +7,23 @@
 
 #include "rpg.h"
 
+// void animation_spell(spell_t *spell)
+// {
+//     sfTime time = sfClock_getElapsedTime(spell->clock);
+//     float second = time.microseconds / 1000000.0;
+//     printf("seconds:%f\n", second);
+//     if (second > 0.09) {
+//         if (spell->rect.left < 393) {
+//             spell->rect.left += 56.125;
+//         } else {
+//             spell->rect.left = 0;
+//         }
+//         sfClock_restart(spell->clock);
+//     }
+//     sfSprite_setTextureRect(spell->sprite, spell->rect);
+//     return (spell);
+// }
+
 void launch_first_shield(fight_t *fight, sfVector2f player_pos)
 {
     sfVector2f final_pos = {0, 0};
@@ -97,6 +114,7 @@ void change_position_shield(spell_t *spell, sfVector2f pos)
 
 int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
+    // animation_spell(spell);
     change_position_shield(spell, pos);
     check_touch_ennemie_shield(fight, rpg, spell);
     return (cooldown_shield(spell));
