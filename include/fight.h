@@ -21,7 +21,8 @@ typedef enum WEAPONS
     SPELL_TWO,
     SPELL_THREE,
     SPELL_FOUR,
-    SPELL_FIVE
+    SPELL_FIVE,
+    SPELL_SIX
 } WEAPONS;
 
 typedef enum spells_names_s {

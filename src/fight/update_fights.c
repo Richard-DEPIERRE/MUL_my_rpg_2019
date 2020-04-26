@@ -214,9 +214,9 @@ void update_weapons(fight_t *fight)
     if (sfKeyboard_isKeyPressed(sfKeyNum4))
         fight->player.weapon = SPELL_FOUR;
     if (sfKeyboard_isKeyPressed(sfKeyNum5))
-        fight->player.weapon = SPELL_FOUR;
+        fight->player.weapon = SPELL_FIVE;
     if (sfKeyboard_isKeyPressed(sfKeyNum6))
-        fight->player.weapon = SPELL_FOUR;
+        fight->player.weapon = SPELL_SIX;
 }
 
 void update_fights(fight_t *fight, rpg_t *rpg)
