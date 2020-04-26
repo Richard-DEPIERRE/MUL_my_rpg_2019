@@ -83,7 +83,8 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
     sfSprite_setTexture(spell.sprite, spell.texture, sfTrue);
     sfSprite_setPosition(spell.sprite, (sfVector2f) {0, 0});
     sfSprite_setScale(spell.sprite, (sfVector2f) {1, 1});
-    sfSprite_setTextureRect(spell.sprite, rect);
+    spell.rect = rect;
+    sfSprite_setTextureRect(spell.sprite, spell.rect);
     sfSprite_setOrigin(spell.sprite, (sfVector2f) {28, 15.5});
     spell.velocity = 0.5;
     spell.clock = sfClock_create();
@@ -98,7 +99,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
     } else if (type == SHIELD) {
         spell.protection = 10;
         spell.damage = 10;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {18, rect.height / 2});
+        sfSprite_setOrigin(spell.sprite, (sfVector2f) {32, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
         spell.sec = 8;
     }

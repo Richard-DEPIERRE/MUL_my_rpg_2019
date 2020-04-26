@@ -7,22 +7,21 @@
 
 #include "rpg.h"
 
-// void animation_spell(spell_t *spell)
-// {
-//     sfTime time = sfClock_getElapsedTime(spell->clock);
-//     float second = time.microseconds / 1000000.0;
-//     printf("seconds:%f\n", second);
-//     if (second > 0.09) {
-//         if (spell->rect.left < 393) {
-//             spell->rect.left += 56.125;
-//         } else {
-//             spell->rect.left = 0;
-//         }
-//         sfClock_restart(spell->clock);
-//     }
-//     sfSprite_setTextureRect(spell->sprite, spell->rect);
-//     return (spell);
-// }
+void animation_shield(spell_t *spell)
+{
+    sfTime time = sfClock_getElapsedTime(spell->clock);
+    float second = time.microseconds / 1000000.0;
+    printf("seconds:%f\n", second);
+    if (second > 0.09) {
+        if (spell->rect.left < 180 - 60) {
+            spell->rect.left += 60;
+        } else {
+            spell->rect.left = 0;
+        }
+        sfClock_restart(spell->clock);
+    }
+    sfSprite_setTextureRect(spell->sprite, spell->rect);
+}
 
 void launch_first_shield(fight_t *fight, sfVector2f player_pos)
 {
@@ -33,6 +32,7 @@ void launch_first_shield(fight_t *fight, sfVector2f player_pos)
     sfSprite_setPosition(fight->spell[1].sprite, fight->spell[1].pos);
     fight->spell[1].final_pos = final_pos;
     fight->spell[1].activated = 1;
+    sfClock_restart(fight->spell[1].clock_cd.clock);
 }
 
 void check_touch_ennemie_shield(fight_t *fight, rpg_t *rpg, spell_t *spell)
@@ -114,9 +114,10 @@ void change_position_shield(spell_t *spell, sfVector2f pos)
 
 int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
-    // animation_spell(spell);
+    animation_shield(spell);
     change_position_shield(spell, pos);
-    check_touch_ennemie_shield(fight, rpg, spell);
+    if (spell->activated == 1)
+        check_touch_ennemie_shield(fight, rpg, spell);
     return (cooldown_shield(spell));
 }
 

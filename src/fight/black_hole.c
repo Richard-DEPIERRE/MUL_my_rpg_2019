@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void animation_spell(spell_t *spell)
+void animation_black_hole(spell_t *spell)
 {
     sfTime time = sfClock_getElapsedTime(spell->clock);
     float second = time.microseconds / 1000000.0;
@@ -21,7 +21,6 @@ void animation_spell(spell_t *spell)
         sfClock_restart(spell->clock);
     }
     sfSprite_setTextureRect(spell->sprite, spell->rect);
-    return (spell);
 }
 
 void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
@@ -47,8 +46,8 @@ void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
 
 void change_position_black_hole(spell_t *spell, sfVector2f pos)
 {
-    printf("POS (%f, %f), FINAL_POS (%f, %f)\n", spell->pos.x, spell->pos.y, spell->final_pos.x, spell->final_pos.y);
-    animation_spell(spell);
+    // printf("POS (%f, %f), FINAL_POS (%f, %f)\n", spell->pos.x, spell->pos.y, spell->final_pos.x, spell->final_pos.y);
+    animation_black_hole(spell);
     // if (spell->final_pos.x != spell->pos.x || spell->final_pos.y != spell->pos.y) {
         // if (spell->protection != 0)
         //     spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
