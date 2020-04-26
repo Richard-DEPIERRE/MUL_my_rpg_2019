@@ -92,7 +92,7 @@ void set_cooldown(float res, spell_t *spell)
     char str[4];
 
     spell->text.str = "activate";
-    spell->text.str = ftoa(res, str, 2);
+    ftoa(res, str, 2);
     sfText_setString(spell->text.text, str);
 }
 
