@@ -51,12 +51,12 @@ void launch_first_fireball(fight_t *fight, sfVector2f player_pos)
     fight->spell[0].activated = 1;
 }
 
-void change_position(spell_t *spell, sfVector2f pos)
+void change_position_fireball(spell_t *spell, sfVector2f pos)
 {
     printf("POS (%f, %f), FINAL_POS (%f, %f)\n", spell->pos.x, spell->pos.y, spell->final_pos.x, spell->final_pos.y);
-    if (spell->final_pos.x != spell->pos.x || spell->final_pos.y != spell->pos.y) {
-        if (spell->protection != 0)
-            spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
+    // if (spell->final_pos.x != spell->pos.x || spell->final_pos.y != spell->pos.y) {
+        // if (spell->protection != 0)
+        //     spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
         if (spell->direction == 0 || spell->direction == 5)
             spell->pos.y += 5;
         if (spell->direction == 1)
@@ -65,12 +65,12 @@ void change_position(spell_t *spell, sfVector2f pos)
             spell->pos.x += 5;
         if (spell->direction == 7)
             spell->pos.x -= 5;
-    } else
-        spell->activated = 2;
+    // } else
+    //     spell->activated = 2;
     sfSprite_setPosition(spell->sprite, spell->pos);
 }
 
-void check_touch_ennemie(fight_t *fight, rpg_t *rpg, spell_t *spell)
+void check_touch_ennemie_fireball(fight_t *fight, rpg_t *rpg, spell_t *spell)
 {
     for (int i = 0; i < fight->nb_enn; i++) {
         if (fight->enns[i].in_live == 1)
@@ -87,53 +87,50 @@ void check_touch_ennemie(fight_t *fight, rpg_t *rpg, spell_t *spell)
     }
 }
 
-void cooldown_fireball(spell_t *spell)
+void set_cooldown(float res, spell_t *spell)
+{
+    char str[4];
+
+    spell->text.str = "activate";
+    spell->text.str = ftoa(res, str, 2);
+    sfText_setString(spell->text.text, str);
+}
+
+void display_cooldown_fireball(float second, spell_t *spell)
+{
+    if (second < spell->sec)
+        set_cooldown(spell->sec - second, spell);
+    else
+        spell->text.str = NULL;
+}
+
+int cooldown_fireball(spell_t *spell)
 {
     static int tmp = 0;
 
     spell->clock_cd.time = sfClock_getElapsedTime(spell->clock_cd.clock);
     spell->clock_cd.seconds = spell->clock_cd.time.microseconds / 1000000.0;
-    if (spell->activated == 2 && tmp == 0) {
+    if (spell->activated == 1 && tmp == 0) {
         sfClock_restart(spell->clock_cd.clock);
         tmp = 1;
+        return (1);
     }
-    if (spell->activated == 2 && spell->clock_cd.seconds >= spell->sec) {
+    display_cooldown_fireball(spell->clock_cd.seconds, spell);
+    if (spell->clock_cd.seconds >= spell->sec) {
         spell->activated = 0;
         tmp = 0;
         sfClock_restart(spell->clock_cd.clock);
+        return (0);
     }
+    return (1);
 }
-
-// void fireball_end(spell_t *spell)
-// {
-//     static int test = 0;
-//     sfTime time;
-//     float second = 0;
-
-//     if (spell->protection != 0 && spell->activated == 1 && test == 0) {
-//         test = 1;
-//         sfClock_restart(spell->clock);
-//     }
-//     second = time.microseconds / 1000000;
-//     if (test == 1) {
-//         time = sfClock_getElapsedTime(spell->clock);
-//         if (second > 1) {
-//             spell->activated = 2;
-//             test = 0;
-//         }
-//     }
-// }
 
 int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
     if (spell->activated == 1) {
-        change_position(spell, pos);
-        check_touch_ennemie(fight, rpg, spell);
-        // fireball_end(spell);
-        return (1);
-    } else {
-        cooldown_fireball(spell);
-        return (0);
+        change_position_fireball(spell, pos);
+        check_touch_ennemie_fireball(fight, rpg, spell);
+        return (cooldown_fireball(spell));
     }
 }
 

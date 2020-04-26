@@ -59,6 +59,7 @@ SRC	=	src/clics_handlings.c		\
 		src/fight/heals.c				\
 		src/fight/shield.c				\
 		src/fight/speed.c				\
+		src/my_ftoa.c					\
 
 
 SRC2 =	tests/test_main.c		\

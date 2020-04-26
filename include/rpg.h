@@ -186,6 +186,7 @@ char *my_strcat(char *dest, char *src);
 char *my_strcpy(char *src);
 char *int_to_string(int num);
 int my_strlength(char *str);
+char *ftoa(float n, char *res, int afterpoint);
 
 //rafik
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);

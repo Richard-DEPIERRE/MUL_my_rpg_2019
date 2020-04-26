@@ -65,6 +65,15 @@
 //     // printf("3\n");
 // }
 
+void set_txt_cooldown(text_R_t *txt, spells_names_t type)
+{
+    txt->size = 30;
+    txt->pos.x = ((type - 1) * 110) + 756;
+    txt->pos.y = 990;
+    make_text(txt, "", "assets/fonts/good_font.ttf");
+    txt->str = NULL;
+}
+
 spell_t init_spell(char *path, spells_names_t type)
 {
     spell_t spell;
@@ -82,16 +91,17 @@ spell_t init_spell(char *path, spells_names_t type)
     spell.clock = sfClock_create();
     spell.clock_cd.clock = sfClock_create();
     spell.type = type;
+    set_txt_cooldown(&spell.text, type);
     if (type == FIREBALL) {
         spell.damage = 2;
         spell.protection = 0;
-        spell.sec = 0.5;
+        spell.sec = 1;
     } else if (type == SHIELD) {
         spell.protection = 10;
         spell.damage = 10;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {18, heigth / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 5;
+        spell.sec = 8;
     }
     if (type == BLACK_HOLE) {
         spell.damage = 15;
