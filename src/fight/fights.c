@@ -45,7 +45,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
     if (count == fight->nb_enn) {
         reset_ennemies(fight);
         printf("Player a bien gagné son combat\n");
-        rpg->quest.scd_quest.nb_kills += 1; //ça c'est pour augmenter le nb de kills(faut changer de place)
+        // rpg->quest.scd_quest.nb_kills += 1; //ça c'est pour augmenter le nb de kills(faut changer de place)
         rpg->quest.scd_quest.nb_win += 1;
         rpg->status = 10; //le joueur revient au jeu
     }

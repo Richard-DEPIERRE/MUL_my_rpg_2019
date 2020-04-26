@@ -6,6 +6,7 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 
 int my_strlength(char *str)
 {

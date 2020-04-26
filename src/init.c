@@ -11,7 +11,7 @@ game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect,
 enum BACK_R_s type);
 
 void set_int_seconds_quests(scd_quest_t *quest)
-{   
+{
     quest->nb_win = 0;
     quest->nb_kills = 0;
 
@@ -45,8 +45,8 @@ void set_seconds_quests(scd_quest_t *quest)
  spell\n\n\n\n  fights won : ", path);
     make_text(&quest->text[1], " Kill 15 ennemies\n\nto unlock a speed\n\n\
       spell\n\n\n\n     ennemies\n\n    killed : ", path);
-    make_text(&quest->text[2], " Kill 30 ennemies\n\n to unlock a\n\nblack \
-hole    spell\n\n\n\n     ennemies\n\n    killed : ", path);
+    make_text(&quest->text[2], " Kill 30 ennemies\n\n   to unlock a\n\n black \
+hole  spell\n\n\n\n     ennemies\n\n    killed : ", path);
 }
 
 void set_basics_for_fight(fight_t *fight, char *path, sfIntRect rect,
