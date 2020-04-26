@@ -262,6 +262,11 @@ int move_up_fight(player_fight_t *player);
 int move_left_fight(player_fight_t *player);
 int move_right_fight(player_fight_t *player);
 void update_spell(fight_t *fight, rpg_t *rpg);
+void launch_fireball(fight_t *fight);
+void launch_shield(fight_t *fight);
+void launch_black_hole(fight_t *fight);
+void launch_heals(fight_t *fight);
+void launch_speed(fight_t *fight);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

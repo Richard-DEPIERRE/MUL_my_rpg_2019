@@ -59,7 +59,6 @@ void script_death(rpg_t *rpg, game_obj_t *background)
     sfTime time = sfClock_getElapsedTime(rpg->tuto.clock);
     float second = time.microseconds / 1000000.0;
 
-    printf("i:%d\n", i);
     if (second > 0.09) {
         if (i == 0) {
             set_script_death(rpg, background);
