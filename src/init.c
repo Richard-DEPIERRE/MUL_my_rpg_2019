@@ -18,9 +18,8 @@ void set_int_seconds_quests(scd_quest_t *quest)
     quest->pos1 = (sfVector2f) {50, 300};
     quest->pos2 = (sfVector2f) {1600, 300};
     quest->pos3 = quest->pos2;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
         quest->text[i].size = 20;
-    }
     quest->text[0].pos.x = quest->pos1.x + 30;
     quest->text[0].pos.y = quest->pos1.y + 70;
 

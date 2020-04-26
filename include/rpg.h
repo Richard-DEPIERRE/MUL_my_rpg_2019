@@ -238,7 +238,7 @@ void check_mouse_menu_zero(rpg_t *rpg, sfVector2i mouse);
 void press_button(rpg_t *rpg, BACK_R_t type);
 void release_button(rpg_t *rpg, BACK_R_t type);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
-void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj);
+void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb);
 void click_menu_zero(rpg_t *rpg, sfVector2i mouse);
 
 //tuto

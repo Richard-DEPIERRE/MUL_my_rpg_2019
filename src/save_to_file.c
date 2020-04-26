@@ -32,11 +32,11 @@ int save_to_file(rpg_t *rpg, game_obj_t *obj)
     int fd = 0;
 
     if (rpg->save == 1)
-        fd = open("First", O_WRONLY | O_TRUNC);
+        fd = open("assets/First", O_WRONLY | O_TRUNC);
     if (rpg->save == 2)
-        fd = open("Second", O_WRONLY | O_TRUNC);
+        fd = open("assets/Second", O_WRONLY | O_TRUNC);
     if (rpg->save == 3)
-        fd = open("Third", O_WRONLY | O_TRUNC);
+        fd = open("assets/Third", O_WRONLY | O_TRUNC);
     put_in_file(rpg->status, fd);
     write(fd, ":", 1);
     put_in_file(obj->rect.left, fd);

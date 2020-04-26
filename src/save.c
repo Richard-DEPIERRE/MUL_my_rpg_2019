@@ -61,24 +61,24 @@ int init_save(rpg_t *rpg, game_obj_t *obj)
 
 
     if (rpg->save == 1) {
-        fd = open("First", O_RDONLY);
+        fd = open("assets/First", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("First", &fileStat) < 0)
+        if (stat("assets/First", &fileStat) < 0)
             return (84);
     }
     if (rpg->save == 2) {
-        fd = open("Second", O_RDONLY);
+        fd = open("assets/Second", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("Second", &fileStat) < 0)
+        if (stat("assets/Second", &fileStat) < 0)
             return (84);
     }
     if (rpg->save == 3) {
-        fd = open("Third", O_RDONLY);
+        fd = open("assets/Third", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("Third", &fileStat) < 0)
+        if (stat("assets/Third", &fileStat) < 0)
             return (84);
     }
     str = malloc(sizeof(char) * (fileStat.st_size));

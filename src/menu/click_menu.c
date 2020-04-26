@@ -75,18 +75,14 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
 void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
 {
     if (mouse.x > 743 && mouse.x < 1177 &&
-    mouse.y > 250 && mouse.y < 359.2) {
-        save_to_file(rpg, obj);
+    mouse.y > 250 && mouse.y < 359.2)
         rpg->menu_status = 0;
-    }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2)
         rpg->status = 3;
     if (mouse.x > 743 && mouse.x < 1177 &&
-    mouse.y > 700 && mouse.y < 809.2) {
-        save_to_file(rpg, obj);
+    mouse.y > 700 && mouse.y < 809.2)
         sfRenderWindow_close(rpg->win);
-    }
 }
 
 void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
@@ -100,8 +96,10 @@ void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
             click_menu_two(rpg, mouse);
         else if (rpg->menu_status == 3)
             click_menu_three(rpg, mouse);
-    if (rpg->menu_status == 4 || rpg->menu_status == 5)
-        click_start_menu(rpg, mouse, obj);
+    if (rpg->menu_status == 4)
+        click_start_menu(rpg, mouse, obj, 4);
+    if (rpg->menu_status == 5)
+        click_start_menu(rpg, mouse, obj, 5);
     if (rpg->menu_status == 6)
         click_menu_six(rpg, mouse, obj);
     check_plus_minus(rpg, mouse);
