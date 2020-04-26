@@ -146,6 +146,8 @@ enum BACK_R_s type)
     object.rect = rect;
     object.pos = pos;
     object.type = type;
+    if (type == EFECT)
+        sfSprite_setScale(object.sprite, (sfVector2f){0.7, 0.7});
     return (object);
 }
 
@@ -184,9 +186,9 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->buttons[5] = create_object_fight("assets/sprites/menu/pause.png",
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, BACK);
     fight->buttons[6] = create_object_fight("assets/sprites/fire.png",
-    (sfVector2f){630, 957}, (sfIntRect){0, 0, 45, 31}, BACK);
+    (sfVector2f){630, 957}, (sfIntRect){0, 0, 47, 28}, BACK);
     fight->buttons[7] = create_object_fight("assets/sprites/shield.png",
-    (sfVector2f){738, 952}, (sfIntRect){0, 0, 42, 42}, BACK);
+    (sfVector2f){738, 952}, (sfIntRect){0, 0, 60, 60}, EFECT);
     fight->buttons[8] = create_object_fight("assets/sprites/black_hole.png",
     (sfVector2f){850, 948}, (sfIntRect){0, 0, 49, 49}, BACK);
     fight->buttons[9] = create_object_fight("assets/sprites/arrow_fight.png",

@@ -35,8 +35,9 @@ int intToStr(int x, char *str, int d)
     return (i);
 }
 
-char *ftoa(float n, char *res, int afterpoint)
+char *ftoa(float n, int afterpoint)
 {
+    char *res = malloc(sizeof(char) * ((int)n));
     int ipart = (int)n;
     float fpart = n - (float)ipart;
     int i = intToStr(ipart, res, 0);
@@ -46,4 +47,5 @@ char *ftoa(float n, char *res, int afterpoint)
         fpart = fpart * pow(10, afterpoint);
         intToStr((int)fpart, res + i + 1, afterpoint);
     }
+    return (res);
 }

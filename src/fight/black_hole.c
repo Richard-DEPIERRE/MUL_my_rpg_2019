@@ -104,10 +104,8 @@ void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell)
 
 void set_cooldown_(float res, spell_t *spell)
 {
-    char str[4];
-
+    char *str = ftoa(res, 2);
     spell->text.str = "activate";
-    ftoa(res, str, 2);
     sfText_setString(spell->text.text, str);
 }
 

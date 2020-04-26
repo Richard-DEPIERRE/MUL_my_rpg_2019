@@ -106,11 +106,14 @@ void check_touch_ennemie_fireball(fight_t *fight, rpg_t *rpg, spell_t *spell)
 
 void set_cooldown(float res, spell_t *spell)
 {
-    char str[4];
+    /*char str[4];
 
     spell->text.str = "activate";
     ftoa(res, str, 2);
+    sfText_setString(spell->text.text, str);*/
+    char *str = ftoa(res, 2);
     sfText_setString(spell->text.text, str);
+    spell->text.str = "activate";
 }
 
 void display_cooldown_fireball(float second, spell_t *spell)
