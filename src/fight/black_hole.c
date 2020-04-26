@@ -23,42 +23,63 @@ void animation_black_hole(spell_t *spell)
     sfSprite_setTextureRect(spell->sprite, spell->rect);
 }
 
+void pos_rotat_(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
+{
+    if (rad == 90) {
+        pos->y = player_pos.y + 300;
+        pos->x = player_pos.x;
+        sfSprite_setRotation(sprt, rad);
+    } else if (rad == 270) {
+        pos->y = player_pos.y - 300;
+        pos->x = player_pos.x;
+        sfSprite_setRotation(sprt, rad);
+    } else if (rad == 0) {
+        pos->y = player_pos.y;
+        pos->x = player_pos.x + 300;
+        sfSprite_setRotation(sprt, rad);
+    } else if (rad == 180) {
+        pos->y = player_pos.y;
+        pos->x = player_pos.x - 300;
+        sfSprite_setRotation(sprt, rad);
+    }
+}
+
 void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
 {
     sfVector2f final_pos = {0, 0};
     WEAPONS current = fight->player.weapon;
 
     if (fight->player.direct == 0 || fight->player.direct == 5) {
-        pos_rotat(&final_pos, player_pos, 90, fight->spell[0].sprite);
+        pos_rotat_(&final_pos, player_pos, 90, fight->spell[2].sprite);
     } else if (fight->player.direct == 1) {
-        pos_rotat(&final_pos, player_pos, 270, fight->spell[0].sprite);
+        pos_rotat_(&final_pos, player_pos, 270, fight->spell[2].sprite);
     } else if (fight->player.direct == 3) {
-        pos_rotat(&final_pos, player_pos, 0, fight->spell[0].sprite);
+        pos_rotat_(&final_pos, player_pos, 0, fight->spell[2].sprite);
     } else if (fight->player.direct == 7) {
-        pos_rotat(&final_pos, player_pos, 180, fight->spell[0].sprite);
+        pos_rotat_(&final_pos, player_pos, 180, fight->spell[2].sprite);
     }
-    fight->spell[0].pos = player_pos;
-    fight->spell[0].direction = fight->player.direct;
-    sfSprite_setPosition(fight->spell[0].sprite, fight->spell[0].pos);
-    fight->spell[0].final_pos = final_pos;
-    fight->spell[0].activated = 1;
+    fight->spell[2].pos = player_pos;
+    fight->spell[2].direction = fight->player.direct;
+    sfSprite_setPosition(fight->spell[2].sprite, fight->spell[2].pos);
+    fight->spell[2].final_pos = final_pos;
+    fight->spell[2].activated = 1;
 }
 
 void change_position_black_hole(spell_t *spell, sfVector2f pos)
 {
     // printf("POS (%f, %f), FINAL_POS (%f, %f)\n", spell->pos.x, spell->pos.y, spell->final_pos.x, spell->final_pos.y);
-    animation_black_hole(spell);
     // if (spell->final_pos.x != spell->pos.x || spell->final_pos.y != spell->pos.y) {
         // if (spell->protection != 0)
         //     spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
-        if (spell->direction == 0 || spell->direction == 5)
-            spell->pos.y += 5;
-        if (spell->direction == 1)
-            spell->pos.y -= 5;
-        if (spell->direction == 3)
-            spell->pos.x += 5;
-        if (spell->direction == 7)
-            spell->pos.x -= 5;
+    animation_black_hole(spell);
+    if (spell->direction == 0 || spell->direction == 5)
+        spell->pos.y += 5;
+    if (spell->direction == 1)
+        spell->pos.y -= 5;
+    if (spell->direction == 3)
+        spell->pos.x += 5;
+    if (spell->direction == 7)
+        spell->pos.x -= 5;
     // } else
     //     spell->activated = 2;
     sfSprite_setPosition(spell->sprite, spell->pos);
@@ -81,7 +102,7 @@ void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell)
     }
 }
 
-void set_black_hole(float res, spell_t *spell)
+void set_cooldown_(float res, spell_t *spell)
 {
     char str[4];
 
@@ -90,15 +111,15 @@ void set_black_hole(float res, spell_t *spell)
     sfText_setString(spell->text.text, str);
 }
 
-void display_cooldown_black_hole(float second, spell_t *spell)
+void display_cooldown_black_holes(float second, spell_t *spell)
 {
     if (second < spell->sec)
-        set_cooldown(spell->sec - second, spell);
+        set_cooldown_(spell->sec - second, spell);
     else
         spell->text.str = NULL;
 }
 
-int cooldown_black_hole(spell_t *spell)
+int cooldown_black_holes(spell_t *spell)
 {
     static int tmp = 0;
 
@@ -109,7 +130,7 @@ int cooldown_black_hole(spell_t *spell)
         tmp = 1;
         return (1);
     }
-    display_cooldown_black_hole(spell->clock_cd.seconds, spell);
+    display_cooldown_black_holes(spell->clock_cd.seconds, spell);
     if (spell->clock_cd.seconds >= spell->sec) {
         spell->activated = 0;
         tmp = 0;
@@ -119,22 +140,24 @@ int cooldown_black_hole(spell_t *spell)
     return (1);
 }
 
-int update_black_hole(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
+int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
     if (spell->activated == 1) {
         change_position_black_hole(spell, pos);
         check_touch_ennemie_black_hole(fight, rpg, spell);
-        return (cooldown_black_hole(spell));
+        return (cooldown_black_holes(spell));
     }
 }
 
 void launch_black_hole(fight_t *fight, rpg_t *rpg)
 {
+    // static int tmp = 0;
+
     if (fight->spell[2].activated == 0 && fight->spell[2].tmp == 0 &&
     sfKeyboard_isKeyPressed(sfKeySpace)) {
         launch_first_black_hole(fight, fight->player.pos);
         fight->spell[2].tmp += 1;
-    } else if (fight->spell[2].activated > 0 && fight->spell[2].tmp == 1) {
-        fight->spell[2].tmp = update_black_hole(&fight->spell[2], fight->player.pos, fight, rpg);
-    }
+    } /*else if (fight->spell[2].activated > 0 && fight->spell[2].tmp == 1) {
+        fight->spell[2].tmp = update_black_holes(&fight->spell[2], fight->player.pos, fight, rpg);
+    }*/
 }

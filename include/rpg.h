@@ -270,7 +270,9 @@ void launch_heals(fight_t *fight, rpg_t *rpg);
 void launch_speed(fight_t *fight, rpg_t *rpg);
 void launch_spell(fight_t *fight, rpg_t *rpg);
 void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt);
-int update_black_hole(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

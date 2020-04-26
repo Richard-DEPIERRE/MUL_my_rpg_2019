@@ -200,11 +200,11 @@ void update_weapons(fight_t *fight)
 {
     int r = 0;
 
-    for (int i = 0; i < 3; i += 1)
-        if (fight->spell[i].activated == 1)
-            r += 1;
-    if (r != 0)
-        return;
+    // for (int i = 0; i < 3; i += 1)
+    //     if (fight->spell[i].activated == 1)
+    //         r += 1;
+    // if (r != 0)
+    //     return;
     if (sfKeyboard_isKeyPressed(sfKeyNum1))
         fight->player.weapon = SPELL_ONE;
     if (sfKeyboard_isKeyPressed(sfKeyNum2))
