@@ -26,6 +26,28 @@ void boss_attack(fight_t *fight)
     attacks[i].attack(fight);
 }
 
+void boss_anim(fight_t *fight)
+{
+    static int i = 0;
+    static sfClock *clock = NULL;
+    sfTime time;
+    float seconds = 0;
+
+    if (!clock)
+        clock = sfClock_create();
+    time = sfClock_getElapsedTime(clock);
+    seconds = time.microseconds / 1000000;
+    if (seconds > 0.05) {
+        i += 1;
+        sfClock_restart(clock);
+    }
+    if (i == 7)
+        i = 0;
+    fight->boss->rect =
+    (sfIntRect) {(i % 3) * 1164, (i / 3) * 1116, 1164, 1116};
+    sfSprite_setTextureRect(fight->boss->enn, fight->boss->rect);
+}
+
 void move_boss(fight_t *fight)
 {
     static int tmp = 0;
@@ -47,6 +69,7 @@ void move_boss(fight_t *fight)
     fight->boss->pos.y < fight->player.pos.y + 35)
         tmp = 1;
     boss_attack(fight);
+    boss_anim(fight);
 }
 
 ennemies_t *init_boss(void)
