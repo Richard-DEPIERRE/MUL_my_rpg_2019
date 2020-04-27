@@ -30,12 +30,18 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 250 && mouse.y < 359.2) {
         rpg->save = 2;
+        stop_all_music(rpg);
+        sfMusic_play(rpg->snd_main_music);
+        stop_all_music(rpg);
+        sfMusic_play(rpg->snd_main_music);
         rpg->status = 3;
         if (rpg->menu_status == 5)
             init_save(rpg, obj);
         if (rpg->menu_status == 4)
             rpg->tuto.executed = 0;
         if (rpg->tuto.executed == 0) {
+            stop_all_music(rpg);
+            sfMusic_play(rpg->snd_tuto);
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
@@ -44,12 +50,16 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2) {
         rpg->save = 3;
+        stop_all_music(rpg);
+        sfMusic_play(rpg->snd_main_music);
         rpg->status = 3;
         if (rpg->menu_status == 5)
             init_save(rpg, obj);
         if (rpg->menu_status == 4)
             rpg->tuto.executed = 0;
         if (rpg->tuto.executed == 0) {
+            stop_all_music(rpg);
+            sfMusic_play(rpg->snd_tuto);
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
@@ -58,12 +68,16 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2) {
         rpg->save = 1;
+        stop_all_music(rpg);
+        sfMusic_play(rpg->snd_main_music);
         rpg->status = 3;
         if (rpg->menu_status == 5)
             init_save(rpg, obj);
         if (rpg->menu_status == 4)
             rpg->tuto.executed = 0;
         if (rpg->tuto.executed == 0) {
+            stop_all_music(rpg);
+            sfMusic_play(rpg->snd_tuto);
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }

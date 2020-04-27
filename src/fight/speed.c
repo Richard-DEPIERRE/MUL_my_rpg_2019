@@ -115,6 +115,7 @@ void launch_speed(fight_t *fight, rpg_t *rpg)
     && fight->spell[4].tmp == 0) {
         launch_first_speed(fight, fight->player.pos);
         fight->spell[4].tmp += 1;
+        sfMusic_play(fight->snd_speed);
     }
 }
 

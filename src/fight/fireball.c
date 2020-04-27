@@ -65,6 +65,7 @@ void launch_first_fireball(fight_t *fight, sfVector2f player_pos)
     sfSprite_setPosition(fight->spell[0].sprite, fight->spell[0].pos);
     fight->spell[0].final_pos = final_pos;
     fight->spell[0].activated = 1;
+
 }
 
 void change_position_fireball(spell_t *spell, sfVector2f pos)
@@ -162,6 +163,7 @@ void launch_fireball(fight_t *fight, rpg_t *rpg)
     sfKeyboard_isKeyPressed(sfKeySpace)) {
         launch_first_fireball(fight, fight->player.pos);
         fight->spell[0].tmp += 1;
+        sfMusic_play(fight->snd_fireball);
     } /*else if (fight->spell[0].activated > 0 && fight->spell[0].tmp == 1) {
         fight->spell[0].tmp = update_fireballs(&fight->spell[0], fight->player.pos, fight, rpg);
     }*/

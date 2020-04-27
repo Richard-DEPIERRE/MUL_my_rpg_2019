@@ -132,6 +132,7 @@ void launch_shield(fight_t *fight, rpg_t *rpg)
     && fight->spell[1].tmp == 0) {
         launch_first_shield(fight, fight->player.pos);
         fight->spell[1].tmp += 1;
+        sfMusic_play(fight->snd_shield);
     } /*else if (fight->spell[1].activated > 0 && fight->spell[1].tmp == 1){
         fight->spell[1].tmp = update_shield(&fight->spell[1], fight->player.pos, fight, rpg);
         }

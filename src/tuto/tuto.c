@@ -20,6 +20,8 @@ void action_three(rpg_t *rpg, game_obj_t *background)
         rpg->tuto.rect_friend.top = 216;
         rpg->tuto.pos.y -= 5;
     } else {
+        stop_all_music(rpg);
+        sfMusic_play(rpg->snd_main_music);
         rpg->status = 3;
         rpg->tuto.action = 0;
         rpg->tuto.tmp = 0;

@@ -77,6 +77,8 @@ void handling_items(rpg_t *rpg)
             change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
             for (int i = 0; i < 5; i++)
                 rpg->fight->spell[i].activated = 0;
+            stop_all_music(rpg);
+            sfMusic_play(rpg->fight->snd_main_music);
             rpg->status = 4;
         }
     } else {

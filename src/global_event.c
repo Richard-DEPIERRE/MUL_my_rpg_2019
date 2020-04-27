@@ -104,22 +104,8 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
 
-void global_event(rpg_t *rpg, game_obj_t *background)
+void global_event_statue_three(rpg_t *rpg, game_obj_t *background)
 {
-    sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
-
-    while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
-        analyse_event(rpg, background);
-    }
-    if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120) {
-        rpg->menu[18].rect.left = rpg->menu[18].rect.width;
-        rpg->fight->buttons[5].rect.left = rpg->fight->buttons[5].rect.width;
-    } else {
-        rpg->menu[18].rect.left = 0;
-        rpg->fight->buttons[5].rect.left = 0;
-    }
-    sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
-    sfSprite_setTextureRect(rpg->fight->buttons[5].sprite, rpg->fight->buttons[5].rect);
     if (rpg->status == 3) {
         if (sfKeyboard_isKeyPressed(sfKeyQ))
             move_rect(background, (sfVector2f) {-5, 0}, rpg);
@@ -133,6 +119,40 @@ void global_event(rpg_t *rpg, game_obj_t *background)
         fights_spawns(rpg, background);
         handling_items(rpg);
     }
+}
+
+void global_event(rpg_t *rpg, game_obj_t *background)
+{
+    sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
+
+    while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
+        analyse_event(rpg, background);
+    }
+    if (rpg->status == 1)
+        set_volume(rpg);
+    if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120) {
+        rpg->menu[18].rect.left = rpg->menu[18].rect.width;
+        rpg->fight->buttons[5].rect.left = rpg->fight->buttons[5].rect.width;
+    } else {
+        rpg->menu[18].rect.left = 0;
+        rpg->fight->buttons[5].rect.left = 0;
+    }
+    sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
+    sfSprite_setTextureRect(rpg->fight->buttons[5].sprite, rpg->fight->buttons[5].rect);
+    global_event_statue_three(rpg, background);
+    /*if (rpg->status == 3) {
+        if (sfKeyboard_isKeyPressed(sfKeyQ))
+            move_rect(background, (sfVector2f) {-5, 0}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyD))
+            move_rect(background, (sfVector2f) {5, 0}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyZ))
+            move_rect(background, (sfVector2f) {0, -5}, rpg);
+        if (sfKeyboard_isKeyPressed(sfKeyS))
+            move_rect(background, (sfVector2f) {0, 5}, rpg);
+        player_deplacement(rpg);
+        fights_spawns(rpg, background);
+        handling_items(rpg);
+    }*/
     if (rpg->status == 8)
         script_death(rpg, background);
     if (rpg->status == 7)

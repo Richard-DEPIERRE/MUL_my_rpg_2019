@@ -176,9 +176,13 @@ typedef struct rpg_s
     player_t player;
     int status;
     int save;
-    // à modifier
+    sfMusic *snd_clic;
+    sfMusic *snd_menu;
+    sfMusic *snd_tuto;
+    sfMusic *snd_main_music;
+    sfMusic *snd_win;
+    sfMusic *snd_loose;
     int life;
-    //
 }rpg_t;
 
 //lib
@@ -198,6 +202,8 @@ int init_save(rpg_t *rpg, game_obj_t *obj);
 
 //graphic
 void move_right(player_t *player);
+void set_volume(rpg_t *rpg);
+void stop_all_music(rpg_t *rpg);
 void move_left(player_t *player);
 void dont_move(player_t *player);
 void move_down(player_t *player);

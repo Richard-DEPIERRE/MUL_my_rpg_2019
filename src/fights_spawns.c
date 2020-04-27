@@ -14,6 +14,8 @@ void chance_fight_spawn(rpg_t *rpg)
     if (random == 1) {
         for (int i = 0; i < 5; i++)
             rpg->fight->spell[i].activated = 0;
+        stop_all_music(rpg);
+        sfMusic_play(rpg->fight->snd_main_music);
         rpg->status = 4;
     }
 }

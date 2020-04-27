@@ -11,8 +11,10 @@
 void press_button(rpg_t *rpg, BACK_R_t type)
 {
     for (int i = 0; i < 19; i += 1)
-        if (rpg->menu[i].type == type)
+        if (rpg->menu[i].type == type) {
             rpg->menu[i].rect.left = rpg->menu[i].rect.width;
+            sfMusic_play(rpg->snd_clic);
+        }
 }
 
 void release_button(rpg_t *rpg, BACK_R_t type)

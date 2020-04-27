@@ -112,6 +112,68 @@ void set_quest(quest_t *quest)
     sfSprite_setPosition(quest->invent_s, (sfVector2f) {950, 10});
 }
 
+void set_volume(rpg_t *rpg)
+{
+    sfMusic_setVolume(rpg->snd_win, rpg->music_volume);
+    sfMusic_setVolume(rpg->snd_loose, rpg->music_volume);
+    sfMusic_setVolume(rpg->snd_clic, rpg->sound_volume);
+    sfMusic_setVolume(rpg->snd_menu, rpg->music_volume);
+    sfMusic_setVolume(rpg->snd_tuto, rpg->music_volume);
+    sfMusic_setVolume(rpg->snd_main_music, rpg->music_volume);
+    sfMusic_setVolume(rpg->fight->snd_main_music, rpg->music_volume);
+    sfMusic_setVolume(rpg->fight->snd_fireball, rpg->sound_volume);
+    sfMusic_setVolume(rpg->fight->snd_shield, rpg->sound_volume);
+    sfMusic_setVolume(rpg->fight->snd_black_hole, rpg->sound_volume);
+    sfMusic_setVolume(rpg->fight->snd_heal, rpg->sound_volume);
+    sfMusic_setVolume(rpg->fight->snd_speed, rpg->sound_volume);
+    sfMusic_setVolume(rpg->fight->snd_win_fight, rpg->music_volume);
+}
+
+void stop_all_music(rpg_t *rpg)
+{
+    sfMusic_stop(rpg->snd_win);
+    sfMusic_stop(rpg->snd_loose);
+    sfMusic_stop(rpg->snd_clic);
+    sfMusic_stop(rpg->snd_menu);
+    sfMusic_stop(rpg->snd_tuto);
+    sfMusic_stop(rpg->snd_main_music);
+    sfMusic_stop(rpg->fight->snd_main_music);
+    sfMusic_stop(rpg->fight->snd_fireball);
+    sfMusic_stop(rpg->fight->snd_shield);
+    sfMusic_stop(rpg->fight->snd_black_hole);
+    sfMusic_stop(rpg->fight->snd_heal);
+    sfMusic_stop(rpg->fight->snd_speed);
+    sfMusic_stop(rpg->fight->snd_win_fight);
+}
+
+void set_music_loop(rpg_t *rpg)
+{
+    sfMusic_setLoop(rpg->snd_menu, sfTrue);
+    sfMusic_setLoop(rpg->snd_tuto, sfTrue);
+    sfMusic_setLoop(rpg->snd_main_music, sfTrue);
+    sfMusic_setLoop(rpg->fight->snd_main_music, sfTrue);
+}
+
+void set_musics(rpg_t *rpg)
+{
+    rpg->snd_win = sfMusic_createFromFile("assets/music/sound_effect_win.ogg");
+    rpg->snd_loose = sfMusic_createFromFile("assets/music/music_death.ogg");
+    rpg->snd_clic = sfMusic_createFromFile("assets/music/sound_effect_click.ogg");
+    rpg->snd_menu = sfMusic_createFromFile("assets/music/music_menu.ogg");
+    rpg->snd_tuto = sfMusic_createFromFile("assets/music/music_tuto.ogg");
+    rpg->snd_main_music = sfMusic_createFromFile("assets/music/music_quest.ogg");
+    rpg->fight->snd_main_music = sfMusic_createFromFile("assets/music/music_fight.ogg");
+    rpg->fight->snd_fireball = sfMusic_createFromFile("assets/music/sound_effect_fire.ogg");
+    rpg->fight->snd_shield = sfMusic_createFromFile("assets/music/sound_effect_shield.ogg");
+    rpg->fight->snd_black_hole = sfMusic_createFromFile("assets/music/sound_effect_black_hole.ogg");
+    rpg->fight->snd_heal = sfMusic_createFromFile("assets/music/sound_effect_heal.ogg");
+    rpg->fight->snd_speed = sfMusic_createFromFile("assets/music/sound_effect_speed.ogg");
+    rpg->fight->snd_win_fight = sfMusic_createFromFile("assets/music/sound_effect_win_fight.ogg");
+    set_music_loop(rpg);
+    set_volume(rpg);
+    sfMusic_play(rpg->snd_menu);
+}
+
 
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
@@ -127,6 +189,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     //status correspondant au tuto = 7
     set_rpg_tuto(&rpg->tuto);
     set_quest(&rpg->quest);
+    set_musics(rpg);
 }
 
 void destroy(game_obj_t *obj, rpg_t *rpg)
@@ -203,9 +266,6 @@ int main_rpg(void)
     init_player(&rpg->player);
     my_set_ints(rpg, &clock);
     my_set_sprites(&background,rpg);
-    sfMusic* music;
-    // music = sfMusic_createFromFile("assets/music/music1.ogg");
-    // sfMusic_play(music);
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);
