@@ -99,11 +99,10 @@ void set_quest(quest_t *quest)
     create_arrow(quest);
 }
 
-
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 0;
+    rpg->status = 11;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
@@ -131,15 +130,13 @@ int main_rpg(void)
     rpg_t *rpg = malloc(sizeof(struct rpg_s));
     clock_s clock;
     game_obj_t background;
-
+    sfMusic* music;
 
     create_window(rpg);
     init_player(&rpg->player);
     my_set_ints(rpg, &clock);
     my_set_sprites(&background,rpg);
-    sfMusic* music;
-    // music = sfMusic_createFromFile("assets/music/music1.ogg");
-    // sfMusic_play(music);
+    rpg->fight->boss = init_boss();
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);

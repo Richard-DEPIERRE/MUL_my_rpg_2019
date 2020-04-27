@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "rpg.h": "c",
+        "fight.h": "c"
+    }
+}

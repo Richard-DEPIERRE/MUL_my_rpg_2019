@@ -155,15 +155,14 @@ void ennemies_deplacements(fight_t *fight)
     static int tmp = 0;
     float truc1 = 0;
     float truc2 = 0;
+
     for (int i = 0; i < fight->nb_enn; i++) {
         if (fight->enns[i].in_live == 1) {
             float distance = get_distance(fight->enns[i].pos, fight->player.pos);
             float x = fight->enns[i].pos.x - fight->player.pos.x;
             float y = fight->enns[i].pos.y - fight->player.pos.y;
-
             truc1 = (x / distance) * fight->enns[i].velocity;
-            truc2 = (y / distance) * fight->enns[i].velocity; //0.7
-
+            truc2 = (y / distance) * fight->enns[i].velocity;
             fight->enns[i].pos.x -= truc1;
             fight->enns[i].pos.y -= truc2;
             where_to_move(&fight->enns[i], truc1, truc2);
@@ -219,13 +218,15 @@ void update_weapons(fight_t *fight)
 
 void update_fights(fight_t *fight, rpg_t *rpg)
 {
-    if (rpg->status != 10) {
+    if (rpg->status != 10 && rpg->status != 11) {
         for (int i = 0; i < fight->nb_enn; i++) {
             if (fight->enns[i].in_live == 1 && fight->enns[i].life <= 0)
                 fight->enns[i].in_live = 0;
         }
         ennemies_deplacements(fight);
     }
+    if (rpg->status == 11)
+        move_boss(fight);
     player_deplacements(&fight->player);
     launch_spell(fight);
     update_spell(fight);

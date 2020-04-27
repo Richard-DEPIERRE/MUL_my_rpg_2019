@@ -13,9 +13,11 @@ void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
     sfRectangleShape_setPosition(fight->inventory.show,
     (sfVector2f) {((fight->player.weapon - 1) * 110) + 603, 935});
     sfRenderWindow_drawSprite(win, fight->buttons[4].sprite, NULL);
-    if (rpg->status == 10)
+    if (rpg->status == 10 || rpg->status == 11)
         sfRenderWindow_drawSprite(win, fight->buttons[9].sprite, NULL);
-    for (int i = 0; i < fight->nb_enn && rpg->status != 10; i++)
+    if (rpg->status == 11)
+        sfRenderWindow_drawSprite(win, rpg->fight->boss->enn, NULL);
+    for (int i = 0; i < fight->nb_enn && rpg->status != 10 && rpg->status != 11; i++)
         if (fight->enns[i].in_live) {
             if (fight->enns[i].life < 100) {
                 sfRenderWindow_drawSprite(win, fight->enns[i].buttons[0].sprite, NULL);

@@ -138,4 +138,6 @@ void global_event(rpg_t *rpg, game_obj_t *background)
         tuto(rpg, background);
     if (rpg->status == 0)
         check_mouse_pos_menu(rpg);
+    if (rpg->status == 10 || rpg->status == 11)
+        player_deplacement(rpg);
 }

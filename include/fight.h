@@ -73,9 +73,15 @@ typedef struct fight_s
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
+    ennemies_t *boss;
     inventory_t inventory;
     int nb_enn;
 }fight_t;
+
+typedef struct attack_s
+{
+    void (*attack)(fight_t *);
+} attack_t;
 
 struct spell_s init_spell(char *path, enum spells_names_s type);
 void launch_spell(fight_t *fight);
