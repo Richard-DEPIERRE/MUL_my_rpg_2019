@@ -228,11 +228,6 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     sfTexture_destroy(rpg->quest.msg_t);
     sfSprite_destroy(rpg->quest.invent_s);
 
-    // sfTexture_destroy(rpg->fight->boss);
-    // sfTexture_destroy(rpg->fight->condom);
-    // sfTexture_destroy(rpg->fight->corona);
-    // sfTexture_destroy(rpg->fight->gel);
-    // sfTexture_destroy(rpg->fight->defaultt);
     sfSprite_destroy(rpg->fight->background);
     sfSprite_destroy(rpg->fight->player.player);
     sfTexture_destroy(rpg->fight->player.player_texture);
@@ -260,6 +255,20 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     sfSprite_destroy(rpg->player.sprite);
     sfTexture_destroy(rpg->player.texture);
     sfClock_destroy(rpg->player.clock.clock);
+
+    sfSound_destroy(rpg->snd_win);
+    sfSound_destroy(rpg->snd_loose);
+    sfSound_destroy(rpg->snd_clic);
+    sfSound_destroy(rpg->snd_menu);
+    sfSound_destroy(rpg->snd_tuto);
+    sfSound_destroy(rpg->snd_main_music);
+    sfSound_destroy(rpg->snd_main_music_fight);
+    sfSound_destroy(rpg->snd_fireball);
+    sfSound_destroy(rpg->snd_shield);
+    sfSound_destroy(rpg->snd_black_hole);
+    sfSound_destroy(rpg->snd_heal);
+    sfSound_destroy(rpg->snd_speed);
+    sfSound_destroy(rpg->snd_win_fight);
 
     //il faut destroy le game obj sachant que je ne connais pas la limite du game obj
 }
