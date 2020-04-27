@@ -80,7 +80,7 @@ void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2) {
         stop_all_music(rpg);
-        sfMusic_play(rpg->snd_main_music);
+        sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
     }
     if (mouse.x > 743 && mouse.x < 1177 &&

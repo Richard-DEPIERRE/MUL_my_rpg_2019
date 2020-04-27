@@ -33,7 +33,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
     if (fight->player.life <= 0) {
         reset_ennemies(fight);
         stop_all_music(rpg);
-        sfMusic_play(rpg->snd_loose);
+        sfSound_play(rpg->snd_loose);
         rpg->status = 9; // ce status correspondra à l'écran de game over
         fight->player.life = 100;
         fight->buttons[3].rect.width = fight->player.life * 2 + 4;
@@ -46,7 +46,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
             count += 1;
     if (count == fight->nb_enn) {
         reset_ennemies(fight);
-        sfMusic_play(fight->snd_win_fight);
+        sfSound_play(rpg->snd_win_fight);
         printf("Player a bien gagné son combat\n");
         rpg->quest.scd_quest.nb_win += 1;
         rpg->status = 10; //le joueur revient au jeu
@@ -55,7 +55,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
         fight->player.pos = (sfVector2f){1920 / 2, 1080 / 2};
         sfSprite_setPosition(fight->player.player, fight->player.pos);
         stop_all_music(rpg);
-        sfMusic_play(rpg->snd_main_music);
+        sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
     }
 }

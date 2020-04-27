@@ -37,7 +37,7 @@ int script1_death(rpg_t *rpg, game_obj_t *background)
     } else {
         dont_move(&rpg->player);
         stop_all_music(rpg);
-        sfMusic_play(rpg->snd_main_music);
+        sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
         i = 0;
         return (0);

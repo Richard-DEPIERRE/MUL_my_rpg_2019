@@ -128,7 +128,7 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
         analyse_event(rpg, background);
     }
-    if (rpg->status == 1)
+    if (rpg->status == 0)
         set_volume(rpg);
     if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120) {
         rpg->menu[18].rect.left = rpg->menu[18].rect.width;

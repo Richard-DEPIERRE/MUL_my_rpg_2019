@@ -91,13 +91,13 @@ typedef struct fight_s
     ennemies_t *enns;
     inventory_t inventory;
     int nb_enn;
-    sfMusic *snd_main_music;
-    sfMusic *snd_fireball;
-    sfMusic *snd_shield;
-    sfMusic *snd_black_hole;
-    sfMusic *snd_heal;
-    sfMusic *snd_speed;
-    sfMusic *snd_win_fight;
+    /*sfSound *snd_main_music;
+    sfSound *snd_fireball;
+    sfSound *snd_shield;
+    sfSound *snd_black_hole;
+    sfSound *snd_heal;
+    sfSound *snd_speed;
+    sfSound *snd_win_fight;*/
 }fight_t;
 
 spell_t init_spell(char *path, spells_names_t type, sfIntRect rect);

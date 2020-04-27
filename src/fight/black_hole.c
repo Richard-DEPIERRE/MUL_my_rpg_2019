@@ -161,7 +161,7 @@ void launch_black_hole(fight_t *fight, rpg_t *rpg)
     sfKeyboard_isKeyPressed(sfKeySpace)) {
         launch_first_black_hole(fight, fight->player.pos);
         fight->spell[2].tmp += 1;
-        sfMusic_play(fight->snd_black_hole);
+        sfSound_play(rpg->snd_black_hole);
     } /*else if (fight->spell[2].activated > 0 && fight->spell[2].tmp == 1) {
         fight->spell[2].tmp = update_black_holes(&fight->spell[2], fight->player.pos, fight, rpg);
     }*/

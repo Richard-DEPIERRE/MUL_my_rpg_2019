@@ -163,7 +163,7 @@ void launch_fireball(fight_t *fight, rpg_t *rpg)
     sfKeyboard_isKeyPressed(sfKeySpace)) {
         launch_first_fireball(fight, fight->player.pos);
         fight->spell[0].tmp += 1;
-        sfMusic_play(fight->snd_fireball);
+        sfSound_play(rpg->snd_fireball);
     } /*else if (fight->spell[0].activated > 0 && fight->spell[0].tmp == 1) {
         fight->spell[0].tmp = update_fireballs(&fight->spell[0], fight->player.pos, fight, rpg);
     }*/

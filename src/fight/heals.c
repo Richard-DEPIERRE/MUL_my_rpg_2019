@@ -132,7 +132,7 @@ void launch_heals(fight_t *fight, rpg_t *rpg)
     && fight->spell[3].tmp == 0) {
         launch_first_health(fight, fight->player.pos);
         fight->spell[3].tmp += 1;
-        sfMusic_play(fight->snd_heal);
+        sfSound_play(rpg->snd_heal);
     }
 }
 

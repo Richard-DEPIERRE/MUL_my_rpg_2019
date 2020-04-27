@@ -176,12 +176,19 @@ typedef struct rpg_s
     player_t player;
     int status;
     int save;
-    sfMusic *snd_clic;
-    sfMusic *snd_menu;
-    sfMusic *snd_tuto;
-    sfMusic *snd_main_music;
-    sfMusic *snd_win;
-    sfMusic *snd_loose;
+    sfSound *snd_clic;
+    sfSound *snd_menu;
+    sfSound *snd_tuto;
+    sfSound *snd_main_music;
+    sfSound *snd_win;
+    sfSound *snd_loose;
+    sfSound *snd_main_music_fight;
+    sfSound *snd_fireball;
+    sfSound *snd_shield;
+    sfSound *snd_black_hole;
+    sfSound *snd_heal;
+    sfSound *snd_speed;
+    sfSound *snd_win_fight;
     int life;
 }rpg_t;
 
