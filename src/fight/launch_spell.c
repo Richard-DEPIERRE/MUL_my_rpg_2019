@@ -29,13 +29,13 @@ void launch_spell(fight_t *fight, rpg_t *rpg)
     } else if (fight->player.weapon == SPELL_TWO) {
         // printf("lance le shield\n");
         launch_shield(fight, rpg);
-    } else if (fight->player.weapon == SPELL_THREE) {
+    } else if (fight->player.weapon == SPELL_THREE && rpg->quest.scd_quest.nb_kills >= 30) {
         //printf("lance le black hole\n");
         launch_black_hole(fight, rpg);
-    } else if (fight->player.weapon == SPELL_FOUR) {
+    } else if (fight->player.weapon == SPELL_FOUR && rpg->quest.scd_quest.nb_win >= 3) {
         //printf("lance le soin\n");
         launch_heals(fight, rpg);
-    } else if (fight->player.weapon == SPELL_FIVE) {
+    } else if (fight->player.weapon == SPELL_FIVE && rpg->quest.scd_quest.nb_kills >= 15) {
         //printf("lance le bonus de vitesse\n");
         launch_speed(fight, rpg);
     }

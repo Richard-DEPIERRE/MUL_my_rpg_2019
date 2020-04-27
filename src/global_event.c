@@ -104,17 +104,24 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
 
+float speed(void)
+{
+    if (sfKeyboard_isKeyPressed(sfKeyEnter))
+        return (5);
+    return (1);
+}
+
 void global_event_statue_three(rpg_t *rpg, game_obj_t *background)
 {
     if (rpg->status == 3) {
         if (sfKeyboard_isKeyPressed(sfKeyQ))
-            move_rect(background, (sfVector2f) {-1, 0}, rpg);
+            move_rect(background, (sfVector2f) {-speed(), 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyD))
-            move_rect(background, (sfVector2f) {1, 0}, rpg);
+            move_rect(background, (sfVector2f) {speed(), 0}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyZ))
-            move_rect(background, (sfVector2f) {0, -1}, rpg);
+            move_rect(background, (sfVector2f) {0, -speed()}, rpg);
         if (sfKeyboard_isKeyPressed(sfKeyS))
-            move_rect(background, (sfVector2f) {0, 1}, rpg);
+            move_rect(background, (sfVector2f) {0, speed()}, rpg);
         player_deplacement(rpg);
         fights_spawns(rpg, background);
         handling_items(rpg);
