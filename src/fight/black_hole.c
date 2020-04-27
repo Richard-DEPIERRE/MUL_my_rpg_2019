@@ -14,7 +14,7 @@ void animation_black_hole(spell_t *spell)
     printf("seconds:%f\n", second);
     if (second > 0.09) {
         if (spell->rect.left < 393) {
-            spell->rect.left += 56.125;
+            spell->rect.left += 56;
         } else {
             spell->rect.left = 0;
         }
@@ -127,9 +127,13 @@ int cooldown_black_holes(spell_t *spell)
         sfClock_restart(spell->clock_cd.clock);
         tmp = 1;
         return (1);
+    } else if (spell->activated == 1 && tmp == 1 && spell->clock_cd.seconds > 1.5) {
+        spell->activated = 2;
+        sfClock_restart(spell->clock_cd.clock);
     }
-    display_cooldown_black_holes(spell->clock_cd.seconds, spell);
-    if (spell->clock_cd.seconds >= spell->sec) {
+    if (spell->activated == 2)
+        display_cooldown_black_holes(spell->clock_cd.seconds, spell);
+    if (spell->clock_cd.seconds >= spell->sec && spell->activated == 2) {
         spell->activated = 0;
         tmp = 0;
         sfClock_restart(spell->clock_cd.clock);
@@ -140,9 +144,11 @@ int cooldown_black_holes(spell_t *spell)
 
 int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
 {
-    if (spell->activated == 1) {
-        change_position_black_hole(spell, pos);
-        check_touch_ennemie_black_hole(fight, rpg, spell);
+    if (spell->activated == 1 || spell->activated == 2) {
+        if (spell->activated == 1) {
+            change_position_black_hole(spell, pos);
+            check_touch_ennemie_black_hole(fight, rpg, spell);
+        }
         return (cooldown_black_holes(spell));
     }
 }

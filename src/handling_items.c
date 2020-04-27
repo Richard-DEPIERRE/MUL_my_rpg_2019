@@ -75,6 +75,8 @@ void handling_items(rpg_t *rpg)
         if (sfKeyboard_isKeyPressed(sfKeySpace)) {
             rpg->quest.tmp = 1;
             change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
+            for (int i = 0; i < 5; i++)
+                rpg->fight->spell[i].activated = 0;
             rpg->status = 4;
         }
     } else {

@@ -166,13 +166,15 @@ fight_t *init_variables_for_fights(fight_t *fight)
     sfSprite_setTexture(fight->inventory.sprite, fight->inventory.texture, sfTrue);
     sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
     sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
-    fight->spell = malloc(sizeof(spell_t) * (3));
+    fight->spell = malloc(sizeof(spell_t) * (5));
     fight->spell[0] = init_spell("assets/sprites/spells/fireball_sprite.png", FIREBALL, (sfIntRect) {0, 0, 48, 28});
     fight->spell[1] = init_spell("assets/sprites/spells/shield_sprite.png", SHIELD, (sfIntRect) {0, 0, 60, 60});
     fight->spell[2] = init_spell("assets/sprites/spells/spell3.png", BLACK_HOLE, (sfIntRect) {0, 0, 57, 49});
+    fight->spell[3] = init_spell("assets/sprites/spells/health.png", HEALTH, (sfIntRect) {0, 0, 60, 60});
+    fight->spell[4] = init_spell("assets/sprites/spells/speed.png", SPEEDS, (sfIntRect) {0, 0, 60, 60});
     create_and_set_background(fight);
     sfSprite_setTextureRect(fight->background, (sfIntRect){0, 0, 1920, 1080});
-    fight->buttons = malloc(sizeof(game_obj_t) * 10);
+    fight->buttons = malloc(sizeof(game_obj_t) * 12);
     fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
     fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
@@ -193,6 +195,10 @@ fight_t *init_variables_for_fights(fight_t *fight)
     (sfVector2f){850, 948}, (sfIntRect){0, 0, 49, 49}, BACK);
     fight->buttons[9] = create_object_fight("assets/sprites/arrow_fight.png",
     (sfVector2f){1570, 370}, (sfIntRect){0, 0, 330, 340}, BACK);
+    fight->buttons[10] = create_object_fight("assets/sprites/health.png",
+    (sfVector2f){960, 952}, (sfIntRect){0, 0, 60, 60}, EFECT);
+    fight->buttons[11] = create_object_fight("assets/sprites/shoes.png",
+    (sfVector2f){1070, 952}, (sfIntRect){0, 0, 60, 32}, BACK);
     set_basics_for_fight(fight, "assets/sprites/character.png",
     (sfIntRect) {0, 0, 64, 64}, (sfVector2f) {(1920 / 2) - (64 / 2),
     (1080 / 2) - (64 / 2)});

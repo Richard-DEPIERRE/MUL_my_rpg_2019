@@ -229,7 +229,7 @@ void update_fights(fight_t *fight, rpg_t *rpg)
         ennemies_deplacements(fight);
     }
     update_weapons(fight);
-    player_deplacements(&fight->player);
+    player_deplacements(&fight->player, fight);
     launch_spell(fight, rpg);
     // update_spell(fight, rpg);
     //ici on va s'occuper de faire bouger les ennemies, de faire bouger le perso, de faire la hitbox

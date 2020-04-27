@@ -256,7 +256,7 @@ int script1_death(rpg_t *rpg, game_obj_t *background);
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void update_fights(fight_t *fight, rpg_t *rpg);
 void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
-void player_deplacements(player_fight_t *player);
+void player_deplacements(player_fight_t *player, fight_t *fight);
 int dont_move_fight(player_fight_t *player);
 int move_down_fight(player_fight_t *player);
 int move_up_fight(player_fight_t *player);
@@ -273,6 +273,7 @@ void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt);
 int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+int update_health(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

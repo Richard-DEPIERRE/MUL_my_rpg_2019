@@ -11,8 +11,11 @@ void chance_fight_spawn(rpg_t *rpg)
 {
     int random = generate_random(1, 50);
 
-    if (random == 1)
+    if (random == 1) {
+        for (int i = 0; i < 5; i++)
+            rpg->fight->spell[i].activated = 0;
         rpg->status = 4;
+    }
 }
 
 void fights_spawns(rpg_t *rpg, game_obj_t *obj)

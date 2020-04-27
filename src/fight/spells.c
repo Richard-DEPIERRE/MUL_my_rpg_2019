@@ -68,7 +68,7 @@
 void set_txt_cooldown(text_R_t *txt, spells_names_t type)
 {
     txt->size = 30;
-    txt->pos.x = ((type - 1) * 110) + 756;
+    txt->pos.x = ((type - 1) * 110) + 726;
     txt->pos.y = 990;
     make_text(txt, "", "assets/fonts/good_font.ttf");
     txt->str = NULL;
@@ -96,12 +96,28 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
         spell.damage = 2;
         spell.protection = 0;
         spell.sec = 1;
-    } else if (type == SHIELD) {
+    }
+    if (type == SHIELD) {
         spell.protection = 10;
         spell.damage = 10;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
         spell.sec = 8;
+    }
+    if (type == HEALTH) {
+        spell.protection = 0;
+        spell.damage = 0;
+        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
+        spell.sec = 15;
+        spell.health = sfClock_create();
+    }
+    if (type == SPEEDS) {
+        spell.protection = 0;
+        spell.damage = 0;
+        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
+        spell.sec = 20;
     }
     if (type == BLACK_HOLE) {
         spell.damage = 15;

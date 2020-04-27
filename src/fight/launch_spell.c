@@ -15,6 +15,10 @@ void updates_spells(fight_t *fight, rpg_t *rpg)
         fight->spell[1].tmp = update_shield(&fight->spell[1], fight->player.pos, fight, rpg);
     if (fight->spell[2].activated > 0 && fight->spell[2].tmp == 1)
         fight->spell[2].tmp = update_black_holes(&fight->spell[2], fight->player.pos, fight, rpg);
+    if (fight->spell[3].activated > 0 && fight->spell[3].tmp == 1)
+        fight->spell[3].tmp = update_health(&fight->spell[3], fight->player.pos, fight, rpg);
+    if (fight->spell[4].activated > 0 && fight->spell[4].tmp == 1)
+        fight->spell[4].tmp = update_speed(&fight->spell[4], fight->player.pos, fight, rpg);
 }
 
 void launch_spell(fight_t *fight, rpg_t *rpg)
@@ -26,13 +30,13 @@ void launch_spell(fight_t *fight, rpg_t *rpg)
         // printf("lance le shield\n");
         launch_shield(fight, rpg);
     } else if (fight->player.weapon == SPELL_THREE) {
-        printf("lance le black hole\n");
+        //printf("lance le black hole\n");
         launch_black_hole(fight, rpg);
     } else if (fight->player.weapon == SPELL_FOUR) {
-        printf("lance le soin\n");
+        //printf("lance le soin\n");
         launch_heals(fight, rpg);
     } else if (fight->player.weapon == SPELL_FIVE) {
-        printf("lance le bonus de vitesse\n");
+        //printf("lance le bonus de vitesse\n");
         launch_speed(fight, rpg);
     }
     updates_spells(fight, rpg);

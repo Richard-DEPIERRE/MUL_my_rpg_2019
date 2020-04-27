@@ -28,7 +28,9 @@ typedef enum WEAPONS
 typedef enum spells_names_s {
     FIREBALL,
     SHIELD,
-    BLACK_HOLE
+    BLACK_HOLE,
+    HEALTH,
+    SPEEDS
 } spells_names_t;
 
 typedef struct player_fight_s
@@ -59,9 +61,11 @@ typedef struct spell_s {
     int direction;
     sfVector2f final_pos;
     sfClock *clock;
+    sfClock *health;
     clock_R_t clock_cd;
     spells_names_t type;
     float sec;
+    int calc;
 }  spell_t;
 
 typedef struct inventory_s

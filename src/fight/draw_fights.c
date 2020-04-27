@@ -23,12 +23,12 @@ void display_enns(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
                 sfRenderWindow_drawSprite(win, fight->enns[i].buttons[1].sprite, NULL);
             }
             sfRenderWindow_drawSprite(win, fight->enns[i].enn, NULL);
-        }
+        }   
 }
 
 void display_spells(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 5; i++)
         if (fight->spell[i].activated == 1)
             sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
 }
@@ -42,6 +42,10 @@ void display_cooldown(fight_t *fight, sfRenderWindow *win)
         sfRenderWindow_drawText(win, fight->spell[1].text.text, NULL);
     if (fight->spell[2].text.str)
         sfRenderWindow_drawText(win, fight->spell[2].text.text, NULL);
+    if (fight->spell[3].text.str)
+        sfRenderWindow_drawText(win, fight->spell[3].text.text, NULL);
+    if (fight->spell[4].text.str)
+        sfRenderWindow_drawText(win, fight->spell[4].text.text, NULL);
     // if (fight->spell[0].text.str != NULL) {
     //     printf("draw\n");
     //     printf("|||%s|||\n", fight->spell[0].text.str);
@@ -81,6 +85,8 @@ void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
     sfRenderWindow_drawSprite(win, fight->buttons[5].sprite, NULL);
     display_cooldown(fight, win);
     for (int i = 6; i <= 8; i += 1)
+        sfRenderWindow_drawSprite(win, fight->buttons[i].sprite, NULL);
+    for (int i = 10; i <= 11; i += 1)
         sfRenderWindow_drawSprite(win, fight->buttons[i].sprite, NULL);
     sfRenderWindow_display(win);
 }
