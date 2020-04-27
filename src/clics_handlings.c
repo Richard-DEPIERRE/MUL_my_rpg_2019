@@ -71,6 +71,7 @@ void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj)
             save_to_file(rpg, obj);
             stop_all_music(rpg);
             sfSound_play(rpg->snd_menu);
+            rpg->tmp = rpg->status;
             rpg->status = 0;
             rpg->menu_status = 6;
         }

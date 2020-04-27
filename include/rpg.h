@@ -190,6 +190,7 @@ typedef struct rpg_s
     sfSound *snd_speed;
     sfSound *snd_win_fight;
     int life;
+    int tmp;
 }rpg_t;
 
 //lib
