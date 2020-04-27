@@ -120,7 +120,7 @@ void set_volume(rpg_t *rpg)
     sfSound_setVolume(rpg->snd_menu, rpg->music_volume);
     sfSound_setVolume(rpg->snd_tuto, rpg->music_volume);
     sfSound_setVolume(rpg->snd_main_music, rpg->music_volume);
-    sfSound_setVolume(rpg->snd_main_music, rpg->music_volume);
+    sfSound_setVolume(rpg->snd_main_music_fight, rpg->music_volume);
     sfSound_setVolume(rpg->snd_fireball, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_shield, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_black_hole, rpg->sound_volume);
@@ -137,7 +137,7 @@ void stop_all_music(rpg_t *rpg)
     sfSound_stop(rpg->snd_menu);
     sfSound_stop(rpg->snd_tuto);
     sfSound_stop(rpg->snd_main_music);
-    sfSound_stop(rpg->snd_main_music);
+    sfSound_stop(rpg->snd_main_music_fight);
     sfSound_stop(rpg->snd_fireball);
     sfSound_stop(rpg->snd_shield);
     sfSound_stop(rpg->snd_black_hole);
@@ -151,7 +151,7 @@ void set_music_loop(rpg_t *rpg)
     sfSound_setLoop(rpg->snd_menu, sfTrue);
     sfSound_setLoop(rpg->snd_tuto, sfTrue);
     sfSound_setLoop(rpg->snd_main_music, sfTrue);
-    sfSound_setLoop(rpg->snd_main_music, sfTrue);
+    sfSound_setLoop(rpg->snd_main_music_fight, sfTrue);
 }
 
 sfSound *create_sound(char *path)

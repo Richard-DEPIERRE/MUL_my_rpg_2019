@@ -91,6 +91,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
     spell.clock_cd.clock = sfClock_create();
     spell.type = type;
     spell.tmp = 0;
+    spell.tmp2 = 0;
     set_txt_cooldown(&spell.text, type);
     if (type == FIREBALL) {
         spell.damage = 2;

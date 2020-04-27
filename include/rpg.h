@@ -287,6 +287,8 @@ int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rp
 int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 int update_health(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+void init_values_before_fight(fight_t *fight);
+int update_speed(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

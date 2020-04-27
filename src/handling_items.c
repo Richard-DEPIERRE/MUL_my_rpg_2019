@@ -75,8 +75,7 @@ void handling_items(rpg_t *rpg)
         if (sfKeyboard_isKeyPressed(sfKeySpace)) {
             rpg->quest.tmp = 1;
             change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
-            for (int i = 0; i < 5; i++)
-                rpg->fight->spell[i].activated = 0;
+            init_values_before_fight(rpg->fight);
             stop_all_music(rpg);
             sfSound_play(rpg->snd_main_music_fight);
             rpg->status = 4;

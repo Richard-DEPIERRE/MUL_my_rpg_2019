@@ -7,6 +7,17 @@
 
 #include "rpg.h"
 
+void init_values_before_fight(fight_t *fight)
+{
+    for (int i = 0; i < 5; i++) {
+        fight->spell[i].activated = 0;
+        sfClock_restart(fight->spell[i].clock);
+        fight->spell[i].text.str = NULL;
+        fight->spell[i].tmp = 0;
+        fight->spell[i].tmp2 = 0;
+    }
+}
+
 void reset_ennemies(fight_t *fight)
 {
     fight->nb_enn = generate_random(2, 5);

@@ -12,8 +12,7 @@ void chance_fight_spawn(rpg_t *rpg)
     int random = generate_random(1, 50);
 
     if (random == 1) {
-        for (int i = 0; i < 5; i++)
-            rpg->fight->spell[i].activated = 0;
+        init_values_before_fight(rpg->fight);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_main_music_fight);
         rpg->status = 4;

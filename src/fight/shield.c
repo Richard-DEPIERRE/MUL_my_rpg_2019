@@ -74,21 +74,19 @@ void display_cooldown_shield(float second, spell_t *spell)
 
 int cooldown_shield(spell_t *spell)
 {
-    static int tmp = 0;
-
     spell->clock_cd.time = sfClock_getElapsedTime(spell->clock_cd.clock);
     spell->clock_cd.seconds = spell->clock_cd.time.microseconds / 1000000.0;
-    if (spell->activated == 1 && spell->clock_cd.seconds > 3 && tmp == 0) {
+    if (spell->activated == 1 && spell->clock_cd.seconds > 3 && spell->tmp2 == 0) {
         // sfClock_restart(spell->clock_cd.clock);
         spell->activated = 2;
-        tmp = 1;
+        spell->tmp2 = 1;
         return (1);
     }
     if (spell->activated == 2)
         display_cooldown_shield(spell->clock_cd.seconds, spell);
     if (spell->activated == 2 && spell->clock_cd.seconds >= spell->sec) {
         spell->activated = 0;
-        tmp = 0;
+        spell->tmp2 = 0;
         sfClock_restart(spell->clock_cd.clock);
         return (0);
     }
@@ -100,17 +98,17 @@ void change_position_shield(spell_t *spell, sfVector2f pos)
     static int test = 0;
     sfTime time;
 
-    if (spell->protection != 0 && spell->activated == 1 && test == 0) {
-        test = 1;
-        sfClock_restart(spell->clock);
-    }
-    if (test == 1) {
-        time = sfClock_getElapsedTime(spell->clock);
-        if (time.microseconds / 1000000 > 1) {
-            spell->activated = 2;
-            test = 0;
-        }
-    }
+    if (spell->protection != 0 && spell->activated == 1 && test == 0) { //je crois que tout ça ne sert à rien
+        test = 1; //je crois que tout ça ne sert à rien
+        sfClock_restart(spell->clock); //je crois que tout ça ne sert à rien
+    } // je crois que tout ça ne sert à rien
+    if (test == 1) { // je crois que tout ça ne sert à rien
+        time = sfClock_getElapsedTime(spell->clock); // je crois que tout ça ne sert à rien
+        if (time.microseconds / 1000000 > 1) { // je crois que tout ça ne sert à rien
+            spell->activated = 2; // je crois que tout ça ne sert à rien
+            test = 0; // je crois que tout ça ne sert à rien
+        } // je crois que tout ça ne sert à rien
+    } // je crois que tout ça ne sert à rien
     spell->pos = (sfVector2f) {pos.x - 5, pos.y + 10};
     sfSprite_setPosition(spell->sprite, spell->pos);
 }

@@ -49,6 +49,7 @@ typedef struct player_fight_s
 
 typedef struct spell_s {
     int tmp;
+    int tmp2;
     text_R_t text;
     sfSprite *sprite;
     sfTexture *texture;

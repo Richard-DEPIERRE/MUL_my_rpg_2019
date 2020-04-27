@@ -32,8 +32,6 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
         rpg->save = 2;
         stop_all_music(rpg);
         sfSound_play(rpg->snd_main_music);
-        stop_all_music(rpg);
-        sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
         if (rpg->menu_status == 5)
             init_save(rpg, obj);
