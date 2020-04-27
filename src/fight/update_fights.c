@@ -150,7 +150,7 @@ void knock_back(player_fight_t *player, clock_s *clock, float truc1, float truc2
     sfSprite_setPosition(player->player, player->pos);
 }
 
-void ennemies_deplacements(fight_t *fight)
+void ennemies_deplacements(fight_t *fight, rpg_t *rpg)
 {
     static int tmp = 0;
     float truc1 = 0;
@@ -158,8 +158,8 @@ void ennemies_deplacements(fight_t *fight)
     for (int i = 0; i < fight->nb_enn; i++) {
         if (fight->enns[i].in_live == 1) {
             float distance = get_distance(fight->enns[i].pos, fight->player.pos);
-            float x = fight->enns[i].pos.x - fight->player.pos.x;
-            float y = fight->enns[i].pos.y - fight->player.pos.y;
+            float x = (fight->enns[i].pos.x + (rpg->quest.scd_quest.nb_win * 3)) - fight->player.pos.x;
+            float y = (fight->enns[i].pos.y + (rpg->quest.scd_quest.nb_win * 3)) - fight->player.pos.y;
 
             truc1 = (x / distance) * fight->enns[i].velocity;
             truc2 = (y / distance) * fight->enns[i].velocity; //0.7
@@ -226,7 +226,7 @@ void update_fights(fight_t *fight, rpg_t *rpg)
             if (fight->enns[i].in_live == 1 && fight->enns[i].life <= 0)
                 fight->enns[i].in_live = 0;
         }
-        ennemies_deplacements(fight);
+        ennemies_deplacements(fight, rpg);
     }
     update_weapons(fight);
     player_deplacements(&fight->player, fight);

@@ -116,7 +116,7 @@ void set_volume(rpg_t *rpg)
 {
     sfSound_setVolume(rpg->snd_win, rpg->music_volume);
     sfSound_setVolume(rpg->snd_loose, rpg->music_volume);
-    sfSound_setVolume(rpg->snd_clic, rpg->music_volume);
+    sfSound_setVolume(rpg->snd_clic, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_menu, rpg->music_volume);
     sfSound_setVolume(rpg->snd_tuto, rpg->music_volume);
     sfSound_setVolume(rpg->snd_main_music, rpg->music_volume);
@@ -126,7 +126,7 @@ void set_volume(rpg_t *rpg)
     sfSound_setVolume(rpg->snd_black_hole, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_heal, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_speed, rpg->sound_volume);
-    sfSound_setVolume(rpg->snd_win_fight, rpg->music_volume);
+    sfSound_setVolume(rpg->snd_win_fight, rpg->sound_volume);
 }
 
 void stop_all_music(rpg_t *rpg)

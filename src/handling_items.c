@@ -72,7 +72,7 @@ void handling_items(rpg_t *rpg)
     if (rpg->player.pos.x > pos.x - 20 && rpg->player.pos.x < pos.x + 40 &&
     rpg->player.pos.y > pos.y - 20 && rpg->player.pos.y < pos.y + 40) {
         rpg->quest.message = 1;
-        if (sfKeyboard_isKeyPressed(sfKeySpace)) {
+        if (sfKeyboard_isKeyPressed(sfKeyE)) {
             rpg->quest.tmp = 1;
             change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
             init_values_before_fight(rpg->fight);

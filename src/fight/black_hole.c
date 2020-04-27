@@ -12,11 +12,20 @@ void animation_black_hole(spell_t *spell)
     sfTime time = sfClock_getElapsedTime(spell->clock);
     float second = time.microseconds / 1000000.0;
     printf("seconds:%f\n", second);
-    if (second > 0.09) {
-        if (spell->rect.left < 393) {
-            spell->rect.left += 56;
+    if (second > 0.05) {
+        if (spell->rect.left < 1750 && spell->rect.top == 0) {
+            spell->rect.left += 250;
         } else {
-            spell->rect.left = 0;
+            if (spell->rect.top == 0) {
+                spell->rect.left = 0;
+                spell->rect.top = 250;
+            } else if (spell->rect.left < 1500)
+                spell->rect.left += 250;
+            else {
+                spell->rect.left = 0;
+                spell->rect.top = 0;
+            }
+
         }
         sfClock_restart(spell->clock);
     }
@@ -58,7 +67,8 @@ void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
     } else if (fight->player.direct == 7) {
         pos_rotat_(&final_pos, player_pos, 180, fight->spell[2].sprite);
     }
-    fight->spell[2].pos = player_pos;
+    fight->spell[2].pos.x = player_pos.x;
+    fight->spell[2].pos.y = player_pos.y - 20;
     fight->spell[2].direction = fight->player.direct;
     sfSprite_setPosition(fight->spell[2].sprite, fight->spell[2].pos);
     fight->spell[2].final_pos = final_pos;
