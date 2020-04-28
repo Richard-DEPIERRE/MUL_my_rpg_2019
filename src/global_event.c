@@ -156,6 +156,28 @@ void global_event_statue_three(rpg_t *rpg, game_obj_t *background)
     }
 }
 
+void display_fps(rpg_t *rpg)
+{
+    static int first = 1;
+    static sfClock *clock;
+    static int fps = 0;
+    static char *str = NULL;
+
+    if (first == 1) {
+        clock = sfClock_create();
+        first = 0;
+    }
+    sfTime elapsed = sfClock_getElapsedTime(clock);
+    if (sfTime_asSeconds(elapsed) >= 1) {
+        str = my_strcat("SIDONA RPG (", int_to_char(fps));
+        str = my_strcat(str, "fps)");
+        sfRenderWindow_setTitle(rpg->win, str);
+        fps = 0;
+        sfClock_restart(clock);
+    } else
+        fps++;
+}
+
 void global_event(rpg_t *rpg, game_obj_t *background)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
@@ -163,6 +185,7 @@ void global_event(rpg_t *rpg, game_obj_t *background)
     while (sfRenderWindow_pollEvent(rpg->win, &rpg->evnt)) {
         analyse_event(rpg, background);
     }
+    display_fps(rpg);
     if (rpg->status == 0)
         set_volume(rpg);
     if (mouse.x > 20 && mouse.x < 20 && mouse.y > 20 && mouse.y < 120) {
