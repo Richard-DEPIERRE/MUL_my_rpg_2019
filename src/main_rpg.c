@@ -233,7 +233,7 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     sfTexture_destroy(rpg->fight->player.player_texture);
     sfClock_destroy(rpg->fight->player.clock2.clock);
     sfClock_destroy(rpg->fight->player.clock.clock);
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         sfClock_destroy(rpg->fight->enns[i].clock.clock);
         sfTexture_destroy(rpg->fight->enns[i].enn_texture);
         sfSprite_destroy(rpg->fight->enns[i].enn);

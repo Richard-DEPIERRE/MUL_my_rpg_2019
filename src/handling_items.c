@@ -58,6 +58,16 @@ void change_background_fight(fight_t *fight, int i, quest_t quest)
     sfSprite_setTextureRect(fight->buttons[4].sprite, fight->rect);
 }
 
+void pseudo_upgrade_ennemies(fight_t *fight)
+{
+    if (fight->spell[0].damage > 1)
+        fight->spell[0].damage -= 1;
+    if (fight->spell[1].damage > 1)
+        fight->spell[1].damage -= 1;
+    if (fight->spell[2].damage > 7)
+        fight->spell[2].damage -= 2;
+}
+
 void handling_items(rpg_t *rpg)
 {
     sfVector2f pos;
@@ -67,6 +77,7 @@ void handling_items(rpg_t *rpg)
     if (rpg->quest.tmp == 1) {
         rpg->quest.tmp = 0;
         change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
+        pseudo_upgrade_ennemies(rpg->fight);
         change_item(rpg);
     }
     if (rpg->player.pos.x > pos.x - 20 && rpg->player.pos.x < pos.x + 40 &&

@@ -64,7 +64,8 @@ sfVector2f pos)
     sfTrue);
     sfSprite_setTextureRect(fight->player.player, fight->player.rect);
     sfSprite_setPosition(fight->player.player, fight->player.pos);
-    fight->nb_enn = 5;
+    fight->nb_enn = 3;
+    fight->max_enn = 5;
 }
 
 void set_enn2(ennemies_t *enn)
@@ -154,7 +155,7 @@ enum BACK_R_s type)
 fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
-    fight->enns = malloc(sizeof(ennemies_t) * 5);
+    fight->enns = malloc(sizeof(ennemies_t) * 10);
     fight->background = sfSprite_create();
     fight->inventory.sprite = sfSprite_create();
     fight->inventory.texture = sfTexture_createFromFile("assets/sprites/inventory.png", NULL);
@@ -203,7 +204,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     (sfIntRect) {0, 0, 64, 64}, (sfVector2f) {(1920 / 2) - (64 / 2),
     (1080 / 2) - (64 / 2)});
     srand(time(0));
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
         fight->enns[i] = set_enn(i);
     return (fight);
 }

@@ -29,7 +29,7 @@ void display_inventory(sfRenderWindow *win, rpg_t *rpg)
         rpg->quest.invent_rect.left = 1920;
     } else if (rpg->quest.act == 3) {
         rpg->quest.invent_rect.left = 3840;
-    } else if (rpg->quest.act == 3) {
+    } else if (rpg->quest.act == 0) { //c'était 3 mais c'est trop bizarre
         rpg->quest.invent_rect.left = 5760;
     }
     // printf("LEFT:%d\n", rpg->quest.invent_rect.left);

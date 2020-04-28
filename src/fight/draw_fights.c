@@ -28,7 +28,7 @@ void display_enns(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
 
 void display_spells(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
 {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
         if (fight->spell[i].activated == 1)
             sfRenderWindow_drawSprite(win, fight->spell[i].sprite, NULL);
 }

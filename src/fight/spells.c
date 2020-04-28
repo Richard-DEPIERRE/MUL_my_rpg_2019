@@ -110,7 +110,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
         spell.damage = 0;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 15;
+        spell.sec = 20;
         spell.health = sfClock_create();
     }
     if (type == SPEEDS) {
@@ -118,7 +118,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
         spell.damage = 0;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 10;
+        spell.sec = 15;
     }
     if (type == BLACK_HOLE) {
         spell.damage = 15;

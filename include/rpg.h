@@ -228,6 +228,7 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg);
 void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj);
 void handling_items(rpg_t *rpg);
 void set_seconds_quests(scd_quest_t *quest);
+void reset_ennemies(fight_t *fight);
 
 //lib
 int my_strlen(char const *str);

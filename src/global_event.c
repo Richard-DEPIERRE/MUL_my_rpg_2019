@@ -106,9 +106,36 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
 
 float speed(void)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyEnter))
+    if (sfKeyboard_isKeyPressed(sfKeyEnter)) //cheat code, à enlever
         return (5);
     return (1);
+}
+
+void enns_loop(float speed, ennemies_t *enns)
+{
+    for (int i = 0; i < 10; i++) {
+        enns[i].velocity = generate_random(speed, speed + 50) / 10;
+        enns[i].velocity /= 10;
+    }
+}
+
+void upgrade_ennemies(ennemies_t *enns, int act, fight_t *fight)
+{
+    if (act == 1) {
+        enns_loop(50, enns);
+        fight->max_enn = 5;
+        return;
+    }
+    if (act == 2) {
+        enns_loop(65, enns);
+        fight->max_enn = 7;
+    } else if (act == 3) {
+        enns_loop(80, enns);
+        fight->max_enn = 8;
+    } else {
+        enns_loop(90, enns);
+        fight->max_enn = 10;
+    }
 }
 
 void global_event_statue_three(rpg_t *rpg, game_obj_t *background)
@@ -125,6 +152,7 @@ void global_event_statue_three(rpg_t *rpg, game_obj_t *background)
         player_deplacement(rpg);
         fights_spawns(rpg, background);
         handling_items(rpg);
+        upgrade_ennemies(rpg->fight->enns, rpg->quest.act, rpg->fight);
     }
 }
 

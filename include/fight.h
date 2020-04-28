@@ -91,6 +91,7 @@ typedef struct fight_s
     spell_t *spell;
     ennemies_t *enns;
     inventory_t inventory;
+    int max_enn;
     int nb_enn;
     /*sfSound *snd_main_music;
     sfSound *snd_fireball;

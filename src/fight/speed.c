@@ -63,7 +63,7 @@ int cooldown_speed(spell_t *spell)
 {
     spell->clock_cd.time = sfClock_getElapsedTime(spell->clock_cd.clock);
     spell->clock_cd.seconds = spell->clock_cd.time.microseconds / 1000000.0;
-    if (spell->activated == 1 && spell->clock_cd.seconds > 4 && spell->tmp2 == 0) {
+    if (spell->activated == 1 && spell->clock_cd.seconds > 3.5 && spell->tmp2 == 0) {
         // sfClock_restart(spell->clock_cd.clock);
         spell->activated = 2;
         spell->tmp2 = 1;

@@ -37,7 +37,7 @@ void launch_first_health(fight_t *fight, sfVector2f player_pos)
     fight->spell[3].final_pos = final_pos;
     fight->spell[3].activated = 1;
     sfClock_restart(fight->spell[3].clock_cd.clock);
-    fight->spell[3].calc = (int)((fight->player.life * 0.4) / 12);
+    fight->spell[3].calc = (int)((fight->player.life * 0.2) / 12);
     printf("CALC:%d\n", fight->spell[3].calc);
 }
 

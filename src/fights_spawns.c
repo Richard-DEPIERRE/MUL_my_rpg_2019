@@ -12,7 +12,7 @@ void chance_fight_spawn(rpg_t *rpg)
     srand(time(0));
     int random = generate_random(1, 50);
 
-    if (random < 10) {
+    if (random < 7) {
         init_values_before_fight(rpg->fight);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_main_music_fight);
