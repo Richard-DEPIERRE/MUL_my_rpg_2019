@@ -63,6 +63,8 @@ void make_text(text_R_t *text, char *str, char *file)
 void set_menu_sprites(rpg_t *rpg)
 {
     rpg->clock = malloc(sizeof(*rpg->clock) * 3);
+    rpg->spawn = malloc(sizeof(*rpg->clock));
+    rpg->spawn->clock = sfClock_create();
     rpg->menu = malloc(sizeof(*rpg->menu) * 22);
     rpg->text = malloc(sizeof(*rpg->text) * 22);
     char *name[] = {"PLAY\0", "CONTINUE\0", "OPTIONS\0", "QUIT\0", "FPS",

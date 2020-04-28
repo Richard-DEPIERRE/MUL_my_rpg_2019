@@ -154,6 +154,7 @@ typedef struct rpg_s
     game_obj_R_t *menu;
     text_R_t *text;
     clock_R_t *clock;
+    clock_R_t *spawn;
     int menu_status;
     int fps;
     int music_volume;

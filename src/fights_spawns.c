@@ -9,10 +9,16 @@
 
 void chance_fight_spawn(rpg_t *rpg)
 {
-    srand(time(0));
-    int random = generate_random(1, 50);
+    static int i = 0;
+    rpg->spawn->time = sfClock_getElapsedTime(rpg->spawn->clock);
+    rpg->spawn->seconds = rpg->spawn->time.microseconds / 1000000.0;
 
-    if (random < 7) {
+    if (rpg->spawn->seconds > 0.6) {
+        i++;
+        sfClock_restart(rpg->spawn->clock);
+    }
+    if (i > 3) {
+        i = 0;
         init_values_before_fight(rpg->fight);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_main_music_fight);
