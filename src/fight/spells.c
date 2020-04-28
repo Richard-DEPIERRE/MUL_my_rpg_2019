@@ -100,7 +100,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
     }
     if (type == SHIELD) {
         spell.protection = 10;
-        spell.damage = 10;
+        spell.damage = 1;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
         spell.sec = 8;
@@ -118,12 +118,12 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
         spell.damage = 0;
         sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
         sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 20;
+        spell.sec = 10;
     }
     if (type == BLACK_HOLE) {
         spell.damage = 15;
         spell.protection = 0;
-        spell.sec = 10;
+        spell.sec = 20;
     }
     spell.activated = 0;
     return (spell);

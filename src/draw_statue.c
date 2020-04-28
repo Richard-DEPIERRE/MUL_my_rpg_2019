@@ -69,6 +69,7 @@ void update_count(scd_quest_t *quest)
 
 void display_seconds_quests(sfRenderWindow *win, scd_quest_t *quest)
 {
+    printf("quest : win : %d | kills : %d\n", quest->nb_win, quest->nb_kills);
     if (!sfKeyboard_isKeyPressed(sfKeyZ) && !sfKeyboard_isKeyPressed(sfKeyS) &&
     !sfKeyboard_isKeyPressed(sfKeyQ) && !sfKeyboard_isKeyPressed(sfKeyD)) {
         update_count(quest);

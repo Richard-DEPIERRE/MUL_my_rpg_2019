@@ -45,6 +45,8 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
         reset_ennemies(fight);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_loose);
+        rpg->quest.scd_quest.nb_kills = 0;
+        rpg->quest.scd_quest.nb_win = 0;
         rpg->status = 9; // ce status correspondra à l'écran de game over
         fight->player.life = 100;
         fight->buttons[3].rect.width = fight->player.life * 2 + 4;
