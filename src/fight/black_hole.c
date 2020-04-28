@@ -68,7 +68,7 @@ void launch_first_black_hole(fight_t *fight, sfVector2f player_pos)
         pos_rotat_(&final_pos, player_pos, 180, fight->spell[2].sprite);
     }
     fight->spell[2].pos.x = player_pos.x;
-    fight->spell[2].pos.y = player_pos.y - 20;
+    fight->spell[2].pos.y = player_pos.y - 4;
     fight->spell[2].direction = fight->player.direct;
     sfSprite_setPosition(fight->spell[2].sprite, fight->spell[2].pos);
     fight->spell[2].final_pos = final_pos;

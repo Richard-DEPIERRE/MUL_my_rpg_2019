@@ -12,8 +12,8 @@ enum BACK_R_s type);
 
 void set_int_seconds_quests(scd_quest_t *quest)
 {
-    quest->nb_win = 0;
-    quest->nb_kills = 0;
+    quest->nb_win = 0; //a changer
+    quest->nb_kills = 0; //a changer
 
     quest->pos1 = (sfVector2f) {50, 300};
     quest->pos2 = (sfVector2f) {1600, 300};
