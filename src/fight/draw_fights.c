@@ -84,9 +84,15 @@ void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
     display_rect(fight, win, rpg);
     sfRenderWindow_drawSprite(win, fight->buttons[5].sprite, NULL);
     display_cooldown(fight, win);
-    for (int i = 6; i <= 8; i += 1)
+
+    for (int i = 6; i < 8; i += 1)
         sfRenderWindow_drawSprite(win, fight->buttons[i].sprite, NULL);
-    for (int i = 10; i <= 11; i += 1)
-        sfRenderWindow_drawSprite(win, fight->buttons[i].sprite, NULL);
+
+    if (rpg->quest.scd_quest.nb_kills >= 30)
+        sfRenderWindow_drawSprite(win, fight->buttons[8].sprite, NULL);
+    if (rpg->quest.scd_quest.nb_kills >= 15)
+        sfRenderWindow_drawSprite(win, fight->buttons[11].sprite, NULL);
+    if (rpg->quest.scd_quest.nb_win >= 3)
+        sfRenderWindow_drawSprite(win, fight->buttons[10].sprite, NULL);
     sfRenderWindow_display(win);
 }
