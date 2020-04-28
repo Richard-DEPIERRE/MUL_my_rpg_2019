@@ -124,6 +124,7 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
         spell.damage = 15;
         spell.protection = 0;
         spell.sec = 20;
+        sfSprite_setScale(spell.sprite, (sfVector2f) {0.2, 0.2});
     }
     spell.activated = 0;
     return (spell);
