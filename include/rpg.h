@@ -231,9 +231,10 @@ int move_left_fight(player_fight_t *player);
 int move_right_fight(player_fight_t *player);
 ennemies_t *init_boss(void);
 void move_boss(fight_t *fight);
-void attack_1(fight_t *fight __attribute__((unused)));
-void attack_2(fight_t *fight __attribute__((unused)));
-void attack_3(fight_t *fight __attribute__((unused)));
+void attack_1(fight_t *fight __attribute__((unused)), float *);
+void attack_2(fight_t *fight __attribute__((unused)), float *);
+void attack_3(fight_t *fight __attribute__((unused)), float *);
+spell_t *init_boss_spell(void);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

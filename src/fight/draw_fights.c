@@ -15,8 +15,12 @@ void draw_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
     sfRenderWindow_drawSprite(win, fight->buttons[4].sprite, NULL);
     if (rpg->status == 10 || rpg->status == 11)
         sfRenderWindow_drawSprite(win, fight->buttons[9].sprite, NULL);
-    if (rpg->status == 11)
+    if (rpg->status == 11) {
         sfRenderWindow_drawSprite(win, rpg->fight->boss->enn, NULL);
+        for (int i = 0; i < 3; i += 1)
+            if (fight->boss_spell[i].activated == 1)
+                sfRenderWindow_drawSprite(win, rpg->fight->boss_spell[i].sprite, NULL);
+    }
     for (int i = 0; i < fight->nb_enn && rpg->status != 10 && rpg->status != 11; i++)
         if (fight->enns[i].in_live) {
             if (fight->enns[i].life < 100) {

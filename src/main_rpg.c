@@ -137,6 +137,7 @@ int main_rpg(void)
     my_set_ints(rpg, &clock);
     my_set_sprites(&background,rpg);
     rpg->fight->boss = init_boss();
+    rpg->fight->boss_spell = init_boss_spell();
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);

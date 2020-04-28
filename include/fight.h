@@ -74,13 +74,14 @@ typedef struct fight_s
     spell_t *spell;
     ennemies_t *enns;
     ennemies_t *boss;
+    spell_t *boss_spell;
     inventory_t inventory;
     int nb_enn;
 }fight_t;
 
 typedef struct attack_s
 {
-    void (*attack)(fight_t *);
+    void (*attack)(fight_t *, float *);
 } attack_t;
 
 struct spell_s init_spell(char *path, enum spells_names_s type);

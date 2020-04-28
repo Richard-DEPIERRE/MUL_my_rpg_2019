@@ -55,7 +55,6 @@ void fireball(fight_t *fight, sfVector2f player_pos)
         fight->spell[current - 1].final_pos = final_pos;
         fight->spell[current - 1].activated = 1;
     }
-    // printf("3\n");
 }
 
 spell_t init_spell(char *path, spells_names_t type)
