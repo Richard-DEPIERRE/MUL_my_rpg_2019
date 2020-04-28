@@ -284,6 +284,8 @@ int main_rpg(void)
     init_player(&rpg->player);
     my_set_ints(rpg, &clock);
     my_set_sprites(&background,rpg);
+    for (int i = 0; i < PARICULE_MAX; i += 1)
+        rpg->screen->particle[i].living = false;
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);
