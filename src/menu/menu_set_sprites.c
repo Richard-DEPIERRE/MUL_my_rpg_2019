@@ -66,10 +66,10 @@ void set_menu_sprites(rpg_t *rpg)
     rpg->spawn = malloc(sizeof(*rpg->clock));
     rpg->spawn->clock = sfClock_create();
     rpg->menu = malloc(sizeof(*rpg->menu) * 22);
-    rpg->text = malloc(sizeof(*rpg->text) * 22);
+    rpg->text = malloc(sizeof(*rpg->text) * 24);
     char *name[] = {"PLAY\0", "CONTINUE\0", "OPTIONS\0", "QUIT\0", "FPS",
     "SOUND", "BACK", "FPS", "NULL", "BACK", "MUSIC", "NULL", "SOUND", "PAUSE",
-    "HOME", "RESUME", "QUIT", "PAUSE", NULL};
+    "HOME", "RESUME", "QUIT", "PAUSE", "EASY", "HARD", NULL};
     initialize_text(rpg, name);
     rpg->menu[0] = create_object("assets/sprites/menu/logo.png",
     (sfVector2f){1550, 50}, (sfIntRect){0, 0, 200, 200}, SIDONIA);

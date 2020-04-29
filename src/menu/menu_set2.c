@@ -32,6 +32,12 @@ void initialise_text(rpg_t *rpg, char **name)
         rpg->text[i + 14].pos.y = 278 + ((i - 4) * 225);
         rpg->text[i + 14].type = SIDONIA + i;
     }
+    for (int i = 22; i < 24; i += 1) {
+        rpg->text[i].size = 100;
+        rpg->text[i].pos.x = 1520;
+        rpg->text[i].pos.y = 940;
+        rpg->text[i].type = LEVEL;
+    }
 }
 
 void initialize_text3(rpg_t *rpg, char **name)
@@ -96,11 +102,13 @@ void initialize_text(rpg_t *rpg, char **name)
     initialize_text2(rpg, name);
 }
 
-void make_saves(rpg_t *rpg)
+void make_saves(rpg_t *rpg, char **name)
 {
     make_text(&rpg->text[14], "First", "assets/fonts/virus2.TTF");
     make_text(&rpg->text[15], "Second", "assets/fonts/virus2.TTF");
     make_text(&rpg->text[16], "Third", "assets/fonts/virus2.TTF");
+    for (int i = 22; i < 24; i += 1)
+        make_text(&rpg->text[i], name[i - 4], "assets/fonts/virus2.TTF");
 }
 
 void set3(rpg_t *rpg, char **name)
@@ -117,7 +125,7 @@ void set3(rpg_t *rpg, char **name)
         make_text(&rpg->text[i], name[i], "assets/fonts/virus2.TTF");
     for (int i = 18; i < 22; i += 1)
         make_text(&rpg->text[i], name[i - 4], "assets/fonts/virus2.TTF");
-    make_saves(rpg);
+    make_saves(rpg, name);
     for (int i = 0; i < 3; i += 1)
         rpg->clock[i].clock = sfClock_create();
 }

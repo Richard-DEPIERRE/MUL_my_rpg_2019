@@ -107,7 +107,8 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_drawSprite(win, rpg->player.sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
         sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
-        sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
+        if (rpg->level == 22)
+            sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
         display_inventory(win, rpg);
         display_seconds_quests(win, &rpg->quest.scd_quest);
         if (rpg->quest.message == 1)

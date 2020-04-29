@@ -222,6 +222,7 @@ typedef struct rpg_s
     sfSound *snd_win_fight;
     int life;
     int tmp;
+    int level;
 }rpg_t;
 
 //lib

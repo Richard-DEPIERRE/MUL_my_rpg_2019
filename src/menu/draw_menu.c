@@ -38,6 +38,7 @@ void draw_menu2(rpg_t *rpg, sfRenderWindow *win)
             sfRenderWindow_drawSprite(win, rpg->menu[i].sprite, NULL);
         for (int i = 18; i < 22; i += 1)
             sfRenderWindow_drawText(win, rpg->text[i].text, NULL);
+        sfRenderWindow_drawText(win, rpg->text[rpg->level].text, NULL);
     }
 }
 

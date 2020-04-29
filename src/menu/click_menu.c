@@ -90,6 +90,9 @@ void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2)
         sfRenderWindow_close(rpg->win);
+    if (mouse.x > 1510 && mouse.x < 1920 &&
+    mouse.y > 910 && mouse.y < 1080)
+        (rpg->level == 22) ? (rpg->level = 23) : (rpg->level = 22) ;
 }
 
 void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)

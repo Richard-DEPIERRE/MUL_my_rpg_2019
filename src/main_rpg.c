@@ -246,7 +246,7 @@ Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seiguin", path);
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 5;
+    rpg->status = 0;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
@@ -254,6 +254,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->music_volume = 50;
     rpg->map = get_map();
     rpg->save = 0;
+    rpg->level = 22;
     //status correspondant au tuto = 7
     set_rpg_tuto(&rpg->tuto);
     init_end_script(&rpg->end);

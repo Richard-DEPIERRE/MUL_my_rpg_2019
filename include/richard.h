@@ -28,7 +28,8 @@ typedef enum BACK_R_s{
     BACKGROUND,
     TMP,
     PAUSE,
-    SAVE
+    SAVE,
+    LEVEL
 } BACK_R_t;
 
 typedef struct text_R_s {
