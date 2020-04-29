@@ -44,10 +44,10 @@ void click_menu_two(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 400 && mouse.y < 480)
-        rpg->fps += 30;
+        rpg->fps -= 30; //rpg->fps += 30; //inverser le sens
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 400 && mouse.y < 480)
-        rpg->fps -= 30;
+        rpg->fps += 30; //rpg->fps -= 30;
     if (mouse.x > 1510 && mouse.x < 1920 &&
     mouse.y > 910 && mouse.y < 1080)
         rpg->menu_status = 1;
@@ -57,16 +57,16 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 700 && mouse.y < 780)
-        rpg->sound_volume += 1;
+        rpg->sound_volume -= 1; //rpg->sound_volume += 1;
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 700 && mouse.y < 780)
-        rpg->sound_volume -= 1;
+        rpg->sound_volume += 1; //rpg->sound_volume -= 1;
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 300 && mouse.y < 380)
-        rpg->music_volume += 1;
+        rpg->music_volume -= 1; //rpg->music_volume += 1;
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 300 && mouse.y < 380)
-        rpg->music_volume -= 1;
+        rpg->music_volume += 1; //rpg->music_volume -= 1;
     if (mouse.x > 1510 && mouse.x < 1920 &&
     mouse.y > 910 && mouse.y < 1080)
         rpg->menu_status = 1;
@@ -98,11 +98,12 @@ void click_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj)
         click_menu_zero(rpg, mouse);
     } else if (rpg->menu_status == 1)
         click_menu_one(rpg, mouse);
-    else
+    else {
         if (rpg->menu_status == 2)
             click_menu_two(rpg, mouse);
         else if (rpg->menu_status == 3)
             click_menu_three(rpg, mouse);
+    }
     if (rpg->menu_status == 4)
         click_start_menu(rpg, mouse, obj, 4);
     if (rpg->menu_status == 5)
