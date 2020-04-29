@@ -224,7 +224,7 @@ void init_end_script(end_script_t *end)
     end->text->pos = (sfVector2f) {520, 570};
     end->text->size = 20;
     make_text(end->text, "Thanks for playing\n\n\n\t\t\t\t\tCreated by \
-Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seguin", path);
+Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seiguin", path);
     sfText_setCharacterSize(end->text->text, 20);
 
     end->gf = sfSprite_create();
