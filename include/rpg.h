@@ -141,6 +141,35 @@ typedef struct quest_s
     sfIntRect invent_rect;
 }quest_t;
 
+typedef struct end_script_s
+{
+    int tmp;
+    int act;
+
+    sfCircleShape *cinematic;
+    sfVector2f cinematic_size;
+    size_t cinematic_radius;
+
+    text_R_t *text;
+
+    sfSprite *bg;
+    sfTexture *bg_t;
+
+    sfSprite *bg2;
+    sfTexture *bg2_t;
+
+    sfSprite *gf;
+    sfTexture *gf_t;
+    sfIntRect gf_rect;
+    sfVector2f pos;
+
+    sfSprite *msg;
+    sfTexture *msg_t;
+    sfIntRect msg_rect;
+
+    clock_R_t clock;
+}end_script_t;
+
 typedef struct rpg_s
 {
     sfRenderWindow *win;
@@ -149,6 +178,7 @@ typedef struct rpg_s
     fight_t *fight;
 
     tuto_t tuto;
+    end_script_t end;
     quest_t quest;
 
     game_obj_R_t *menu;
@@ -301,6 +331,10 @@ char *get_next_char(int fd, char c);
 
 //spawn
 void fights_spawns(rpg_t *rpg, game_obj_t *obj);
+
+//end_script
+void draw_end_script(rpg_t *rpg, sfRenderWindow *win);
+void end_script(rpg_t *rpg, end_script_t *end);
 
 
 #endif /* !RPG_H_ */

@@ -183,11 +183,70 @@ void set_musics(rpg_t *rpg)
     sfSound_play(rpg->snd_menu);
 }
 
+void create_and_set(sfSprite *sprite, sfTexture *texture, char *path)
+{
+    sprite = sfSprite_create();
+    texture = sfTexture_createFromFile(path, NULL);
+    sfSprite_setTexture(sprite, texture, sfTrue);
+}
+
+void init_end_script(end_script_t *end)
+{
+    // create_and_set(end->bg, end->bg_t, "assets/sprites/end/bg.png");
+    // create_and_set(end->gf, end->gf_t, "assets/sprites/end/girl.png");
+    end->clock.clock = sfClock_create();
+
+    end->tmp = 0;
+    end->act = 0;
+
+    end->bg = sfSprite_create();
+    end->bg_t = sfTexture_createFromFile("assets/sprites/end/bg.png", NULL);
+    sfSprite_setTexture(end->bg, end->bg_t, sfTrue);
+    sfSprite_setScale(end->bg, (sfVector2f) {1.3, 1.3});
+    sfSprite_setPosition(end->bg, (sfVector2f) {170, 35});
+
+    end->bg2 = sfSprite_create();
+    end->bg2_t = sfTexture_createFromFile("assets/sprites/end/bg_2.png", NULL);
+    sfSprite_setTexture(end->bg2, end->bg2_t, sfTrue);
+    sfSprite_setScale(end->bg2, (sfVector2f) {1.3, 1.3});
+    sfSprite_setPosition(end->bg2, (sfVector2f) {170, 35});
+
+    end->msg = sfSprite_create();
+    end->msg_t = sfTexture_createFromFile("assets/sprites/end/msg.png", NULL);
+    sfSprite_setTexture(end->msg, end->msg_t, sfTrue);
+    end->msg_rect = (sfIntRect) {0, 0, 1920, 1080};
+    sfSprite_setTextureRect(end->msg, end->msg_rect);
+    sfSprite_setScale(end->msg, (sfVector2f) {0.7, 0.7});
+    sfSprite_setPosition(end->msg, (sfVector2f) {270, 350});
+
+    char path[] = "assets/fonts/good_font.ttf";
+    end->text = malloc(sizeof(*end->text));
+    end->text->pos = (sfVector2f) {520, 570};
+    end->text->size = 20;
+    make_text(end->text, "Thanks for playing\n\n\n\t\t\t\t\tCreated by \
+Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seguin", path);
+    sfText_setCharacterSize(end->text->text, 20);
+
+    end->gf = sfSprite_create();
+    end->gf_t = sfTexture_createFromFile("assets/sprites/end/girl.png", NULL);
+    sfSprite_setTexture(end->gf, end->gf_t, sfTrue);
+    end->gf_rect = (sfIntRect) {50, 0, 50, 73};
+    sfSprite_setTextureRect(end->gf, end->gf_rect);
+
+    end->cinematic = sfCircleShape_create();
+    sfCircleShape_setPosition(end->cinematic, (sfVector2f) {960, 750});
+    end->cinematic_size = (sfVector2f) {0, 0};
+    end->cinematic_radius = 1;
+    sfCircleShape_setOrigin(end->cinematic, (sfVector2f) {1, 1});
+    sfCircleShape_setRadius(end->cinematic, end->cinematic_radius);
+    sfCircleShape_setFillColor(end->cinematic, sfBlack);
+    sfCircleShape_setScale(end->cinematic, end->cinematic_size);
+}
 
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 0;
+    rpg->status = 5;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
@@ -197,6 +256,7 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->save = 0;
     //status correspondant au tuto = 7
     set_rpg_tuto(&rpg->tuto);
+    init_end_script(&rpg->end);
     set_quest(&rpg->quest);
     set_musics(rpg);
 }

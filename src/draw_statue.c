@@ -50,6 +50,10 @@ void draw_statues(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         sfRenderWindow_drawSprite(win, rpg->fight->buttons[1].sprite, NULL);
         sfRenderWindow_display(win);
     }
+    if (rpg->status == 5) {
+        end_script(rpg, &rpg->end);
+        draw_end_script(rpg, win);
+    }
 }
 
 void update_count(scd_quest_t *quest)
