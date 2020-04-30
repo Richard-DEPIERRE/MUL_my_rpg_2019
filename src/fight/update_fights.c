@@ -10,9 +10,9 @@
 float get_distance(sfVector2f p1, sfVector2f p2)
 {
     const float dx = (p2.x) - p1.x;
-    const float dy = (p2.y)- p1.y;
+    const float dy = (p2.y) - p1.y;
 
-    return (sqrt(dx * dx + dy * dy));
+    return (sqrtf(dx * dx + dy * dy));
 }
 
 void where_to_move(ennemies_t *ennemies, float truc1, float truc2)

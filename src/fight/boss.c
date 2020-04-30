@@ -91,7 +91,7 @@ ennemies_t *init_boss(void)
 
     obj->enn = sfSprite_create();
     obj->enn_texture =
-    sfTexture_createFromFile("assets/sprites/boss.png", NULL);
+    sfTexture_createFromFile("assets/sprites/boss/boss.png", NULL);
     obj->clock.clock = sfClock_create();
     obj->pos = (sfVector2f) {0, 0};
     obj->rect = (sfIntRect) {0, 0, 1164, 1116};
@@ -113,7 +113,7 @@ spell_t *init_boss_spell(void)
     for (int i = 0; i < 3; i += 1) {
         obj[i].sprite = sfSprite_create();
         obj[i].texture = sfTexture_createFromFile(
-        "assets/sprites/spells.png", NULL);
+        "assets/sprites/boss/spells.png", NULL);
         obj[i].clock = sfClock_create();
         sfSprite_setTexture(obj[i].sprite, obj[i].texture, sfFalse);
         obj[i].rect = (sfIntRect) {0, 192 * i, 192, 192};

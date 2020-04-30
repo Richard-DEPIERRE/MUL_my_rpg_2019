@@ -348,6 +348,7 @@ int main_rpg(void)
     for (int i = 0; i < PARICULE_MAX; i += 1)
         rpg->screen->particle[i].living = false;
     rpg->fight->boss = init_boss();
+    rpg->fight->boss_spell = init_boss_spell();
     while (sfRenderWindow_isOpen(rpg->win)) {
         global_event(rpg, &background);
         clock_event(rpg, &clock);

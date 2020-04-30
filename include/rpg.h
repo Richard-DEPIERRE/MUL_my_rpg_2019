@@ -324,9 +324,10 @@ void init_values_before_fight(fight_t *fight);
 int update_speed(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 ennemies_t *init_boss(void);
 void move_boss(fight_t *fight);
-void attack_1(fight_t *fight, float *max);
-void attack_2(fight_t *fight __attribute__((unused)), float *max);
-void attack_3(fight_t *fight __attribute__((unused)), float *max);
+void attack_1(fight_t *fight __attribute__((unused)), float *);
+void attack_2(fight_t *fight __attribute__((unused)), float *);
+void attack_3(fight_t *fight __attribute__((unused)), float *);
+spell_t *init_boss_spell(void);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);
