@@ -43,6 +43,34 @@ void get_str2(char *str, rpg_t *rpg, game_obj_t *obj)
     rpg->quest.x = my_getnbr(tmp);
     tmp = stock_info2(str, tmp, &size_tmp);
     rpg->quest.y = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->level = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fps = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.tmp = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.scd_quest.nb_kills = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->quest.scd_quest.nb_win = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fight->player.pos.x = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fight->player.pos.y = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fight->player.life = my_getnbr(tmp);
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fight->nb_enn = my_getnbr(tmp);
+    for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->enns[i].life = my_getnbr(tmp);
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->enns[i].pos.x = my_getnbr(tmp);
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->enns[i].pos.y = my_getnbr(tmp);
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->enns[i].tmp = my_getnbr(tmp);
+    }
 }
 
 void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
@@ -61,24 +89,24 @@ int init_save(rpg_t *rpg, game_obj_t *obj)
 
 
     if (rpg->save == 1) {
-        fd = open("assets/First", O_RDONLY);
+        fd = open("assets/save/First", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("assets/First", &fileStat) < 0)
+        if (stat("assets/save/First", &fileStat) < 0)
             return (84);
     }
     if (rpg->save == 2) {
-        fd = open("assets/Second", O_RDONLY);
+        fd = open("assets/save/Second", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("assets/Second", &fileStat) < 0)
+        if (stat("assets/save/Second", &fileStat) < 0)
             return (84);
     }
     if (rpg->save == 3) {
-        fd = open("assets/Third", O_RDONLY);
+        fd = open("assets/save/Third", O_RDONLY);
         if (fd == 84)
             return (84);
-        if (stat("assets/Third", &fileStat) < 0)
+        if (stat("assets/save/Third", &fileStat) < 0)
             return (84);
     }
     str = malloc(sizeof(char) * (fileStat.st_size));
