@@ -28,7 +28,6 @@ void put_in_file(int nb, int fd)
 
 int save_to_file(rpg_t *rpg, game_obj_t *obj)
 {
-    struct stat fileStat;
     int fd = 0;
 
     if (rpg->save == 1)

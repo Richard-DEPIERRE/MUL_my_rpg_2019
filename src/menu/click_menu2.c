@@ -25,7 +25,8 @@ void click_menu_zero(rpg_t *rpg, sfVector2i mouse)
         sfRenderWindow_close(rpg->win);
 }
 
-void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
+void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj,
+int nb __attribute__((unused)))
 {
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 250 && mouse.y < 359.2) {
@@ -43,7 +44,6 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2) {
@@ -61,7 +61,6 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là2\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2) {
@@ -79,9 +78,27 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là3\n");
     }
     if (mouse.x > 1510 && mouse.x < 1920 &&
     mouse.y > 910 && mouse.y < 1080)
         rpg->menu_status = 0;
+}
+
+void check_plus_minus(rpg_t *rpg, sfVector2i mouse __attribute__((unused)))
+{
+    if (rpg->music_volume > 100)
+        rpg->music_volume = 100;
+    if (rpg->music_volume < 0)
+        rpg->music_volume = 0;
+    if (rpg->sound_volume > 100)
+        rpg->sound_volume = 100;
+    if (rpg->sound_volume < 0)
+        rpg->sound_volume = 0;
+    if (rpg->fps < 30)
+        rpg->fps = 30;
+    if (rpg->fps > 120)
+        rpg->fps = 120;
+    sfText_setString(rpg->text[8].text, int_to_char(rpg->fps));
+    sfText_setString(rpg->text[11].text, int_to_char(rpg->music_volume));
+    sfText_setString(rpg->text[13].text, int_to_char(rpg->sound_volume));
 }

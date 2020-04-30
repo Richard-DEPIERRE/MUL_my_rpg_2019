@@ -117,24 +117,24 @@ void init_variables_for_particules(rpg_t *rpg)
 
 void create_and_set_background(fight_t *fight)
 {
-    // fight->defaultt = sfTexture_createFromFile(\
+    // fight->defaultt = sfTexture_createFromFile(
     //     "assets/sprites/arena/arenas.png", NULL);
     fight->rect.top = 0;
     fight->rect.left = 0;
     fight->rect.width = 1920;
     fight->rect.height = 1080;
-    // fight->condom = sfTexture_createFromFile("assets/sprites/arena/condom.png",\
+    // fight->condom = sfTexture_createFromFile("assets/sprites/arena/condom.png",
     // NULL);
-    // fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",\
+    // fight->corona = sfTexture_createFromFile("assets/sprites/arena/corona.png",
     // NULL);
     // fight->gel = sfTexture_createFromFile("assets/sprites/arena/gel.png", NULL);
-    // fight->boss = sfTexture_createFromFile("assets/sprites/arena/boss.png",\
+    // fight->boss = sfTexture_createFromFile("assets/sprites/arena/boss.png",
     // NULL);
 //     sfSprite_setTexture(fight->background, fight->defaultt, sfTrue);
 //     sfSprite_setTextureRect(fight->background, fight->rect);
 }
 
-game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect, \
+game_obj_R_t create_object_fight(char *filepath, sfVector2f pos, sfIntRect rect,
 enum BACK_R_s type)
 {
     game_obj_R_t object;

@@ -16,7 +16,7 @@ void draw_death(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj)
     sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
 
     for (size_t index = 0; index < PARICULE_MAX; index++)
-        display_particle(win, &rpg->screen->particle[index], \
+        display_particle(win, &rpg->screen->particle[index],
         rpg->screen->particle_environment.circle_shape);
 
     sfRenderWindow_display(win);

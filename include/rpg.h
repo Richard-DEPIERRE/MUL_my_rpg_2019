@@ -66,7 +66,7 @@ typedef struct player_s
     sfIntRect rect;
     sfVector2f pos;
     clock_s clock;
-    int direct; //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
+    int direct;
     int life;
 } player_t;
 
@@ -176,11 +176,9 @@ typedef struct rpg_s
     sfEvent evnt;
     screen_t *screen;
     fight_t *fight;
-
     tuto_t tuto;
     end_script_t end;
     quest_t quest;
-
     game_obj_R_t *menu;
     text_R_t *text;
     clock_R_t *clock;
@@ -190,17 +188,7 @@ typedef struct rpg_s
     int music_volume;
     int sound_volume;
     int **map;
-
-
-
-    // sfSprite *cop;
-
     game_obj_t perspec;
-
-    // sfClock *clock;
-    // sfTime time;
-    // float sec;
-
     sfSprite *cop;
     sfSprite *delete_me;
     sfTexture *delete_me_too;
@@ -239,6 +227,15 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 int **get_map(void);
 char *get_next_char(int fd, char c);
 int init_save(rpg_t *rpg, game_obj_t *obj);
+void check_plus_minus(rpg_t *rpg, sfVector2i mouse __attribute__((unused)));
+void fourth_act(rpg_t *rpg, end_script_t *end);
+void fivth_act(rpg_t *rpg, end_script_t *end);
+int final_act(rpg_t *rpg, end_script_t *end);
+void set_end_script(rpg_t *rpg, end_script_t *end);
+void end_script(rpg_t *rpg, end_script_t *end);
+void first_act(rpg_t *rpg, end_script_t *end);
+void second_act(rpg_t *rpg, end_script_t *end);
+void third_act(rpg_t *rpg, end_script_t *end);
 
 //graphic
 void move_right(player_t *player);

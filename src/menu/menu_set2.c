@@ -8,7 +8,7 @@
 #include "rpg.h"
 #include "my.h"
 
-void initialise_text(rpg_t *rpg, char **name)
+void initialise_text(rpg_t *rpg, char **name __attribute__((unused)))
 {
     rpg->text[14].size = 50;
     rpg->text[14].pos.x = 803;
