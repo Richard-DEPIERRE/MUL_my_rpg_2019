@@ -364,7 +364,6 @@ int main_rpg(void)
     rpg->fight->boss = init_boss();
     rpg->fight->boss_spell = init_boss_spell();
     while (sfRenderWindow_isOpen(rpg->win)) {
-        printf("quest = %d\n", rpg->quest.act);
         global_event(rpg, &background);
         clock_event(rpg, &clock);
         draw_statue(rpg, rpg->win, &background);

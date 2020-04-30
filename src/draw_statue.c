@@ -9,7 +9,7 @@
 #include "rpg.h"
 #include "rafik.h"
 
-void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj)
+void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj __attribute__((unused)))
 {
     if (rpg->quest.act != 0) {
         sfVector2f pos;
@@ -98,8 +98,6 @@ void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
     if (rpg->status == 0)
         draw_menu(rpg, win);
-    if (rpg->status == 1)
-        draw_options(rpg, win);
     if (rpg->status == 3) {
         sfRenderWindow_clear(win, sfBlack);
         sfRenderWindow_drawSprite(win, obj->sprite, NULL);

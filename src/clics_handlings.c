@@ -56,7 +56,7 @@ int stock_info(rpg_t *rpg, game_obj_t *obj)
     return (0);
 }
 
-void clics_handlings(sfMouseButtonEvent event, rpg_t *rpg, game_obj_t *obj)
+void clics_handlings(sfMouseButtonEvent event __attribute__((unused)), rpg_t *rpg, game_obj_t *obj)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
 
