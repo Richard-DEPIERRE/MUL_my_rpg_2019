@@ -11,7 +11,7 @@ void animation_health(spell_t *spell)
 {
     sfTime time = sfClock_getElapsedTime(spell->clock);
     float second = time.microseconds / 1000000.0;
-    printf("seconds:%f\n", second);
+    // printf("seconds:%f\n", second);
     if (second > 0.09) {
         if (spell->rect.left < 240 - 60) {
             spell->rect.left += 60;
@@ -37,8 +37,8 @@ void launch_first_health(fight_t *fight, sfVector2f player_pos)
     fight->spell[3].final_pos = final_pos;
     fight->spell[3].activated = 1;
     sfClock_restart(fight->spell[3].clock_cd.clock);
-    fight->spell[3].calc = (int)((fight->player.life * 0.2) / 12);
-    printf("CALC:%d\n", fight->spell[3].calc);
+    fight->spell[3].calc = (int)((fight->player.life * 0.35) / 12);
+    // printf("CALC:%d\n", fight->spell[3].calc);
 }
 
 void set_cooldown_health(float res, spell_t *spell)

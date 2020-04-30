@@ -90,6 +90,8 @@ typedef struct fight_s
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
+    ennemies_t *boss;
+    spell_t *boss_spell;
     inventory_t inventory;
     int max_enn;
     int nb_enn;
@@ -102,7 +104,11 @@ typedef struct fight_s
     sfSound *snd_win_fight;*/
 }fight_t;
 
-spell_t init_spell(char *path, spells_names_t type, sfIntRect rect);
+typedef struct attack_s
+{
+    void (*attack)(fight_t *, float *);
+} attack_t;
+
 void fireball(fight_t *fight, sfVector2f player_pos);
 
 #endif /* !FIGHT_H_ */

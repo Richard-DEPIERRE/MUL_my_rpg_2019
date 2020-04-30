@@ -45,11 +45,8 @@ typedef struct ennemies
 {
     sfSprite *enn;
     sfTexture *enn_texture;
-
     clock_s clock;
-
     game_obj_R_t *buttons;
-
     sfIntRect rect;
     sfVector2f pos;
     int life;
@@ -261,6 +258,7 @@ void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj);
 void handling_items(rpg_t *rpg);
 void set_seconds_quests(scd_quest_t *quest);
 void reset_ennemies(fight_t *fight);
+struct spell_s init_spell(char *path, enum spells_names_s type, sfIntRect rect);
 
 //lib
 int my_strlen(char const *str);
@@ -299,6 +297,7 @@ void set_script_death(rpg_t *rpg, game_obj_t *background);
 void draw_death(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj);
 int script1_death(rpg_t *rpg, game_obj_t *background);
 
+
 //fight
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg);
 void update_fights(fight_t *fight, rpg_t *rpg);
@@ -323,6 +322,11 @@ int update_shield(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 int update_health(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
 void init_values_before_fight(fight_t *fight);
 int update_speed(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg);
+ennemies_t *init_boss(void);
+void move_boss(fight_t *fight);
+void attack_1(fight_t *fight, float *max);
+void attack_2(fight_t *fight __attribute__((unused)), float *max);
+void attack_3(fight_t *fight __attribute__((unused)), float *max);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

@@ -83,7 +83,7 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
     if (count == fight->nb_enn) {
         reset_ennemies(fight);
         sfSound_play(rpg->snd_win_fight);
-        printf("Player a bien gagné son combat\n");
+        // printf("Player a bien gagné son combat\n");
         rpg->quest.scd_quest.nb_win += 1;
         upgrade_player(fight, rpg->quest.scd_quest.nb_win);
         rpg->status = 10; //le joueur revient au jeu

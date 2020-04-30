@@ -43,7 +43,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là\n");
+        // printf("on est bien là\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2) {
@@ -61,7 +61,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là2\n");
+        // printf("on est bien là2\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2) {
@@ -79,7 +79,7 @@ void click_start_menu(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj, int nb)
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
-        printf("on est bien là3\n");
+        // printf("on est bien là3\n");
     }
     if (mouse.x > 1510 && mouse.x < 1920 &&
     mouse.y > 910 && mouse.y < 1080)
