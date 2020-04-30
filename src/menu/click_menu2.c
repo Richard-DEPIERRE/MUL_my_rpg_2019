@@ -44,6 +44,7 @@ int nb __attribute__((unused)))
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
+        // printf("on est bien là\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 475 && mouse.y < 584.2) {
@@ -61,6 +62,7 @@ int nb __attribute__((unused)))
             rpg->status = 7;
             rpg->tuto.executed = 1;
         }
+        // printf("on est bien là2\n");
     }
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 700 && mouse.y < 809.2) {

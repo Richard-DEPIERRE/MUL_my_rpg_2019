@@ -11,7 +11,7 @@ void animation_black_hole(spell_t *spell)
 {
     sfTime time = sfClock_getElapsedTime(spell->clock);
     float second = time.microseconds / 1000000.0;
-    printf("seconds:%f\n", second);
+    // printf("seconds:%f\n", second);
     if (second > 0.05) {
         if (spell->rect.left < 1750 && spell->rect.top == 0) {
             spell->rect.left += 250;

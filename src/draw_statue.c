@@ -43,7 +43,7 @@ void draw_statues(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
         draw_tuto(win, rpg, obj);
     if (rpg->status == 8)
         draw_death(win, rpg, obj);
-    if (rpg->status == 4 || rpg->status == 10)
+    if (rpg->status == 4 || rpg->status == 10 || rpg->status == 11)
         display_fights(rpg->fight, win, rpg);
     if (rpg->status == 9) {
         sfRenderWindow_clear(win, sfBlack);
@@ -73,7 +73,7 @@ void update_count(scd_quest_t *quest)
 
 void display_seconds_quests(sfRenderWindow *win, scd_quest_t *quest)
 {
-    printf("quest : win : %d | kills : %d\n", quest->nb_win, quest->nb_kills);
+    // printf("quest : win : %d | kills : %d\n", quest->nb_win, quest->nb_kills);
     if (!sfKeyboard_isKeyPressed(sfKeyZ) && !sfKeyboard_isKeyPressed(sfKeyS) &&
     !sfKeyboard_isKeyPressed(sfKeyQ) && !sfKeyboard_isKeyPressed(sfKeyD)) {
         update_count(quest);

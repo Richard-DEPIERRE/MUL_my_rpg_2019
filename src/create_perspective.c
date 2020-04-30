@@ -16,8 +16,8 @@ void create_perspec(game_obj_t *perspec)
     perspec->pos.x = 0;
     perspec->pos.y = 0;
     sfSprite_setPosition(perspec->sprite, perspec->pos);
-    printf("avant\n");
+    // printf("avant\n");
     perspec->rect = (sfIntRect) {200, 100, 1920, 1080};
-    printf("après\n");
+    // printf("après\n");
     sfSprite_setTextureRect(perspec->sprite, perspec->rect);
 }
