@@ -149,6 +149,9 @@ enum BACK_R_s type)
     object.type = type;
     if (type == EFECT)
         sfSprite_setScale(object.sprite, (sfVector2f){0.7, 0.7});
+    if (type == MUSIC) {
+        sfSprite_setScale(object.sprite, (sfVector2f){4, 2});
+    }
     return (object);
 }
 
@@ -156,6 +159,8 @@ fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
     fight->enns = malloc(sizeof(ennemies_t) * 10);
+    fight->clock = malloc(sizeof(clock_R_t));
+    fight->clock->clock = sfClock_create();
     fight->background = sfSprite_create();
     fight->inventory.sprite = sfSprite_create();
     fight->inventory.texture = sfTexture_createFromFile("assets/sprites/inventory.png", NULL);
@@ -175,7 +180,7 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->spell[4] = init_spell("assets/sprites/spells/speed.png", SPEEDS, (sfIntRect) {0, 0, 60, 60});
     create_and_set_background(fight);
     sfSprite_setTextureRect(fight->background, (sfIntRect){0, 0, 1920, 1080});
-    fight->buttons = malloc(sizeof(game_obj_t) * 12);
+    fight->buttons = malloc(sizeof(game_obj_t) * 14);
     fight->buttons[0] = create_object_fight("assets/sprites/life_fight.png", 
     (sfVector2f){20, 20}, (sfIntRect){0, 0, 168, 28}, BACK);
     fight->buttons[1] = create_object_fight("assets/sprites/you_are_dead.png", 
@@ -203,6 +208,10 @@ fight_t *init_variables_for_fights(fight_t *fight)
     set_basics_for_fight(fight, "assets/sprites/character.png",
     (sfIntRect) {0, 0, 64, 64}, (sfVector2f) {(1920 / 2) - (64 / 2),
     (1080 / 2) - (64 / 2)});
+    fight->buttons[12] = create_object_fight("assets/sprites/red_life.png", 
+    (sfVector2f){550, 40}, (sfIntRect){0, 0, 204, 28}, MUSIC);
+    fight->buttons[13] = create_object_fight("assets/sprites/green_life.png", 
+    (sfVector2f){550, 40}, (sfIntRect){0, 0, 204, 28}, MUSIC);
     srand(time(0));
     for (int i = 0; i < 10; i++)
         fight->enns[i] = set_enn(i);

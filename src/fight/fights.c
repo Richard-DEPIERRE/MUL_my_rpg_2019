@@ -95,6 +95,12 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
         sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
     }
+    if (rpg->status == 11 && fight->player.pos.x >= 1880 &&
+    fight->boss->life <= 0) {
+        stop_all_music(rpg);
+        sfSound_play(rpg->snd_win);
+        rpg->status = 5;
+    }
 }
 
 void display_fights(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)

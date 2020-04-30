@@ -228,7 +228,9 @@ void update_fights(fight_t *fight, rpg_t *rpg)
         }
         ennemies_deplacements(fight, rpg);
     }
-    if (rpg->status == 11)
+    // if (fight->boss->life <= 0)
+    //     rpg->status = 5;
+    if (rpg->status == 11 && fight->boss->life > 0)
         move_boss(fight);
     update_weapons(fight);
     player_deplacements(&fight->player, fight);

@@ -70,4 +70,5 @@ void script_death(rpg_t *rpg, game_obj_t *background)
         }
         sfClock_restart(rpg->tuto.clock);
     }
+    rpg->quest.tmp = 0;
 }

@@ -64,6 +64,7 @@ SRC	=	src/clics_handlings.c		\
 		src/my_ftoa.c					\
 		src/end_script/draw_end_script.c\
 		src/end_script/end_script.c		\
+		src/stof.c
 
 
 SRC2 =	tests/test_main.c		\

@@ -16,6 +16,35 @@ float angle(rpg_t *rpg, sfVector2f pos)
     return (angle);
 }
 
+void generic_function_bg_quest(rpg_t *rpg)
+{
+    static int i = 0;
+
+    if (rpg->quest.act == 1) {
+        rpg->quest.rect.left = 0;
+        sfSprite_setTextureRect(rpg->quest.sprite, rpg->quest.rect);
+        rpg->quest.pos.x = 195;
+        rpg->quest.pos.y = 84;
+    }
+    if (rpg->quest.act == 2) {
+        rpg->quest.rect.left = 30;
+        sfSprite_setTextureRect(rpg->quest.sprite, rpg->quest.rect);
+        rpg->quest.pos.x = 2080;
+        rpg->quest.pos.y = 1706;
+    }
+    if (rpg->quest.act == 3) {
+        rpg->quest.rect.left = 60;
+        sfSprite_setTextureRect(rpg->quest.sprite, rpg->quest.rect);
+        rpg->quest.pos.x = 232;
+        rpg->quest.pos.y = 717;
+    }
+    if (rpg->quest.act == 0) {
+        rpg->quest.rect.width = 0;
+        rpg->quest.pos = (sfVector2f) {527, 1867};
+        sfSprite_setTextureRect(rpg->quest.sprite, rpg->quest.rect);
+    }
+}
+
 void change_item(rpg_t *rpg)
 {
     if (rpg->quest.act == 1) {
@@ -89,7 +118,10 @@ void handling_items(rpg_t *rpg)
             init_values_before_fight(rpg->fight);
             stop_all_music(rpg);
             sfSound_play(rpg->snd_main_music_fight);
-            rpg->status = 4;
+            if (rpg->quest.act != 0)
+                rpg->status = 4;
+            else
+                rpg->status = 11;
         }
     } else {
         rpg->quest.message = 0;

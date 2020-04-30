@@ -93,6 +93,7 @@ typedef struct fight_s
     ennemies_t *boss;
     spell_t *boss_spell;
     inventory_t inventory;
+    clock_R_t *clock;
     int max_enn;
     int nb_enn;
     /*sfSound *snd_main_music;

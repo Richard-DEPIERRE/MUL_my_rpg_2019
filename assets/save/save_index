@@ -14,6 +14,10 @@ nb wins:
 player fight pos x:
 player fight pos y:
 player fight life:
+for spells
+    sec:
+    damage:
+vitesse enem:
 nb enn:
 for enn
     life enn:

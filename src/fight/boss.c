@@ -38,23 +38,20 @@ void boss_attack(fight_t *fight, float *max)
 
 void boss_anim(fight_t *fight)
 {
-    static int i = 0;
-    static sfClock *clock = NULL;
-    sfTime time;
-    float seconds = 0;
+    sfTime time = sfClock_getElapsedTime(fight->boss->clock.clock);
+    float second = time.microseconds / 1000000;
 
-    if (!clock)
-        clock = sfClock_create();
-    time = sfClock_getElapsedTime(clock);
-    seconds = time.microseconds / 1000000;
-    if (seconds > 0.001) {
-        i += 1;
-        sfClock_restart(clock);
+    if (time.microseconds > 85000) {
+        fight->boss->rect.left += 800;
+        if (fight->boss->rect.left > (7 * 800)) {
+            fight->boss->rect.left = 0;
+            if (fight->boss->rect.top == 0) {
+                fight->boss->rect.top = 600;
+            } else
+                fight->boss->rect.top = 0;
+        }
+        sfClock_restart(fight->boss->clock.clock);
     }
-    if (i == 7)
-        i = 0;
-    fight->boss->rect =
-    (sfIntRect) {(i % 3) * 1164, (i / 3) * 1116, 1164, 1116};
     sfSprite_setTextureRect(fight->boss->enn, fight->boss->rect);
 }
 
@@ -74,13 +71,18 @@ void move_boss(fight_t *fight)
         fight->boss->pos.x -= truc1;
         fight->boss->pos.y -= truc2;
     }
-    where_to_move(fight->boss, truc1, truc2);
     sfSprite_setPosition(fight->boss->enn, fight->boss->pos);
-    if (fight->boss->pos.x > fight->player.pos.x - 25 &&
-    fight->boss->pos.x < fight->player.pos.x + 25 &&
-    fight->boss->pos.y > fight->player.pos.y - 35 &&
-    fight->boss->pos.y < fight->player.pos.y + 35)
-        tmp = 1;
+    if (fight->boss->pos.x - 232.6 <= fight->player.pos.x - 25 &&
+    fight->boss->pos.x + 232.6 >= fight->player.pos.x + 25 &&
+    fight->boss->pos.y - 223.2 <= fight->player.pos.y - 35 &&
+    fight->boss->pos.y + 232.2 >= fight->player.pos.y + 35)
+        if ((fight->spell[fight->player.weapon - 1].protection == 0
+        || fight->spell[fight->player.weapon - 1].activated != 1)) {
+            knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);
+            fight->player.life -= 1;
+            fight->buttons[3].rect.width = fight->player.life * 2 + 4;
+            sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
+        }
     boss_attack(fight, &max);
     boss_anim(fight);
 }
@@ -94,12 +96,13 @@ ennemies_t *init_boss(void)
     sfTexture_createFromFile("assets/sprites/boss/boss.png", NULL);
     obj->clock.clock = sfClock_create();
     obj->pos = (sfVector2f) {0, 0};
-    obj->rect = (sfIntRect) {0, 0, 1164, 1116};
+    obj->rect = (sfIntRect) {0, 0, 800, 600};
     obj->velocity = 0.8;
+    obj->in_live = 1;
+    obj->life = 8000;
     sfSprite_setTexture(obj->enn, obj->enn_texture, sfTrue);
     sfSprite_setPosition(obj->enn, obj->pos);
     sfSprite_setTextureRect(obj->enn, obj->rect);
-    sfSprite_setScale(obj->enn, (sfVector2f) {0.4, 0.4});
     sfSprite_setOrigin(obj->enn, (sfVector2f)
     {obj->rect.left + (obj->rect.width / 2),
     obj->rect.top + (obj->rect.height / 2)});

@@ -259,6 +259,7 @@ void handling_items(rpg_t *rpg);
 void set_seconds_quests(scd_quest_t *quest);
 void reset_ennemies(fight_t *fight);
 struct spell_s init_spell(char *path, enum spells_names_s type, sfIntRect rect);
+void generic_function_bg_quest(rpg_t *rpg);
 
 //lib
 int my_strlen(char const *str);
@@ -266,6 +267,8 @@ int my_putstr(char const *str);
 int my_getnbr(char *str);
 int save_to_file(rpg_t *rpg, game_obj_t *obj);
 int generate_random(int l, int r);
+char *ftoa(float n, int afterpoint);
+float stof(const char *s);
 
 //menu
 void init_variables_for_particules(rpg_t *rpg);

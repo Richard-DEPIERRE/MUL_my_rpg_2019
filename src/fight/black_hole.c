@@ -110,6 +110,19 @@ void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell)
         fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
         sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].rect);
     }
+    if (rpg->status == 11) {
+        if (fight->boss->in_live == 1)
+            if (spell->pos.x > fight->boss->pos.x - 400 &&
+            spell->pos.x < fight->boss->pos.x + 400 &&
+            spell->pos.y > fight->boss->pos.y - 300 &&
+            spell->pos.y < fight->boss->pos.y + 300) {
+                fight->boss->life -= 1;
+                if (fight->boss->life <= 0)
+                    rpg->quest.scd_quest.nb_kills += 100;
+            }
+        fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
+        sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
+    }
 }
 
 void set_cooldown_(float res, spell_t *spell)

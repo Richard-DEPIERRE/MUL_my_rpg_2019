@@ -190,15 +190,8 @@ void create_and_set(sfSprite *sprite, sfTexture *texture, char *path)
     sfSprite_setTexture(sprite, texture, sfTrue);
 }
 
-void init_end_script(end_script_t *end)
+void create_backgrounds_end_script(end_script_t *end)
 {
-    // create_and_set(end->bg, end->bg_t, "assets/sprites/end/bg.png");
-    // create_and_set(end->gf, end->gf_t, "assets/sprites/end/girl.png");
-    end->clock.clock = sfClock_create();
-
-    end->tmp = 0;
-    end->act = 0;
-
     end->bg = sfSprite_create();
     end->bg_t = sfTexture_createFromFile("assets/sprites/end/bg.png", NULL);
     sfSprite_setTexture(end->bg, end->bg_t, sfTrue);
@@ -210,6 +203,11 @@ void init_end_script(end_script_t *end)
     sfSprite_setTexture(end->bg2, end->bg2_t, sfTrue);
     sfSprite_setScale(end->bg2, (sfVector2f) {1.3, 1.3});
     sfSprite_setPosition(end->bg2, (sfVector2f) {170, 35});
+}
+
+void create_msg_and_txt_end_script(end_script_t *end)
+{
+    char path[] = "assets/fonts/good_font.ttf";
 
     end->msg = sfSprite_create();
     end->msg_t = sfTexture_createFromFile("assets/sprites/end/msg.png", NULL);
@@ -219,14 +217,16 @@ void init_end_script(end_script_t *end)
     sfSprite_setScale(end->msg, (sfVector2f) {0.7, 0.7});
     sfSprite_setPosition(end->msg, (sfVector2f) {270, 350});
 
-    char path[] = "assets/fonts/good_font.ttf";
     end->text = malloc(sizeof(*end->text));
     end->text->pos = (sfVector2f) {520, 570};
     end->text->size = 20;
     make_text(end->text, "Thanks for playing\n\n\n\t\t\t\t\tCreated by \
 Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seiguin", path);
     sfText_setCharacterSize(end->text->text, 20);
+}
 
+void create_gf_and_circle(end_script_t *end)
+{
     end->gf = sfSprite_create();
     end->gf_t = sfTexture_createFromFile("assets/sprites/end/girl.png", NULL);
     sfSprite_setTexture(end->gf, end->gf_t, sfTrue);
@@ -243,10 +243,21 @@ Richard Habimana, Alexandre Juan, Rafik Merzouk and Tom Seiguin", path);
     sfCircleShape_setScale(end->cinematic, end->cinematic_size);
 }
 
+void init_end_script(end_script_t *end)
+{
+    end->clock.clock = sfClock_create();
+
+    end->tmp = 0;
+    end->act = 0;
+    create_backgrounds_end_script(end);
+    create_msg_and_txt_end_script(end);
+    create_gf_and_circle(end);
+}
+
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 11;
+    rpg->status = 0;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
@@ -331,6 +342,9 @@ void destroy(game_obj_t *obj, rpg_t *rpg)
     sfSound_destroy(rpg->snd_speed);
     sfSound_destroy(rpg->snd_win_fight);
 
+    sfClock_destroy(rpg->end.clock.clock);
+    sfSprite_destroy(rpg->end.msg);
+
     //il faut destroy le game obj sachant que je ne connais pas la limite du game obj
 }
 
@@ -350,6 +364,7 @@ int main_rpg(void)
     rpg->fight->boss = init_boss();
     rpg->fight->boss_spell = init_boss_spell();
     while (sfRenderWindow_isOpen(rpg->win)) {
+        printf("quest = %d\n", rpg->quest.act);
         global_event(rpg, &background);
         clock_event(rpg, &clock);
         draw_statue(rpg, rpg->win, &background);

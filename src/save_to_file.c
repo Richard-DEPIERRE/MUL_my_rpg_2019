@@ -28,8 +28,8 @@ void put_in_file(int nb, int fd)
 
 int save_to_file(rpg_t *rpg, game_obj_t *obj)
 {
-    struct stat fileStat;
     int fd = 0;
+    char *str = NULL;
 
     if (rpg->save == 1)
         fd = open("assets/save/First", O_WRONLY | O_TRUNC);
@@ -68,6 +68,16 @@ int save_to_file(rpg_t *rpg, game_obj_t *obj)
     put_in_file(rpg->fight->player.pos.y, fd);
     write(fd, ":", 1);
     put_in_file(rpg->fight->player.life, fd);
+    write(fd, ":", 1);
+    for (int i = 0; i < 5; i += 1) {
+        str = ftoa(rpg->fight->spell[i].sec, 2);
+        write(fd, str, my_strlen(str));
+        write(fd, ":", 1);
+        put_in_file(rpg->fight->spell[i].damage, fd);
+        write(fd, ":", 1);
+    }
+    str = ftoa(rpg->fight->enns[0].velocity, 2);
+    write(fd, str, my_strlen(str));
     write(fd, ":", 1);
     put_in_file(rpg->fight->nb_enn, fd);
     write(fd, ":", 1);

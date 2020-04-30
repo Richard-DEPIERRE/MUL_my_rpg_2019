@@ -59,6 +59,14 @@ void get_str2(char *str, rpg_t *rpg, game_obj_t *obj)
     rpg->fight->player.pos.y = my_getnbr(tmp);
     tmp = stock_info2(str, tmp, &size_tmp);
     rpg->fight->player.life = my_getnbr(tmp);
+    for (int i = 0; i < 5; i += 1) {
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->spell[i].sec = stof(tmp);
+        tmp = stock_info2(str, tmp, &size_tmp);
+        rpg->fight->spell[i].damage = my_getnbr(tmp);
+    }
+    tmp = stock_info2(str, tmp, &size_tmp);
+    rpg->fight->enns[0].velocity = stof(tmp);
     tmp = stock_info2(str, tmp, &size_tmp);
     rpg->fight->nb_enn = my_getnbr(tmp);
     for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
