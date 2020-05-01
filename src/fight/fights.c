@@ -60,14 +60,14 @@ void upgrade_player(fight_t *fight, int nb_win)
 
 void feux_d_artifices(rpg_t *rpg)
 {
-    static sfVector2f pos = {0, 540};
+    static sfVector2f pos = {300, 540};
 
     if (pos.x < 1920) {
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
         60, pos);
         pos.x += 640;
     } else {
-        pos = (sfVector2f) {0, 540};
+        pos = (sfVector2f) {300, 540};
     }
 }
 

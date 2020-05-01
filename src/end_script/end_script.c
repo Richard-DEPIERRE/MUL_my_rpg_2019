@@ -85,4 +85,3 @@ void end_script(rpg_t *rpg, end_script_t *end)
     }
     return;
 }
-
