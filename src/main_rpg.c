@@ -127,6 +127,7 @@ void set_volume(rpg_t *rpg)
     sfSound_setVolume(rpg->snd_heal, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_speed, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_win_fight, rpg->sound_volume);
+    sfSound_setVolume(rpg->snd_end, rpg->music_volume);
 }
 
 void stop_all_music(rpg_t *rpg)
@@ -144,6 +145,7 @@ void stop_all_music(rpg_t *rpg)
     sfSound_stop(rpg->snd_heal);
     sfSound_stop(rpg->snd_speed);
     sfSound_stop(rpg->snd_win_fight);
+    sfSound_stop(rpg->snd_end);
 }
 
 void set_music_loop(rpg_t *rpg)
@@ -178,6 +180,7 @@ void set_musics(rpg_t *rpg)
     rpg->snd_heal = create_sound("assets/music/sound_effect_heal.ogg");
     rpg->snd_speed = create_sound("assets/music/sound_effect_speed.ogg");
     rpg->snd_win_fight = create_sound("assets/music/sound_effect_win_fight.ogg");
+    rpg->snd_end = create_sound("assets/music/end.ogg");
     set_music_loop(rpg);
     set_volume(rpg);
     sfSound_play(rpg->snd_menu);
@@ -257,7 +260,7 @@ void init_end_script(end_script_t *end)
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 0;
+    rpg->status = 11;
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;

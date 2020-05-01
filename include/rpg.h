@@ -205,6 +205,7 @@ typedef struct rpg_s
     sfSound *snd_heal;
     sfSound *snd_speed;
     sfSound *snd_win_fight;
+    sfSound *snd_end;
     int life;
     int tmp;
     int level;

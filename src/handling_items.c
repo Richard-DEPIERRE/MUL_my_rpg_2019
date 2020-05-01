@@ -117,11 +117,13 @@ void handling_items(rpg_t *rpg)
             change_background_fight(rpg->fight, rpg->quest.tmp, rpg->quest);
             init_values_before_fight(rpg->fight);
             stop_all_music(rpg);
-            sfSound_play(rpg->snd_main_music_fight);
-            if (rpg->quest.act != 0)
+            if (rpg->quest.act != 0) {
+                sfSound_play(rpg->snd_main_music_fight);
                 rpg->status = 4;
-            else
+            } else {
+                sfSound_play(rpg->snd_main_music_fight); //musique du boss
                 rpg->status = 11;
+            }
         }
     } else {
         rpg->quest.message = 0;

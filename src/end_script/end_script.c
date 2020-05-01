@@ -40,6 +40,8 @@ int final_act(rpg_t *rpg, end_script_t *end)
         end->tmp = 0;
         rpg->status = 0;
         rpg->menu_status = 0;
+        stop_all_music(rpg);
+        sfSound_play(rpg->snd_menu);
         return (1);
     }
     return (0);
