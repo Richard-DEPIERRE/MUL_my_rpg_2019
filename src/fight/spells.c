@@ -74,6 +74,56 @@ void set_txt_cooldown(text_R_t *txt, spells_names_t type)
     txt->str = NULL;
 }
 
+void init_health_speeds(spell_t *spell, spells_names_t type,  sfIntRect rect)
+{
+    if (type == HEALTH) {
+        spell->protection = 0;
+        spell->damage = 0;
+        sfSprite_setOrigin(spell->sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell->sprite, (sfVector2f) {1.7, 1.7});
+        spell->sec = 20;
+        spell->health = sfClock_create();
+    }
+    if (type == SPEEDS) {
+        spell->protection = 0;
+        spell->damage = 0;
+        sfSprite_setOrigin(spell->sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell->sprite, (sfVector2f) {1.7, 1.7});
+        spell->sec = 15;
+    }
+}
+
+void init_black_hole(spell_t *spell, spells_names_t type,  sfIntRect rect)
+{
+    if (type == BLACK_HOLE) {
+        spell->damage = 15;
+        spell->protection = 0;
+        spell->sec = 20;
+        sfSprite_setOrigin(spell->sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell->sprite, (sfVector2f) {0.2, 0.2});
+    }
+}
+
+void init_fireball_shield(spell_t *spell, spells_names_t type,  sfIntRect rect)
+{
+    spell->tmp = 0;
+    spell->tmp2 = 0;
+    if (type == FIREBALL) {
+        spell->damage = 100;
+        spell->protection = 0;
+        spell->sec = 1;
+    }
+    if (type == SHIELD) {
+        spell->protection = 10;
+        spell->damage = 1;
+        sfSprite_setOrigin(spell->sprite, (sfVector2f) {27, rect.height / 2});
+        sfSprite_setScale(spell->sprite, (sfVector2f) {1.7, 1.7});
+        spell->sec = 8;
+    }
+    init_health_speeds(spell, type, rect);
+    init_black_hole(spell, type, rect);
+}
+
 spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
 {
     spell_t spell;
@@ -90,43 +140,42 @@ spell_t init_spell(char *path, spells_names_t type, sfIntRect rect)
     spell.clock = sfClock_create();
     spell.clock_cd.clock = sfClock_create();
     spell.type = type;
-    spell.tmp = 0;
-    spell.tmp2 = 0;
     set_txt_cooldown(&spell.text, type);
-    if (type == FIREBALL) {
-        spell.damage = 2;
-        spell.protection = 0;
-        spell.sec = 1;
-    }
-    if (type == SHIELD) {
-        spell.protection = 10;
-        spell.damage = 1;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
-        sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 8;
-    }
-    if (type == HEALTH) {
-        spell.protection = 0;
-        spell.damage = 0;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
-        sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 20;
-        spell.health = sfClock_create();
-    }
-    if (type == SPEEDS) {
-        spell.protection = 0;
-        spell.damage = 0;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
-        sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
-        spell.sec = 15;
-    }
-    if (type == BLACK_HOLE) {
-        spell.damage = 15;
-        spell.protection = 0;
-        spell.sec = 20;
-        sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
-        sfSprite_setScale(spell.sprite, (sfVector2f) {0.2, 0.2});
-    }
+    init_fireball_shield(&spell, type, rect);
+    // if (type == FIREBALL) {
+    //     spell.damage = 100;
+    //     spell.protection = 0;
+    //     spell.sec = 1;
+    // }
+    // if (type == SHIELD) {
+    //     spell.protection = 10;
+    //     spell.damage = 1;
+    //     sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+    //     sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
+    //     spell.sec = 8;
+    // }
+    // if (type == HEALTH) {
+    //     spell.protection = 0;
+    //     spell.damage = 0;
+    //     sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+    //     sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
+    //     spell.sec = 20;
+    //     spell.health = sfClock_create();
+    // }
+    // if (type == SPEEDS) {
+    //     spell.protection = 0;
+    //     spell.damage = 0;
+    //     sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+    //     sfSprite_setScale(spell.sprite, (sfVector2f) {1.7, 1.7});
+    //     spell.sec = 15;
+    // }
+    // if (type == BLACK_HOLE) {
+    //     spell.damage = 15;
+    //     spell.protection = 0;
+    //     spell.sec = 20;
+    //     sfSprite_setOrigin(spell.sprite, (sfVector2f) {27, rect.height / 2});
+    //     sfSprite_setScale(spell.sprite, (sfVector2f) {0.2, 0.2});
+    // }
     spell.activated = 0;
     return (spell);
 }

@@ -13,9 +13,9 @@ void animation_black_hole(spell_t *spell)
     float second = time.microseconds / 1000000.0;
     // printf("seconds:%f\n", second);
     if (second > 0.05) {
-        if (spell->rect.left < 1750 && spell->rect.top == 0) {
+        if (spell->rect.left < 1750 && spell->rect.top == 0)
             spell->rect.left += 250;
-        } else {
+        else
             if (spell->rect.top == 0) {
                 spell->rect.left = 0;
                 spell->rect.top = 250;
@@ -25,8 +25,6 @@ void animation_black_hole(spell_t *spell)
                 spell->rect.left = 0;
                 spell->rect.top = 0;
             }
-
-        }
         sfClock_restart(spell->clock);
     }
     sfSprite_setTextureRect(spell->sprite, spell->rect);
@@ -95,6 +93,23 @@ void change_position_black_hole(spell_t *spell, sfVector2f pos)
     sfSprite_setPosition(spell->sprite, spell->pos);
 }
 
+void black_hole_damage_player(fight_t *fight, rpg_t *rpg, spell_t *spell)
+{
+    if (rpg->status == 11) {
+        if (fight->boss->in_live == 1)
+            if (spell->pos.x > fight->boss->pos.x - 200 &&
+            spell->pos.x < fight->boss->pos.x + 200 &&
+            spell->pos.y > fight->boss->pos.y - 150 &&
+            spell->pos.y < fight->boss->pos.y + 150) {
+                fight->boss->life -= 1;
+                if (fight->boss->life <= 0)
+                    rpg->quest.scd_quest.nb_kills += 100;
+            }
+        fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
+        sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
+    }
+}
+
 void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell)
 {
     for (int i = 0; i < fight->nb_enn; i++) {
@@ -110,19 +125,7 @@ void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell)
         fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
         sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].rect);
     }
-    if (rpg->status == 11) {
-        if (fight->boss->in_live == 1)
-            if (spell->pos.x > fight->boss->pos.x - 400 &&
-            spell->pos.x < fight->boss->pos.x + 400 &&
-            spell->pos.y > fight->boss->pos.y - 300 &&
-            spell->pos.y < fight->boss->pos.y + 300) {
-                fight->boss->life -= 1;
-                if (fight->boss->life <= 0)
-                    rpg->quest.scd_quest.nb_kills += 100;
-            }
-        fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
-        sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
-    }
+    black_hole_damage_player(fight, rpg, spell);
 }
 
 void set_cooldown_(float res, spell_t *spell)
@@ -140,6 +143,19 @@ void display_cooldown_black_holes(float second, spell_t *spell)
         spell->text.str = NULL;
 }
 
+int displays_cooldown_black(spell_t *spell, int *tmp)
+{
+    if (spell->activated == 2)
+        display_cooldown_black_holes(spell->clock_cd.seconds, spell);
+    if (spell->clock_cd.seconds >= spell->sec && spell->activated == 2) {
+        spell->activated = 0;
+        *tmp = 0;
+        sfClock_restart(spell->clock_cd.clock);
+        return (0);
+    }
+    return (1);
+}
+
 int cooldown_black_holes(spell_t *spell)
 {
     static int tmp = 0;
@@ -154,15 +170,7 @@ int cooldown_black_holes(spell_t *spell)
         spell->activated = 2;
         sfClock_restart(spell->clock_cd.clock);
     }
-    if (spell->activated == 2)
-        display_cooldown_black_holes(spell->clock_cd.seconds, spell);
-    if (spell->clock_cd.seconds >= spell->sec && spell->activated == 2) {
-        spell->activated = 0;
-        tmp = 0;
-        sfClock_restart(spell->clock_cd.clock);
-        return (0);
-    }
-    return (1);
+    return (displays_cooldown_black(spell, &tmp));
 }
 
 int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)

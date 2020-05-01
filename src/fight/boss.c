@@ -72,10 +72,10 @@ void move_boss(fight_t *fight)
         fight->boss->pos.y -= truc2;
     }
     sfSprite_setPosition(fight->boss->enn, fight->boss->pos);
-    if (fight->boss->pos.x - 232.6 <= fight->player.pos.x - 25 &&
-    fight->boss->pos.x + 232.6 >= fight->player.pos.x + 25 &&
-    fight->boss->pos.y - 223.2 <= fight->player.pos.y - 35 &&
-    fight->boss->pos.y + 232.2 >= fight->player.pos.y + 35)
+    if (fight->boss->pos.x - 200 <= fight->player.pos.x - 25 &&
+    fight->boss->pos.x + 200 >= fight->player.pos.x + 25 &&
+    fight->boss->pos.y - 150 <= fight->player.pos.y - 35 &&
+    fight->boss->pos.y + 150 >= fight->player.pos.y + 35)
         if ((fight->spell[fight->player.weapon - 1].protection == 0
         || fight->spell[fight->player.weapon - 1].activated != 1)) {
             knock_back(&fight->player, &fight->player.clock, truc1, truc2, tmp);

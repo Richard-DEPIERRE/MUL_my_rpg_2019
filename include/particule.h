@@ -35,6 +35,7 @@ struct particle_s
     sfColor color;
     size_t radius;
     bool living;
+    sfVector2f scale;
 };
 
 struct particle_environment_s

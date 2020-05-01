@@ -19,8 +19,5 @@ void draw_end_script(rpg_t *rpg, sfRenderWindow *win)
     sfRenderWindow_drawCircleShape(win, rpg->end.cinematic, NULL);
     if (rpg->end.tmp == 2)
         sfRenderWindow_drawText(win, rpg->end.text->text, NULL);
-    for (size_t index = 0; index < PARICULE_MAX; index++)
-        display_particle(win, &rpg->screen->particle[index],
-        rpg->screen->particle_environment.circle_shape);
     sfRenderWindow_display(win);
 }

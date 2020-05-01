@@ -264,8 +264,8 @@ void my_set_ints(rpg_t *rpg, clock_s *clock)
     rpg->menu_status = 0;
     rpg->fps = 90;
     rpg->player.direct = 0;
-    rpg->sound_volume = 50;
-    rpg->music_volume = 50;
+    rpg->sound_volume = 20;
+    rpg->music_volume = 20;
     rpg->map = get_map();
     rpg->save = 0;
     rpg->level = 22;
