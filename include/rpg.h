@@ -186,8 +186,6 @@ typedef struct rpg_s
     int **map;
     game_obj_t perspec;
     sfSprite *cop;
-    sfSprite *delete_me;
-    sfTexture *delete_me_too;
     player_t player;
     int status;
     int save;

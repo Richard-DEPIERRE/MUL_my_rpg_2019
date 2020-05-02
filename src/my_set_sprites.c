@@ -34,12 +34,5 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg)
     init_variables_for_particules(rpg);
     rpg->fight = init_variables_for_fights(rpg->fight);
     set_menu_sprites(rpg);
-    rpg->delete_me_too =
-    sfTexture_createFromFile("assets/sprites/tilemap.png", NULL);
-    rpg->delete_me_too =
-    sfTexture_createFromFile("assets/maps/map_with_spawns.png", NULL);
-    rpg->delete_me = sfSprite_create();
-    sfSprite_setTexture(rpg->delete_me, rpg->delete_me_too, sfTrue);
-    sfSprite_setScale(rpg->delete_me, (sfVector2f) {2, 2});
     my_set_sprites_two(obj, rpg);
 }
