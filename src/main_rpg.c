@@ -96,7 +96,7 @@ void set_quest_data(quest_t *quest)
 void set_quest(quest_t *quest)
 {
     char path[] = "assets/sprites/items.png";
-    char path2[] = "assets/sprites/msg_teste.png";
+    char path2[] = "assets/sprites/msg.png";
     char path3[] = "assets/sprites/inventory_sheet.png";
 
     quest->sprite = sfSprite_create();
