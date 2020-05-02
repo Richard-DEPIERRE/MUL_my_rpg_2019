@@ -35,11 +35,9 @@ void fights_spawns(rpg_t *rpg, game_obj_t *obj)
     // pos.y *= 2;
     pos.x /= 32;
     pos.y /= 32;
-    if (!sfKeyboard_isKeyPressed(sfKeySpace)) { // cheat code, il faut enlever
-        if (rpg->map[pos.y][pos.x] == 2) {
-            if (sfKeyboard_isKeyPressed(sfKeyQ) || sfKeyboard_isKeyPressed(sfKeyD)
-            || sfKeyboard_isKeyPressed(sfKeyZ) || sfKeyboard_isKeyPressed(sfKeyS))
-                chance_fight_spawn(rpg);
-        }
-    }
+    if (!sfKeyboard_isKeyPressed(sfKeySpace) &&
+    rpg->map[pos.y][pos.x] == 2 && (sfKeyboard_isKeyPressed(sfKeyQ) ||
+    sfKeyboard_isKeyPressed(sfKeyD) || sfKeyboard_isKeyPressed(sfKeyZ) ||
+    sfKeyboard_isKeyPressed(sfKeyS)))// cheat code, il faut enlever
+        chance_fight_spawn(rpg);
 }

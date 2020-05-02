@@ -17,10 +17,8 @@ void animation_speed(spell_t *spell)
             spell->rect.left += 60;
         } else {
             spell->rect.left = 0;
-            if (spell->rect.top < 300 - 60)
-                spell->rect.top += 60;
-            else
-                spell->rect.top = 0;
+            (spell->rect.top < 300 - 60) ? (spell->rect.top += 60) :
+            (spell->rect.top = 0);
         }
         sfClock_restart(spell->clock);
     }

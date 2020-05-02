@@ -40,6 +40,8 @@ int final_act(rpg_t *rpg, end_script_t *end)
         end->tmp = 0;
         rpg->status = 0;
         rpg->menu_status = 0;
+        rpg->player.pos.x = (1920 / 2) - (64 / 2);
+        rpg->player.pos.y = (1080 / 2) - (64 / 2);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_menu);
         return (1);
@@ -61,6 +63,21 @@ void set_end_script(rpg_t *rpg, end_script_t *end)
     sfCircleShape_setScale(end->cinematic, end->cinematic_size);
 }
 
+void end_script_two(rpg_t *rpg, end_script_t *end)
+{
+    if (end->act == 1)
+        first_act(rpg, end);
+    if (end->act == 2)
+        second_act(rpg, end);
+    if (end->act == 3)
+        third_act(rpg, end);
+    if (end->act == 4)
+        fourth_act(rpg, end);
+    if (end->act == 5)
+        fivth_act(rpg, end);
+
+}
+
 void end_script(rpg_t *rpg, end_script_t *end)
 {
     static int i = 0;
@@ -69,16 +86,17 @@ void end_script(rpg_t *rpg, end_script_t *end)
         set_end_script(rpg, end);
         i++;
     } else if (i == 1) {
-        if (end->act == 1)
-            first_act(rpg, end);
-        if (end->act == 2)
-            second_act(rpg, end);
-        if (end->act == 3)
-            third_act(rpg, end);
-        if (end->act == 4)
-            fourth_act(rpg, end);
-        if (end->act == 5)
-            fivth_act(rpg, end);
+        end_script_two(rpg, end);
+        // if (end->act == 1)
+        //     first_act(rpg, end);
+        // if (end->act == 2)
+        //     second_act(rpg, end);
+        // if (end->act == 3)
+        //     third_act(rpg, end);
+        // if (end->act == 4)
+        //     fourth_act(rpg, end);
+        // if (end->act == 5)
+        //     fivth_act(rpg, end);
         if (end->act == 6)
             if (final_act(rpg, end))
                 i = 0;

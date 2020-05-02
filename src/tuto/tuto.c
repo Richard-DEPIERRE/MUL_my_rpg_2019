@@ -7,25 +7,53 @@
 
 #include "rpg.h"
 
-
-void action_three(rpg_t *rpg, game_obj_t *background)
+void begin_action_three_two(rpg_t *rpg, game_obj_t *background)
 {
-    if (rpg->tuto.tmp < 5) {
+    if (rpg->tuto.tmp >= 13 && rpg->tuto.tmp < 25) {
         rpg->tuto.rect_friend.top = 216;
         rpg->tuto.pos.y -= 5;
-    } else if (rpg->tuto.tmp < 13){
-        rpg->tuto.rect_friend.top = 72;
-        rpg->tuto.pos.x -= 4;
-    } else if (rpg->tuto.tmp < 25) {
-        rpg->tuto.rect_friend.top = 216;
-        rpg->tuto.pos.y -= 5;
-    } else {
+    }
+    if (rpg->tuto.tmp >= 25){
         stop_all_music(rpg);
         sfSound_play(rpg->snd_main_music);
         rpg->status = 3;
         rpg->tuto.action = 0;
         rpg->tuto.tmp = 0;
     }
+}
+
+void begin_action_three(rpg_t *rpg, game_obj_t *background)
+{
+    if (rpg->tuto.tmp < 5) {
+        rpg->tuto.rect_friend.top = 216;
+        rpg->tuto.pos.y -= 5;
+    }
+    if (rpg->tuto.tmp >= 5 && rpg->tuto.tmp < 13){
+        rpg->tuto.rect_friend.top = 72;
+        rpg->tuto.pos.x -= 4;
+    }
+    begin_action_three_two(rpg, background);
+}
+
+void action_three(rpg_t *rpg, game_obj_t *background)
+{
+    begin_action_three(rpg, background);
+    // if (rpg->tuto.tmp < 5) {
+    //     rpg->tuto.rect_friend.top = 216;
+    //     rpg->tuto.pos.y -= 5;
+    // } else if (rpg->tuto.tmp < 13){
+    //     rpg->tuto.rect_friend.top = 72;
+    //     rpg->tuto.pos.x -= 4;
+    // } else if (rpg->tuto.tmp < 25) {
+    //     rpg->tuto.rect_friend.top = 216;
+    //     rpg->tuto.pos.y -= 5;
+    // } else {
+    //     stop_all_music(rpg);
+    //     sfSound_play(rpg->snd_main_music);
+    //     rpg->status = 3;
+    //     rpg->tuto.action = 0;
+    //     rpg->tuto.tmp = 0;
+    // }
     rpg->tuto.rect_friend.left += 50;
     if (rpg->tuto.rect_friend.left > 100)
         rpg->tuto.rect_friend.left = 0;
@@ -47,6 +75,20 @@ void action_two(rpg_t *rpg, game_obj_t *background)
     }
 }
 
+void action_one_other(rpg_t *rpg, game_obj_t *background)
+{
+    dont_move(&rpg->player);
+    rpg->tuto.action = 2;
+    rpg->tuto.tmp = 0;
+    rpg->tuto.rect_friend.top = 72;
+    rpg->player.rect.top += 64;
+    sfSprite_setTextureRect(rpg->player.sprite, rpg->player.rect);
+    sfSprite_setTextureRect(rpg->tuto.friend, rpg->tuto.rect_friend);
+    rpg->tuto.rect.width = 1920;
+    rpg->tuto.rect.height = 1080;
+    sfSprite_setTextureRect(rpg->tuto.sprite, rpg->tuto.rect);
+}
+
 void action_one(rpg_t *rpg, game_obj_t *background)
 {
     if (rpg->tuto.tmp < 56) {
@@ -59,16 +101,17 @@ void action_one(rpg_t *rpg, game_obj_t *background)
         move_down(&rpg->player);
         rpg->tuto.tmp += 1;
     } else {
-        dont_move(&rpg->player);
-        rpg->tuto.action = 2;
-        rpg->tuto.tmp = 0;
-        rpg->tuto.rect_friend.top = 72;
-        rpg->player.rect.top += 64;
-        sfSprite_setTextureRect(rpg->player.sprite, rpg->player.rect);
-        sfSprite_setTextureRect(rpg->tuto.friend, rpg->tuto.rect_friend);
-        rpg->tuto.rect.width = 1920;
-        rpg->tuto.rect.height = 1080;
-        sfSprite_setTextureRect(rpg->tuto.sprite, rpg->tuto.rect);
+        action_one_other(rpg, background);
+        // dont_move(&rpg->player);
+        // rpg->tuto.action = 2;
+        // rpg->tuto.tmp = 0;
+        // rpg->tuto.rect_friend.top = 72;
+        // rpg->player.rect.top += 64;
+        // sfSprite_setTextureRect(rpg->player.sprite, rpg->player.rect);
+        // sfSprite_setTextureRect(rpg->tuto.friend, rpg->tuto.rect_friend);
+        // rpg->tuto.rect.width = 1920;
+        // rpg->tuto.rect.height = 1080;
+        // sfSprite_setTextureRect(rpg->tuto.sprite, rpg->tuto.rect);
     }
 }
 

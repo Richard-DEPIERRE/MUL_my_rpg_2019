@@ -26,6 +26,113 @@ void put_in_file(int nb, int fd)
     my_putchar2(nb + 48, fd);
 }
 
+int save_to_file_three(rpg_t *rpg, game_obj_t *obj, int fd)
+{
+    char *str = ftoa(rpg->fight->enns[0].velocity, 2);
+    write(fd, str, my_strlen(str));
+    write(fd, ":", 1);
+    put_in_file(rpg->fight->nb_enn, fd);
+    write(fd, ":", 1);
+    for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
+        put_in_file(rpg->fight->enns[i].life, fd);
+        write(fd, ":", 1);
+        put_in_file(rpg->fight->enns[i].pos.x, fd);
+        write(fd, ":", 1);
+        put_in_file(rpg->fight->enns[i].pos.y, fd);
+        write(fd, ":", 1);
+        put_in_file(rpg->fight->enns[i].tmp, fd);
+        write(fd, ":", 1);
+    }
+    rpg->save = 0;
+    return (0);
+}
+
+int save_to_file_two(rpg_t *rpg, game_obj_t *obj, int fd)
+{
+    char *str = NULL;
+
+    put_in_file(rpg->fight->player.pos.y, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->fight->player.life, fd);
+    write(fd, ":", 1);
+    for (int i = 0; i < 5; i += 1) {
+        str = ftoa(rpg->fight->spell[i].sec, 2);
+        write(fd, str, my_strlen(str));
+        write(fd, ":", 1);
+        put_in_file(rpg->fight->spell[i].damage, fd);
+        write(fd, ":", 1);
+    }
+    return (save_to_file_three(rpg, obj, fd));
+    // str = ftoa(rpg->fight->enns[0].velocity, 2);
+    // write(fd, str, my_strlen(str));
+    // write(fd, ":", 1);
+    // put_in_file(rpg->fight->nb_enn, fd);
+    // write(fd, ":", 1);
+    // for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
+    //     put_in_file(rpg->fight->enns[i].life, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].pos.x, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].pos.y, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].tmp, fd);
+    //     write(fd, ":", 1);
+    // }
+    // rpg->save = 0;
+    // return (0);
+}
+
+int save_to_file_one(rpg_t *rpg, game_obj_t *obj, int fd)
+{
+    put_in_file(rpg->tuto.executed, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.x, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.y, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->level, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->fps, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.tmp, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.scd_quest.nb_kills, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->quest.scd_quest.nb_win, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->fight->player.pos.x, fd);
+    write(fd, ":", 1);
+    put_in_file(rpg->fight->player.pos.y, fd);
+    write(fd, ":", 1);
+    return (save_to_file_two(rpg, obj, fd));
+    // put_in_file(rpg->fight->player.life, fd);
+    // write(fd, ":", 1);
+    // for (int i = 0; i < 5; i += 1) {
+    //     str = ftoa(rpg->fight->spell[i].sec, 2);
+    //     write(fd, str, my_strlen(str));
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->spell[i].damage, fd);
+    //     write(fd, ":", 1);
+    // }
+    // str = ftoa(rpg->fight->enns[0].velocity, 2);
+    // write(fd, str, my_strlen(str));
+    // write(fd, ":", 1);
+    // put_in_file(rpg->fight->nb_enn, fd);
+    // write(fd, ":", 1);
+    // for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
+    //     put_in_file(rpg->fight->enns[i].life, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].pos.x, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].pos.y, fd);
+    //     write(fd, ":", 1);
+    //     put_in_file(rpg->fight->enns[i].tmp, fd);
+    //     write(fd, ":", 1);
+    // }
+    // rpg->save = 0;
+    // return (0);
+}
+
 int save_to_file(rpg_t *rpg, game_obj_t *obj)
 {
     int fd = 0;
@@ -47,6 +154,7 @@ int save_to_file(rpg_t *rpg, game_obj_t *obj)
     write(fd, ":", 1);
     put_in_file(rpg->life, fd);
     write(fd, ":", 1);
+    // return (save_to_file_one(rpg, obj, fd));
     put_in_file(rpg->tuto.executed, fd);
     write(fd, ":", 1);
     put_in_file(rpg->quest.x, fd);

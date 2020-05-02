@@ -206,6 +206,7 @@ typedef struct rpg_s
     sfSound *snd_speed;
     sfSound *snd_win_fight;
     sfSound *snd_end;
+    sfSound *snd_boss;
     int life;
     int tmp;
     int level;
@@ -329,6 +330,7 @@ void attack_1(fight_t *fight __attribute__((unused)), float *);
 void attack_2(fight_t *fight __attribute__((unused)), float *);
 void attack_3(fight_t *fight __attribute__((unused)), float *);
 spell_t *init_boss_spell(void);
+void knock_back(player_fight_t *player, clock_s *clock, float truc1, float truc2, int tmp);
 
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *);
 void global_event(rpg_t *rpg, game_obj_t *);

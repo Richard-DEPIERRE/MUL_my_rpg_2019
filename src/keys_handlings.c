@@ -7,6 +7,19 @@
 
 #include "rpg.h"
 
+void keys_handlings_fight(sfEvent event, rpg_t *rpg, game_obj_t *obj)
+{
+    if (rpg->status == 5 && rpg->end.act == 4) {
+        if ((int) event.key.code == 57 || (int) event.key.code == 58)
+            rpg->end.msg_rect.top += 1080;
+        if (rpg->end.msg_rect.top > 2 * 1080) {
+            rpg->end.act = 5;
+            rpg->end.tmp = 0;
+        }
+        sfSprite_setTextureRect(rpg->end.msg, rpg->end.msg_rect);
+    }
+}
+
 void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj)
 {
     if (rpg->status == 7 && rpg->tuto.action == 2) {
@@ -24,13 +37,14 @@ void keys_handlings(sfEvent event, rpg_t *rpg, game_obj_t *obj)
             sfSprite_setTextureRect(rpg->tuto.sprite, rpg->tuto.rect);
         }
     }
-    if (rpg->status == 5 && rpg->end.act == 4) {
-        if ((int) event.key.code == 57 || (int) event.key.code == 58)
-            rpg->end.msg_rect.top += 1080;
-        if (rpg->end.msg_rect.top > 2 * 1080) {
-            rpg->end.act = 5;
-            rpg->end.tmp = 0;
-        }
-        sfSprite_setTextureRect(rpg->end.msg, rpg->end.msg_rect);
-    }
+    keys_handlings_fight(event, rpg, obj);
+    // if (rpg->status == 5 && rpg->end.act == 4) {
+    //     if ((int) event.key.code == 57 || (int) event.key.code == 58)
+    //         rpg->end.msg_rect.top += 1080;
+    //     if (rpg->end.msg_rect.top > 2 * 1080) {
+    //         rpg->end.act = 5;
+    //         rpg->end.tmp = 0;
+    //     }
+    //     sfSprite_setTextureRect(rpg->end.msg, rpg->end.msg_rect);
+    // }
 }

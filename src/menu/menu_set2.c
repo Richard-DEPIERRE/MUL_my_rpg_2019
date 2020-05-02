@@ -8,6 +8,23 @@
 #include "rpg.h"
 #include "my.h"
 
+void init_pause_menu(rpg_t *rpg)
+{
+    for (int i = 4; i < 7; i += 1) {
+        rpg->text[i + 14].size = 50;
+        rpg->text[i + 14].pos.x = 803;
+        rpg->text[i + 14].pos.y = 278 + ((i - 4) * 225);
+        rpg->text[i + 14].type = SIDONIA + i;
+    }
+    for (int i = 22; i < 24; i += 1) {
+        rpg->text[i].size = 100;
+        rpg->text[i].pos.x = 1520;
+        rpg->text[i].pos.y = 940;
+        rpg->text[i].type = LEVEL;
+    }
+
+}
+
 void initialise_text(rpg_t *rpg, char **name __attribute__((unused)))
 {
     rpg->text[14].size = 50;
@@ -26,18 +43,19 @@ void initialise_text(rpg_t *rpg, char **name __attribute__((unused)))
     rpg->text[17].pos.x = 803;
     rpg->text[17].pos.y = 728;
     rpg->text[17].type = SAVE;
-    for (int i = 4; i < 7; i += 1) {
-        rpg->text[i + 14].size = 50;
-        rpg->text[i + 14].pos.x = 803;
-        rpg->text[i + 14].pos.y = 278 + ((i - 4) * 225);
-        rpg->text[i + 14].type = SIDONIA + i;
-    }
-    for (int i = 22; i < 24; i += 1) {
-        rpg->text[i].size = 100;
-        rpg->text[i].pos.x = 1520;
-        rpg->text[i].pos.y = 940;
-        rpg->text[i].type = LEVEL;
-    }
+    init_pause_menu(rpg);
+    // for (int i = 4; i < 7; i += 1) {
+    //     rpg->text[i + 14].size = 50;
+    //     rpg->text[i + 14].pos.x = 803;
+    //     rpg->text[i + 14].pos.y = 278 + ((i - 4) * 225);
+    //     rpg->text[i + 14].type = SIDONIA + i;
+    // }
+    // for (int i = 22; i < 24; i += 1) {
+    //     rpg->text[i].size = 100;
+    //     rpg->text[i].pos.x = 1520;
+    //     rpg->text[i].pos.y = 940;
+    //     rpg->text[i].type = LEVEL;
+    // }
 }
 
 void initialize_text3(rpg_t *rpg, char **name)
@@ -77,7 +95,7 @@ void initialize_text2(rpg_t *rpg, char **name)
     initialize_text3(rpg, name);
 }
 
-void initialize_text(rpg_t *rpg, char **name)
+void while_init(rpg_t *rpg)
 {
     for (int i = 0; i < 4; i += 1) {
         rpg->text[i].size = 50;
@@ -91,6 +109,24 @@ void initialize_text(rpg_t *rpg, char **name)
         rpg->text[i].pos.y = 278 + ((i - 4) * 225);
         rpg->text[i].type = SIDONIA + i;
     }
+
+}
+
+void initialize_text(rpg_t *rpg, char **name)
+{
+    while_init(rpg);
+    // for (int i = 0; i < 4; i += 1) {
+    //     rpg->text[i].size = 50;
+    //     rpg->text[i].pos.x = 210;
+    //     rpg->text[i].pos.y = 228 + (i * 200);
+    //     rpg->text[i].type = SIDONIA + i;
+    // }
+    // for (int i = 4; i < 7; i += 1) {
+    //     rpg->text[i].size = 50;
+    //     rpg->text[i].pos.x = 803;
+    //     rpg->text[i].pos.y = 278 + ((i - 4) * 225);
+    //     rpg->text[i].type = SIDONIA + i;
+    // }
     rpg->text[21].size = 100;
     rpg->text[21].pos.x = 730;
     rpg->text[21].pos.y = 50;
@@ -132,6 +168,10 @@ void set3(rpg_t *rpg, char **name)
 
 void set2(rpg_t *rpg, char **name)
 {
+    rpg->menu[0] = create_object("assets/sprites/menu/logo.png",
+    (sfVector2f){1550, 50}, (sfIntRect){0, 0, 200, 200}, SIDONIA);
+    rpg->menu[18] = create_object("assets/sprites/menu/pause.png",
+    (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, PAUSE);
     rpg->menu[8] = create_object("assets/sprites/menu/button.png",
     (sfVector2f){743, 200}, (sfIntRect){0, 0, 310, 78}, FPS);
     rpg->menu[9] = create_object("assets/sprites/menu/minus.png", //plus.png

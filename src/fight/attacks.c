@@ -7,10 +7,24 @@
 
 #include "rpg.h"
 
+spell_t use_spell_two(spell_t spell, fight_t *fight, int value,
+sfVector2f *delta)
+{
+    if (fabs(spell.pos.x - spell.final_pos.x) < fabs(delta->x * 5)
+    || fabs(spell.pos.y - spell.final_pos.y) < fabs(delta->y * 5)) {
+        spell.pos = spell.final_pos;
+        spell.activated = 0;
+    }
+    else {
+        spell.pos.x -= delta->x;
+        spell.pos.y -= delta->y;
+    }
+    sfSprite_setPosition(spell.sprite, spell.pos);
+    return (spell);
+}
+
 spell_t use_spell(spell_t spell, fight_t *fight, int value)
 {
-    static int test = 0;
-    sfTime time;
     static sfVector2f delta = {0, 0};
 
     if (value == 0) {
@@ -22,17 +36,18 @@ spell_t use_spell(spell_t spell, fight_t *fight, int value)
         sfSprite_setPosition(spell.sprite, spell.pos);
         return (spell);
     }
-    if (fabs(spell.pos.x - spell.final_pos.x) < fabs(delta.x * 5)
-    || fabs(spell.pos.y - spell.final_pos.y) < fabs(delta.y * 5)) {
-        spell.pos = spell.final_pos;
-        spell.activated = 0;
-    }
-    else {
-        spell.pos.x -= delta.x;
-        spell.pos.y -= delta.y;
-    }
-    sfSprite_setPosition(spell.sprite, spell.pos);
-    return (spell);
+    return (use_spell_two(spell, fight, value, &delta));
+    // if (fabs(spell.pos.x - spell.final_pos.x) < fabs(delta.x * 5)
+    // || fabs(spell.pos.y - spell.final_pos.y) < fabs(delta.y * 5)) {
+    //     spell.pos = spell.final_pos;
+    //     spell.activated = 0;
+    // }
+    // else {
+    //     spell.pos.x -= delta.x;
+    //     spell.pos.y -= delta.y;
+    // }
+    // sfSprite_setPosition(spell.sprite, spell.pos);
+    // return (spell);
 }
 
 void attack_player(spell_t *spell, fight_t *fight)

@@ -80,17 +80,8 @@ void create_arrow(quest_t *quest)
     sfSprite_setScale(quest->arrow, (sfVector2f) {0.45, 0.45});
 }
 
-void set_quest(quest_t *quest)
+void set_quest_data(quest_t *quest)
 {
-    char path[] = "assets/sprites/items.png";
-    char path2[] = "assets/sprites/msg.png";
-    char path3[] = "assets/sprites/inventory_sheet.png";
-
-    quest->sprite = sfSprite_create();
-    quest->items = sfTexture_createFromFile(path, NULL);
-    quest->msg = sfSprite_create();
-    quest->msg_t = sfTexture_createFromFile(path2, NULL);
-    sfSprite_setTexture(quest->msg, quest->msg_t, sfTrue);
     quest->pos.x = 195;
     quest->pos.y = 84;
     quest->rect.height = 30;
@@ -100,6 +91,29 @@ void set_quest(quest_t *quest)
     quest->act = 1;
     quest->tmp = 0; //richard doit save cette donnée
     quest->message = 0;
+}
+
+void set_quest(quest_t *quest)
+{
+    char path[] = "assets/sprites/items.png";
+    char path2[] = "assets/sprites/msg_teste.png";
+    char path3[] = "assets/sprites/inventory_sheet.png";
+
+    quest->sprite = sfSprite_create();
+    quest->items = sfTexture_createFromFile(path, NULL);
+    quest->msg = sfSprite_create();
+    quest->msg_t = sfTexture_createFromFile(path2, NULL);
+    sfSprite_setTexture(quest->msg, quest->msg_t, sfTrue);
+    set_quest_data(quest);
+    // quest->pos.x = 195;
+    // quest->pos.y = 84;
+    // quest->rect.height = 30;
+    // quest->rect.width = 30;
+    // quest->rect.left = 0;
+    // quest->rect.top = 0;
+    // quest->act = 1;
+    // quest->tmp = 0; //richard doit save cette donnée
+    // quest->message = 0;
     sfSprite_setTexture(quest->sprite, quest->items, sfTrue);
     sfSprite_setTextureRect(quest->sprite, quest->rect);
     create_arrow(quest);
@@ -128,6 +142,7 @@ void set_volume(rpg_t *rpg)
     sfSound_setVolume(rpg->snd_speed, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_win_fight, rpg->sound_volume);
     sfSound_setVolume(rpg->snd_end, rpg->music_volume);
+    sfSound_setVolume(rpg->snd_boss, rpg->music_volume);
 }
 
 void stop_all_music(rpg_t *rpg)
@@ -146,6 +161,7 @@ void stop_all_music(rpg_t *rpg)
     sfSound_stop(rpg->snd_speed);
     sfSound_stop(rpg->snd_win_fight);
     sfSound_stop(rpg->snd_end);
+    sfSound_stop(rpg->snd_boss);
 }
 
 void set_music_loop(rpg_t *rpg)
@@ -154,6 +170,7 @@ void set_music_loop(rpg_t *rpg)
     sfSound_setLoop(rpg->snd_tuto, sfTrue);
     sfSound_setLoop(rpg->snd_main_music, sfTrue);
     sfSound_setLoop(rpg->snd_main_music_fight, sfTrue);
+    sfSound_setLoop(rpg->snd_boss, sfTrue);
 }
 
 sfSound *create_sound(char *path)
@@ -181,6 +198,7 @@ void set_musics(rpg_t *rpg)
     rpg->snd_speed = create_sound("assets/music/sound_effect_speed.ogg");
     rpg->snd_win_fight = create_sound("assets/music/sound_effect_win_fight.ogg");
     rpg->snd_end = create_sound("assets/music/end.ogg");
+    rpg->snd_boss = create_sound("assets/music/music_boss.ogg");
     set_music_loop(rpg);
     set_volume(rpg);
     sfSound_play(rpg->snd_menu);
@@ -260,9 +278,10 @@ void init_end_script(end_script_t *end)
 void my_set_ints(rpg_t *rpg, clock_s *clock)
 {
     clock->clock = sfClock_create();
-    rpg->status = 11;
+    rpg->status = 0;
     rpg->menu_status = 0;
     rpg->fps = 90;
+    sfRenderWindow_setFramerateLimit(rpg->win, rpg->fps);
     rpg->player.direct = 0;
     rpg->sound_volume = 20;
     rpg->music_volume = 20;
@@ -356,7 +375,6 @@ int main_rpg(void)
     rpg_t *rpg = malloc(sizeof(struct rpg_s));
     clock_s clock;
     game_obj_t background;
-    sfMusic* music;
 
     create_window(rpg);
     init_player(&rpg->player);

@@ -23,21 +23,15 @@ void updates_spells(fight_t *fight, rpg_t *rpg)
 
 void launch_spell(fight_t *fight, rpg_t *rpg)
 {
-    if (fight->player.weapon == SPELL_ONE) {
-        // printf("lance la boule de feu\n");
+    if (fight->player.weapon == SPELL_ONE)
         launch_fireball(fight, rpg);
-    } else if (fight->player.weapon == SPELL_TWO) {
-        // printf("lance le shield\n");
+    if (fight->player.weapon == SPELL_TWO)
         launch_shield(fight, rpg);
-    } else if (fight->player.weapon == SPELL_THREE && rpg->quest.scd_quest.nb_kills >= 30) {
-        //printf("lance le black hole\n");
+    if (fight->player.weapon == SPELL_THREE && rpg->quest.scd_quest.nb_kills >= 30)
         launch_black_hole(fight, rpg);
-    } else if (fight->player.weapon == SPELL_FOUR && rpg->quest.scd_quest.nb_win >= 3) {
-        //printf("lance le soin\n");
+    if (fight->player.weapon == SPELL_FOUR && rpg->quest.scd_quest.nb_win >= 3)
         launch_heals(fight, rpg);
-    } else if (fight->player.weapon == SPELL_FIVE && rpg->quest.scd_quest.nb_kills >= 15) {
-        //printf("lance le bonus de vitesse\n");
+    if (fight->player.weapon == SPELL_FIVE && rpg->quest.scd_quest.nb_kills >= 15)
         launch_speed(fight, rpg);
-    }
     updates_spells(fight, rpg);
 }

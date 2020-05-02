@@ -90,38 +90,54 @@ void change_position_fireball(spell_t *spell, sfVector2f pos)
 
 void fireball_damage_player(fight_t *fight, rpg_t *rpg, spell_t *spell)
 {
-    if (rpg->status == 11) {
-        if (fight->boss->in_live == 1)
-            if (spell->pos.x > fight->boss->pos.x - 200 &&
-            spell->pos.x < fight->boss->pos.x + 200 &&
-            spell->pos.y > fight->boss->pos.y - 150 &&
-            spell->pos.y < fight->boss->pos.y + 150) {
-                fight->boss->life -= spell->damage;
-                if (fight->boss->life <= 0)
-                    rpg->quest.scd_quest.nb_kills += 100;
-            }
-        fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
-        sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
-    }
+    if (fight->boss->in_live == 1)
+        if (spell->pos.x > fight->boss->pos.x - 200 &&
+        spell->pos.x < fight->boss->pos.x + 200 &&
+        spell->pos.y > fight->boss->pos.y - 150 &&
+        spell->pos.y < fight->boss->pos.y + 150) {
+            fight->boss->life -= spell->damage;
+            (fight->boss->life <= 0) ? (rpg->quest.scd_quest.nb_kills += 100) :
+            (rpg->quest.scd_quest.nb_kills = rpg->quest.scd_quest.nb_kills);
+        }
+    fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
+    sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
+}
+
+void check_touch_ennemie_fireball_two(fight_t *fight, rpg_t *rpg,
+spell_t *spell, int i)
+{
+    if (fight->enns[i].in_live == 1)
+        if (spell->pos.x > fight->enns[i].pos.x - 25 &&
+        spell->pos.x < fight->enns[i].pos.x + 25 &&
+        spell->pos.y > fight->enns[i].pos.y - 35 &&
+        spell->pos.y < fight->enns[i].pos.y + 35) {
+            fight->enns[i].life -= spell->damage;
+            (fight->enns[i].life <= 0) ? (rpg->quest.scd_quest.nb_kills += 1) :
+            (rpg->quest.scd_quest.nb_kills = rpg->quest.scd_quest.nb_kills);
+        }
+    fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
+    sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite,
+    fight->enns[i].buttons[1].rect);
 }
 
 void check_touch_ennemie_fireball(fight_t *fight, rpg_t *rpg, spell_t *spell)
 {
     for (int i = 0; i < fight->nb_enn; i++) {
-        if (fight->enns[i].in_live == 1)
-            if (spell->pos.x > fight->enns[i].pos.x - 25 &&
-            spell->pos.x < fight->enns[i].pos.x + 25 &&
-            spell->pos.y > fight->enns[i].pos.y - 35 &&
-            spell->pos.y < fight->enns[i].pos.y + 35) {
-                fight->enns[i].life -= spell->damage;
-                if (fight->enns[i].life <= 0)
-                    rpg->quest.scd_quest.nb_kills += 1;
-            }
-        fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
-        sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].rect);
+        check_touch_ennemie_fireball_two(fight, rpg, spell, i);
+        // if (fight->enns[i].in_live == 1)
+        //     if (spell->pos.x > fight->enns[i].pos.x - 25 &&
+        //     spell->pos.x < fight->enns[i].pos.x + 25 &&
+        //     spell->pos.y > fight->enns[i].pos.y - 35 &&
+        //     spell->pos.y < fight->enns[i].pos.y + 35) {
+        //         fight->enns[i].life -= spell->damage;
+        //         if (fight->enns[i].life <= 0)
+        //             rpg->quest.scd_quest.nb_kills += 1;
+        //     }
+        // fight->enns[i].buttons[1].rect.width = fight->enns[i].life + 2;
+        // sfSprite_setTextureRect(fight->enns[i].buttons[1].sprite, fight->enns[i].buttons[1].rect);
     }
-    fireball_damage_player(fight, rpg, spell);
-    // if (rpg->status == 11) {
+    if (rpg->status == 11)
+        fireball_damage_player(fight, rpg, spell);
     //     if (fight->boss->in_live == 1)
     //         if (spell->pos.x > fight->boss->pos.x - 200 &&
     //         spell->pos.x < fight->boss->pos.x + 200 &&
@@ -184,6 +200,7 @@ int update_fireballs(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
         check_touch_ennemie_fireball(fight, rpg, spell);
         return (cooldown_fireball(spell));
     }
+    return (1);
 }
 
 void launch_fireball(fight_t *fight, rpg_t *rpg)

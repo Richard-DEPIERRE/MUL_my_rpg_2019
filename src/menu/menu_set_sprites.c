@@ -22,6 +22,21 @@ char *int_to_char(int nb)
     return (res);
 }
 
+game_obj_R_t modify_from_type(game_obj_R_t object, enum BACK_R_s type)
+{
+    if (type == SIDONIA)
+        sfSprite_setScale(object.sprite, (sfVector2f){1.5, 1.5});
+    if (type == PLUS_FPS || type == MINUS_FPS ||
+    type == PLUS_MUSIC || type == MINUS_MUSIC ||
+    type == PLUS_EFFECT || type == MINUS_EFFECT)
+        sfSprite_setScale(object.sprite, (sfVector2f){0.4, 0.4});
+    if ((type >= 1 && type <= 7) || type == MUSIC || type == EFECT )
+        sfSprite_setScale(object.sprite, (sfVector2f){1.4, 1.4});
+    if (type == BACKGROUND)
+        sfSprite_setScale(object.sprite, (sfVector2f){1.9, 1.9});
+    return (object);
+}
+
 game_obj_R_t create_object(char *filepath, sfVector2f pos, sfIntRect rect, \
 enum BACK_R_s type)
 {
@@ -35,17 +50,7 @@ enum BACK_R_s type)
     object.rect = rect;
     object.pos = pos;
     object.type = type;
-    if (type == SIDONIA)
-        sfSprite_setScale(object.sprite, (sfVector2f){1.5, 1.5});
-    if (type == PLUS_FPS || type == MINUS_FPS ||
-    type == PLUS_MUSIC || type == MINUS_MUSIC ||
-    type == PLUS_EFFECT || type == MINUS_EFFECT)
-        sfSprite_setScale(object.sprite, (sfVector2f){0.4, 0.4});
-    if ((type >= 1 && type <= 7) || type == MUSIC || type == EFECT )
-        sfSprite_setScale(object.sprite, (sfVector2f){1.4, 1.4});
-    if (type == BACKGROUND)
-        sfSprite_setScale(object.sprite, (sfVector2f){1.9, 1.9});
-    return (object);
+    return (modify_from_type(object, type));
 }
 
 void make_text(text_R_t *text, char *str, char *file)
@@ -60,19 +65,29 @@ void make_text(text_R_t *text, char *str, char *file)
     sfText_setColor(text->text, sfWhite);
 }
 
-void set_menu_sprites(rpg_t *rpg)
+void malloc_everything(rpg_t *rpg)
 {
     rpg->clock = malloc(sizeof(*rpg->clock) * 3);
     rpg->spawn = malloc(sizeof(*rpg->clock));
     rpg->spawn->clock = sfClock_create();
     rpg->menu = malloc(sizeof(*rpg->menu) * 22);
     rpg->text = malloc(sizeof(*rpg->text) * 24);
+}
+
+void set_menu_sprites(rpg_t *rpg)
+{
+    malloc_everything(rpg);
+    // rpg->clock = malloc(sizeof(*rpg->clock) * 3);
+    // rpg->spawn = malloc(sizeof(*rpg->clock));
+    // rpg->spawn->clock = sfClock_create();
+    // rpg->menu = malloc(sizeof(*rpg->menu) * 22);
+    // rpg->text = malloc(sizeof(*rpg->text) * 24);
     char *name[] = {"PLAY\0", "CONTINUE\0", "OPTIONS\0", "QUIT\0", "FPS",
     "SOUND", "BACK", "FPS", "NULL", "BACK", "MUSIC", "NULL", "SOUND", "PAUSE",
     "HOME", "RESUME", "QUIT", "PAUSE", "EASY", "HARD", NULL};
     initialize_text(rpg, name);
-    rpg->menu[0] = create_object("assets/sprites/menu/logo.png",
-    (sfVector2f){1550, 50}, (sfIntRect){0, 0, 200, 200}, SIDONIA);
+    // rpg->menu[0] = create_object("assets/sprites/menu/logo.png",
+    // (sfVector2f){1550, 50}, (sfIntRect){0, 0, 200, 200}, SIDONIA);
     for (int i = 1; i < 5; i += 1)
         rpg->menu[i] = create_object("assets/sprites/menu/button.png",
         (sfVector2f){150, 200 + ((i - 1) * 200)},
@@ -85,7 +100,7 @@ void set_menu_sprites(rpg_t *rpg)
         rpg->menu[i] = create_object("assets/sprites/menu/button.png",
         (sfVector2f){743, 250 + (((i - 14) - 5) * 225)},
         (sfIntRect){0, 0, 310, 78}, SIDONIA + (i - 14));
-    rpg->menu[18] = create_object("assets/sprites/menu/pause.png",
-    (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, PAUSE);
+    // rpg->menu[18] = create_object("assets/sprites/menu/pause.png",
+    // (sfVector2f){20, 20}, (sfIntRect){0, 0, 100, 100}, PAUSE);
     set2(rpg, name);
 }

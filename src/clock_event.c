@@ -53,6 +53,13 @@ void animation_player(player_t *player)
     sfSprite_setTextureRect(player->sprite, player->rect);
 }
 
+void update_particles(rpg_t *rpg)
+{
+    for (size_t index = 0; index < PARICULE_MAX; index++)
+        update_particle(&rpg->screen->particle_environment, \
+        &rpg->screen->particle[index]);
+}
+
 void clock_event(rpg_t *rpg, clock_s *clock)
 {
     clock->time = sfClock_getElapsedTime(clock->clock);
@@ -80,9 +87,10 @@ void clock_event(rpg_t *rpg, clock_s *clock)
         //si t'as besoin, tu changes la vitesse de la clock en changeant le 0.06
         sfClock_restart(clock->clock);
     }
-    for (size_t index = 0; index < PARICULE_MAX; index++)
-        update_particle(&rpg->screen->particle_environment, \
-        &rpg->screen->particle[index]);
-    sfRenderWindow_setFramerateLimit(rpg->win, rpg->fps);
+    update_particles(rpg);
+    // for (size_t index = 0; index < PARICULE_MAX; index++)
+    //     update_particle(&rpg->screen->particle_environment, \
+    //     &rpg->screen->particle[index]);
+    // sfRenderWindow_setFramerateLimit(rpg->win, rpg->fps);
 
 }

@@ -89,6 +89,16 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
 
+// int get_fd(char *str)
+// {
+//     fd = open(str, O_RDONLY);
+//     if (fd == 84)
+//         return (84);
+//     if (stat(str, &fileStat) < 0)
+//         return (84);
+//     return (0);
+// }
+
 int init_save(rpg_t *rpg, game_obj_t *obj)
 {
     struct stat fileStat;

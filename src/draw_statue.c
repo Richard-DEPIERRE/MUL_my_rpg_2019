@@ -9,7 +9,8 @@
 #include "rpg.h"
 #include "rafik.h"
 
-void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj __attribute__((unused)))
+void display_item(sfRenderWindow *win, rpg_t *rpg,
+game_obj_t *obj __attribute__((unused)))
 {
     if (rpg->quest.act != 0) {
         sfVector2f pos;
@@ -23,15 +24,14 @@ void display_item(sfRenderWindow *win, rpg_t *rpg, game_obj_t *obj __attribute__
 void display_inventory(sfRenderWindow *win, rpg_t *rpg)
 {
     // printf("ACT:%d\n", rpg->quest.act);
-    if (rpg->quest.act == 1) {
+    if (rpg->quest.act == 1)
         rpg->quest.invent_rect.left = 0;
-    } else if (rpg->quest.act == 2) {
+    if (rpg->quest.act == 2)
         rpg->quest.invent_rect.left = 1920;
-    } else if (rpg->quest.act == 3) {
+    else if (rpg->quest.act == 3)
         rpg->quest.invent_rect.left = 3840;
-    } else if (rpg->quest.act == 0) { //c'était 3 mais c'est trop bizarre
+    else if (rpg->quest.act == 0)//c'était 3 mais c'est trop bizarre
         rpg->quest.invent_rect.left = 5760;
-    }
     // printf("LEFT:%d\n", rpg->quest.invent_rect.left);
     sfSprite_setTextureRect(rpg->quest.invent_s, rpg->quest.invent_rect);
     sfRenderWindow_drawSprite(win, rpg->quest.invent_s, NULL);
@@ -94,27 +94,61 @@ void display_seconds_quests(sfRenderWindow *win, scd_quest_t *quest)
     }
 }
 
+void display_message(rpg_t *rpg, sfRenderWindow *win)
+{
+    // printf("message : %d\n", rpg->quest.message);
+    sfIntRect rect = {0, 0, 1920, 1080};
+    if (rpg->quest.message > 0) {
+        if (rpg->quest.message == 2)
+            rect.top = 1080;
+        sfSprite_setTextureRect(rpg->quest.msg, rect);
+        sfRenderWindow_drawSprite(win, rpg->quest.msg, NULL);
+    }
+}
+
+void draw_third_status(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
+{
+    sfRenderWindow_clear(win, sfBlack);
+    sfRenderWindow_drawSprite(win, obj->sprite, NULL);
+    display_item(win, rpg, obj);
+    sfRenderWindow_drawSprite(win, rpg->player.sprite, NULL);
+    sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
+    sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
+    if (rpg->level == 22)
+        sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
+    display_inventory(win, rpg);
+    display_seconds_quests(win, &rpg->quest.scd_quest);
+    display_message(rpg, win);
+    for (size_t index = 0; index < PARICULE_MAX; index++)
+        display_particle(win, &rpg->screen->particle[index], \
+        rpg->screen->particle_environment.circle_shape);
+    //display_item(win, rpg, obj); //attention il faut supprimer
+    sfRenderWindow_display(win);
+}
+
 void draw_statue(rpg_t *rpg, sfRenderWindow *win, game_obj_t *obj)
 {
     if (rpg->status == 0)
         draw_menu(rpg, win);
     if (rpg->status == 3) {
-        sfRenderWindow_clear(win, sfBlack);
-        sfRenderWindow_drawSprite(win, obj->sprite, NULL);
-        display_item(win, rpg, obj);
-        sfRenderWindow_drawSprite(win, rpg->player.sprite, NULL);
-        sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
-        sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
-        if (rpg->level == 22)
-            sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
-        display_inventory(win, rpg);
-        display_seconds_quests(win, &rpg->quest.scd_quest);
-        if (rpg->quest.message == 1)
-            sfRenderWindow_drawSprite(win, rpg->quest.msg, NULL);
-        for (size_t index = 0; index < PARICULE_MAX; index++)
-                display_particle(win, &rpg->screen->particle[index], \
-                rpg->screen->particle_environment.circle_shape);
-        sfRenderWindow_display(win);
+        draw_third_status(rpg, win, obj);
+        // sfRenderWindow_clear(win, sfBlack);
+        // sfRenderWindow_drawSprite(win, obj->sprite, NULL);
+        // display_item(win, rpg, obj);
+        // sfRenderWindow_drawSprite(win, rpg->player.sprite, NULL);
+        // sfRenderWindow_drawSprite(win, rpg->perspec.sprite, NULL);
+        // sfRenderWindow_drawSprite(win, rpg->menu[18].sprite, NULL);
+        // if (rpg->level == 22)
+        //     sfRenderWindow_drawSprite(win, rpg->quest.arrow, NULL);
+        // display_inventory(win, rpg);
+        // display_seconds_quests(win, &rpg->quest.scd_quest);
+        // if (rpg->quest.message == 1)
+        //     sfRenderWindow_drawSprite(win, rpg->quest.msg, NULL);
+        // for (size_t index = 0; index < PARICULE_MAX; index++)
+        //         display_particle(win, &rpg->screen->particle[index], \
+        //         rpg->screen->particle_environment.circle_shape);
+        // display_item(win, rpg, obj); //attention il faut supprimer
+        // sfRenderWindow_display(win);
     }
     draw_statues(rpg, win, obj);
 }

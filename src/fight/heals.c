@@ -17,10 +17,8 @@ void animation_health(spell_t *spell)
             spell->rect.left += 60;
         } else {
             spell->rect.left = 0;
-            if (spell->rect.top < 300 - 60)
-                spell->rect.top += 60;
-            else
-                spell->rect.top = 0;
+            (spell->rect.top < 300 - 60) ?
+            (spell->rect.top += 60) : (spell->rect.top = 0);
         }
         sfClock_restart(spell->clock);
     }
@@ -37,7 +35,8 @@ void launch_first_health(fight_t *fight, sfVector2f player_pos)
     fight->spell[3].final_pos = final_pos;
     fight->spell[3].activated = 1;
     sfClock_restart(fight->spell[3].clock_cd.clock);
-    fight->spell[3].calc = (int)(((100 - fight->player.life) * 0.25) / 12);
+    fight->spell[3].calc = (int)(((100 - fight->player.life) * 0.25) / 6);
+    fight->spell[3].calc += 1;
     // printf("CALC:%d\n", fight->spell[3].calc);
 }
 
@@ -108,6 +107,7 @@ void heal_up(spell_t *spell, fight_t *fight)
     sfTime time = sfClock_getElapsedTime(spell->health);
     float second = time.microseconds / 1000000.0;
 
+    printf("player.life : %d\nspell->calc : %d\n", fight->player.life, spell->calc);
     if (second > 0.25) {
         fight->player.life += spell->calc;
         fight->buttons[3].rect.width = fight->player.life * 2 + 4;

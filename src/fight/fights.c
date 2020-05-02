@@ -98,9 +98,8 @@ void win_boss_fight(fight_t *fight, rpg_t *rpg)
         set_particules_for_feux_d_artifices(&rpg->screen->particle_environment);
         tmp += 1;
     }
-    if (tmp > 0) {
+    if (tmp > 0)
         feux_d_artifices(rpg);
-    }
     if (rpg->status == 11 && fight->player.pos.x >= 1880 &&
     fight->boss->life <= 0) {
         stop_all_music(rpg);

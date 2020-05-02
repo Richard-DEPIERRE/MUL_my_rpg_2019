@@ -51,12 +51,9 @@ fight_t *fight)
     clock->time = sfClock_getElapsedTime(clock->clock);
     clock->second = clock->time.microseconds / 1000000.0;
     if (clock->second > 0.06) {
-        if (direct == 1 || direct == 3 || direct == 5 || direct == 7) {
-            if (player->rect.left < 64 * 7 + 32) {
-                player->rect.left += 64;
-            } else
-                player->rect.left = 64;
-        }
+        if (direct == 1 || direct == 3 || direct == 5 || direct == 7)
+            (player->rect.left < 64 * 7 + 32) ? (player->rect.left += 64) :
+            (player->rect.left = 64);
         sfSprite_setTextureRect(player->player, player->rect);
         sfClock_restart(clock->clock);
     }

@@ -189,7 +189,8 @@ void rect_pause(sfVector2i mouse, rpg_t *rpg)
         rpg->fight->buttons[5].rect.left = 0;
     }
     sfSprite_setTextureRect(rpg->menu[18].sprite, rpg->menu[18].rect);
-    sfSprite_setTextureRect(rpg->fight->buttons[5].sprite, rpg->fight->buttons[5].rect);
+    sfSprite_setTextureRect(rpg->fight->buttons[5].sprite,
+    rpg->fight->buttons[5].rect);
 }
 
 void global_event(rpg_t *rpg, game_obj_t *background)
