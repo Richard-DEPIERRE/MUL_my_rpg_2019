@@ -20,8 +20,10 @@ __attribute__((unused)) rpg_t *rpg, int i)
 {
     if (fight->enns[i].in_live) {
         if (fight->enns[i].life < 100) {
-            sfRenderWindow_drawSprite(win, fight->enns[i].buttons[0].sprite, NULL);
-            sfRenderWindow_drawSprite(win, fight->enns[i].buttons[1].sprite, NULL);
+            sfRenderWindow_drawSprite(win,
+            fight->enns[i].buttons[0].sprite, NULL);
+            sfRenderWindow_drawSprite(win,
+            fight->enns[i].buttons[1].sprite, NULL);
         }
         sfRenderWindow_drawSprite(win, fight->enns[i].enn, NULL);
     }
@@ -31,7 +33,8 @@ void display_spell(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
 {
     for (int i = 0; i < 3; i += 1)
         if (fight->boss_spell[i].activated == 1)
-            sfRenderWindow_drawSprite(win, rpg->fight->boss_spell[i].sprite, NULL);
+            sfRenderWindow_drawSprite(win,
+            rpg->fight->boss_spell[i].sprite, NULL);
 }
 
 void display_enns(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
@@ -46,7 +49,8 @@ void display_enns(fight_t *fight, sfRenderWindow *win, rpg_t *rpg)
         sfRenderWindow_drawSprite(win, fight->buttons[13].sprite, NULL);
         display_spell(fight, win, rpg);
     }
-    for (int i = 0; i < fight->nb_enn && rpg->status != 10 && rpg->status != 11; i++)
+    for (int i = 0; i < fight->nb_enn && rpg->status != 10
+    && rpg->status != 11; i++)
         display_enns_fight(fight, win, rpg, i);
 }
 

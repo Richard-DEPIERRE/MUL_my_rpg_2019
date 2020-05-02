@@ -57,8 +57,8 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
         rpg->menu_status = 1;
 }
 
-void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t
-*obj __attribute__((unused)))
+void click_menu_six(rpg_t *rpg, sfVector2i mouse,
+game_obj_t *obj __attribute__((unused)))
 {
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 250 && mouse.y < 359.2)

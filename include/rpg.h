@@ -354,8 +354,10 @@ __attribute__((unused)) int value, sfVector2f *delta);
 spell_t use_spell(spell_t spell, fight_t *fight, int value);
 void animation_black_hole_two(spell_t *spell);
 void animation_black_hole(spell_t *spell);
-void pos_rotat_two(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt);
-void pos_rotat_(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt);
+void pos_rotat_two(sfVector2f *pos, sfVector2f player_pos, int rad,
+sfSprite *sprt);
+void pos_rotat_(sfVector2f *pos, sfVector2f player_pos, int rad,
+sfSprite *sprt);
 void check_touch_ennemie_black_hole_two(fight_t *fight, rpg_t *rpg,
 spell_t *spell, int i);
 void check_touch_ennemie_black_hole(fight_t *fight, rpg_t *rpg, spell_t *spell);
@@ -516,5 +518,10 @@ void my_set_sprites(game_obj_t *obj, rpg_t *rpg);
 void fireball_damage_player(fight_t *fight, rpg_t *rpg, spell_t *spell);
 void upgrade_player(fight_t *fight, int nb_win);
 void set_cooldown_(float res, spell_t *spell);
+void begin_action_three_two(rpg_t *rpg,
+__attribute__((unused)) game_obj_t *background);
+void begin_action_three(rpg_t *rpg, game_obj_t *background);
+void action_three(rpg_t *rpg, game_obj_t *background);
+void action_two(rpg_t *rpg, game_obj_t *background);
 
 #endif /* !RPG_H_ */

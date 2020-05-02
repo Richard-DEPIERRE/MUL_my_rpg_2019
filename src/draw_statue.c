@@ -12,15 +12,15 @@
 void update_count(scd_quest_t *quest)
 {
     if (quest->nb_win < 3) {
-        sfText_setString(quest->text[0].text, my_strcat(quest->text[0].str,\
+        sfText_setString(quest->text[0].text, my_strcat(quest->text[0].str, \
         int_to_string(quest->nb_win)));
     }
     if (quest->nb_kills < 15) {
-        sfText_setString(quest->text[1].text, my_strcat(quest->text[1].str,\
-         int_to_string(quest->nb_kills)));
+        sfText_setString(quest->text[1].text, my_strcat(quest->text[1].str, \
+        int_to_string(quest->nb_kills)));
     } else if (quest->nb_kills < 30) {
-        sfText_setString(quest->text[2].text, my_strcat(quest->text[2].str,\
-         int_to_string(quest->nb_kills)));
+        sfText_setString(quest->text[2].text, my_strcat(quest->text[2].str, \
+        int_to_string(quest->nb_kills)));
     }
 }
 

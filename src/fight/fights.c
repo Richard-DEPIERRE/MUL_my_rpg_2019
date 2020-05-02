@@ -58,7 +58,6 @@ void upgrade_player(fight_t *fight, int nb_win)
 
 void check_end_fight(fight_t *fight, rpg_t *rpg)
 {
-
     if (fight->player.life <= 0) {
         reset_ennemies(fight);
         stop_all_music(rpg);
@@ -69,7 +68,8 @@ void check_end_fight(fight_t *fight, rpg_t *rpg)
         fight->player.life = 100;
         rpg->quest.tmp = 0;
         fight->buttons[3].rect.width = fight->player.life * 2 + 4;
-        sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
+        sfSprite_setTextureRect(fight->buttons[3].sprite,
+        fight->buttons[3].rect);
         fight->player.pos = (sfVector2f){1920 / 2, 1080 / 2};
         sfSprite_setPosition(fight->player.player, fight->player.pos);
     }

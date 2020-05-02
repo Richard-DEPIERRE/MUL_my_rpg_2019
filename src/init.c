@@ -59,6 +59,20 @@ fight_t *init_one(fight_t *fight)
     return (init_one_second(fight));
 }
 
+fight_t *init_variables_for_fights_two(fight_t *fight)
+{
+    sfRectangleShape_setOutlineThickness(fight->inventory.show, 6);
+    sfRectangleShape_setFillColor(fight->inventory.show,
+    sfColor_fromRGBA(0, 0, 0, 0));
+    sfRectangleShape_setOutlineColor(fight->inventory.show,
+    sfColor_fromRGBA(50, 50, 50, 255));
+    sfSprite_setTexture(fight->inventory.sprite,
+    fight->inventory.texture, sfTrue);
+    sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
+    sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
+    return (init_one(fight));
+}
+
 fight_t *init_variables_for_fights(fight_t *fight)
 {
     fight = malloc(sizeof(fight_t));
@@ -72,14 +86,5 @@ fight_t *init_variables_for_fights(fight_t *fight)
     fight->inventory.show = sfRectangleShape_create();
     sfRectangleShape_setSize(fight->inventory.show,
     (sfVector2f) {110 - 12, 90 - 22});
-    sfRectangleShape_setOutlineThickness(fight->inventory.show, 6);
-    sfRectangleShape_setFillColor(fight->inventory.show,
-    sfColor_fromRGBA(0, 0, 0, 0));
-    sfRectangleShape_setOutlineColor(fight->inventory.show,
-    sfColor_fromRGBA(50, 50, 50, 255));
-    sfSprite_setTexture(fight->inventory.sprite,
-    fight->inventory.texture, sfTrue);
-    sfSprite_setPosition(fight->inventory.sprite, (sfVector2f) {577, 926});
-    sfSprite_setPosition(fight->background, (sfVector2f) {0, 0});
-    return (init_one(fight));
+    return (init_variables_for_fights_two(fight));
 }

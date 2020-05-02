@@ -45,6 +45,7 @@ SRC	=	src/clics_handlings.c						\
 		src/create_perspective.c					\
 		src/tuto/draw_tuto.c						\
 		src/tuto/tuto.c								\
+		src/tuto/tuto_two.c								\
 		src/keys_handlings.c						\
 		src/handling_items.c						\
 		src/handling_items_two.c					\

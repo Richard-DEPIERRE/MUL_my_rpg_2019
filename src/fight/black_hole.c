@@ -24,14 +24,16 @@ int cooldown_black_holes(spell_t *spell)
         sfClock_restart(spell->clock_cd.clock);
         tmp = 1;
         return (1);
-    } else if (spell->activated == 1 && tmp == 1 && spell->clock_cd.seconds > 1.5) {
+    } else if (spell->activated == 1 && tmp == 1 &&
+    spell->clock_cd.seconds > 1.5) {
         spell->activated = 2;
         sfClock_restart(spell->clock_cd.clock);
     }
     return (displays_cooldown_black(spell, &tmp));
 }
 
-int update_black_holes(spell_t *spell, sfVector2f pos, fight_t *fight, rpg_t *rpg)
+int update_black_holes(spell_t *spell, sfVector2f pos,
+fight_t *fight, rpg_t *rpg)
 {
     if (spell->activated == 1 || spell->activated == 2) {
         if (spell->activated == 1) {

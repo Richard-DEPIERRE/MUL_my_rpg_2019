@@ -40,10 +40,10 @@ void set_seconds_quests(scd_quest_t *quest)
     sfSprite_setTexture(quest->sprite, quest->texture, sfTrue);
 
     set_int_seconds_quests(quest);
-    make_text(&quest->text[0], "  Win 3 fights\n\nto unlock a heal\n\n     \
- spell\n\n\n\n  fights won : ", path);
-    make_text(&quest->text[1], " Kill 15 ennemies\n\nto unlock a speed\n\n\
-      spell\n\n\n\n     ennemies\n\n    killed : ", path);
+    make_text(&quest->text[0], "  Win 3 fights\n\nto unlock a heal\n\n      \
+spell\n\n\n\n  fights won : ", path);
+    make_text(&quest->text[1], " Kill 15 ennemies\n\nto unlock a speed\n\n  \
+    spell\n\n\n\n     ennemies\n\n    killed : ", path);
     make_text(&quest->text[2], " Kill 30 ennemies\n\n   to unlock a\n\n black \
 hole  spell\n\n\n\n     ennemies\n\n    killed : ", path);
 }

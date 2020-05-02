@@ -39,7 +39,8 @@ void move_boss_two(fight_t *fight, float truc1, float truc2)
             (sfVector2f){truc1, truc2}, tmp);
             fight->player.life -= 1;
             fight->buttons[3].rect.width = fight->player.life * 2 + 4;
-            sfSprite_setTextureRect(fight->buttons[3].sprite, fight->buttons[3].rect);
+            sfSprite_setTextureRect(fight->buttons[3].sprite,
+            fight->buttons[3].rect);
         }
     boss_attack(fight, &max);
     boss_anim(fight);

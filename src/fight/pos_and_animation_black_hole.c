@@ -34,7 +34,8 @@ void animation_black_hole(spell_t *spell)
     sfSprite_setTextureRect(spell->sprite, spell->rect);
 }
 
-void pos_rotat_two(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
+void pos_rotat_two(sfVector2f *pos, sfVector2f player_pos,
+int rad, sfSprite *sprt)
 {
     if (rad == 0) {
         pos->y = player_pos.y;
