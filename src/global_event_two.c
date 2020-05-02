@@ -92,20 +92,15 @@ void move_rect(game_obj_t *obj, sfVector2f mouvement, rpg_t *rpg)
     sfVector2i pos = {((obj->rect.left) + 480 - 16),
     ((obj->rect.top) + 270 - 16)};
 
-    rpg->clock_rect.time = sfClock_getElapsedTime(rpg->clock_rect.clock);
-    rpg->clock_rect.seconds = rpg->clock_rect.time.microseconds / 1000000.0;
-    if (rpg->clock_rect.seconds > 0.01) {
-        pos.x *= 2;
-        pos.y *= 2;
-        if (mouvement.x != 0)
-            move_x(pos, obj, rpg, mouvement.x);
-        if (mouvement.y != 0)
-            move_y(pos, obj, rpg, mouvement.y);
-        pos.x /= 32;
-        pos.y /= 32;
-        sfSprite_setTextureRect(obj->sprite, obj->rect);
-        rpg->perspec.rect = obj->rect;
-        sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
-        sfClock_restart(rpg->clock_rect.clock);
-    }
+    pos.x *= 2;
+    pos.y *= 2;
+    if (mouvement.x != 0)
+        move_x(pos, obj, rpg, mouvement.x);
+    if (mouvement.y != 0)
+        move_y(pos, obj, rpg, mouvement.y);
+    pos.x /= 32;
+    pos.y /= 32;
+    sfSprite_setTextureRect(obj->sprite, obj->rect);
+    rpg->perspec.rect = obj->rect;
+    sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }

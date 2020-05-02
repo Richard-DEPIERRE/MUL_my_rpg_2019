@@ -45,18 +45,19 @@ void upgrade_ennemies(ennemies_t *enns, int act, fight_t *fight)
 
 void choice_deplacement(game_obj_t *background, rpg_t *rpg)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
-        move_rect(background, (sfVector2f) {-speed(), 0}, rpg);
-        return;
-    } if (sfKeyboard_isKeyPressed(sfKeyD)) {
-        move_rect(background, (sfVector2f) {speed(), 0}, rpg);
-        return;
-    } if (sfKeyboard_isKeyPressed(sfKeyZ)) {
-        move_rect(background, (sfVector2f) {0, -speed()}, rpg);
-        return;
-    } if (sfKeyboard_isKeyPressed(sfKeyS)) {
-        move_rect(background, (sfVector2f) {0, speed()}, rpg);
-        return;
+    rpg->clock_rect.time = sfClock_getElapsedTime(rpg->clock_rect.clock);
+    rpg->clock_rect.seconds = rpg->clock_rect.time.microseconds / 1000000.0;
+    if (rpg->clock_rect.seconds > 0.01) {
+        if (sfKeyboard_isKeyPressed(sfKeyQ)) {
+            move_rect(background, (sfVector2f) {-speed(), 0}, rpg);
+        } if (sfKeyboard_isKeyPressed(sfKeyD)) {
+            move_rect(background, (sfVector2f) {speed(), 0}, rpg);
+        } if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+            move_rect(background, (sfVector2f) {0, -speed()}, rpg);
+        } if (sfKeyboard_isKeyPressed(sfKeyS)) {
+            move_rect(background, (sfVector2f) {0, speed()}, rpg);
+        }
+        sfClock_restart(rpg->clock_rect.clock);
     }
 }
 
