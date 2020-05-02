@@ -146,13 +146,13 @@ void tuto(rpg_t *rpg, game_obj_t *background)
         if (rpg->tuto.action == 0) {
             set_tuto(rpg, background);
             rpg->tuto.action = 1;
-        } else if (rpg->tuto.action == 1) {
-            action_one(rpg, background);
-        } else if (rpg->tuto.action == 2) {
-            action_two(rpg, background);
-        } else if (rpg->tuto.action == 3) {
-            action_three(rpg, background);
         }
+        if (rpg->tuto.action == 1)
+            action_one(rpg, background);
+        if (rpg->tuto.action == 2)
+            action_two(rpg, background);
+        if (rpg->tuto.action == 3)
+            action_three(rpg, background);
         sfClock_restart(rpg->tuto.clock);
     }
 }
