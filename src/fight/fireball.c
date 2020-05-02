@@ -31,15 +31,18 @@ void pos_rotat(sfVector2f *pos, sfVector2f player_pos, int rad, sfSprite *sprt)
         pos->y = player_pos.y + 300;
         pos->x = player_pos.x;
         sfSprite_setRotation(sprt, rad);
-    } else if (rad == 270) {
+    }
+    if (rad == 270) {
         pos->y = player_pos.y - 300;
         pos->x = player_pos.x;
         sfSprite_setRotation(sprt, rad);
-    } else if (rad == 0) {
+    }
+    if (rad == 0) {
         pos->y = player_pos.y;
         pos->x = player_pos.x + 300;
         sfSprite_setRotation(sprt, rad);
-    } else if (rad == 180) {
+    }
+    if (rad == 180) {
         pos->y = player_pos.y;
         pos->x = player_pos.x - 300;
         sfSprite_setRotation(sprt, rad);
@@ -51,21 +54,19 @@ void launch_first_fireball(fight_t *fight, sfVector2f player_pos)
     sfVector2f final_pos = {0, 0};
     WEAPONS current = fight->player.weapon;
 
-    if (fight->player.direct == 0 || fight->player.direct == 5) {
+    if (fight->player.direct == 0 || fight->player.direct == 5)
         pos_rotat(&final_pos, player_pos, 90, fight->spell[0].sprite);
-    } else if (fight->player.direct == 1) {
+    if (fight->player.direct == 1)
         pos_rotat(&final_pos, player_pos, 270, fight->spell[0].sprite);
-    } else if (fight->player.direct == 3) {
+    if (fight->player.direct == 3)
         pos_rotat(&final_pos, player_pos, 0, fight->spell[0].sprite);
-    } else if (fight->player.direct == 7) {
+    if (fight->player.direct == 7)
         pos_rotat(&final_pos, player_pos, 180, fight->spell[0].sprite);
-    }
     fight->spell[0].pos = player_pos;
     fight->spell[0].direction = fight->player.direct;
     sfSprite_setPosition(fight->spell[0].sprite, fight->spell[0].pos);
     fight->spell[0].final_pos = final_pos;
     fight->spell[0].activated = 1;
-
 }
 
 void change_position_fireball(spell_t *spell, sfVector2f pos)

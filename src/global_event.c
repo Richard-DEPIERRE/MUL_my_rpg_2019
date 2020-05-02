@@ -15,17 +15,19 @@ int player_deplacement(rpg_t *rpg)
         move_up(&rpg->player);
         return (0);
     }
-    else if (sfKeyboard_isKeyPressed(sfKeyS)) {
+    if (sfKeyboard_isKeyPressed(sfKeyS)) {
         move_down(&rpg->player);
         return (0);
     }
-    else if (sfKeyboard_isKeyPressed(sfKeyQ))
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         move_left(&rpg->player);
-    else if (sfKeyboard_isKeyPressed(sfKeyD))
-        move_right(&rpg->player);
-    else {
-        dont_move(&rpg->player);
+        return (0);
     }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
+        move_right(&rpg->player);
+        return (0);
+    }
+    dont_move(&rpg->player);
     return (0);
 }
 

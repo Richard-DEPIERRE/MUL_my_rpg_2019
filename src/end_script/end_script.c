@@ -42,6 +42,7 @@ int final_act(rpg_t *rpg, end_script_t *end)
         rpg->menu_status = 0;
         rpg->player.pos.x = (1920 / 2) - (64 / 2);
         rpg->player.pos.y = (1080 / 2) - (64 / 2);
+        sfSprite_setPosition(rpg->player.sprite, rpg->player.pos);
         stop_all_music(rpg);
         sfSound_play(rpg->snd_menu);
         return (1);

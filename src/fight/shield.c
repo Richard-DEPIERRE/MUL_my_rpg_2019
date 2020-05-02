@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_rpg_2019
 ** File description:
-** shield
+** shield.c
 */
 
 #include "rpg.h"
@@ -38,16 +38,16 @@ void launch_first_shield(fight_t *fight, sfVector2f player_pos)
 void shield_damage_enn(fight_t *fight, rpg_t *rpg, spell_t *spell)
 {
     if (rpg->status == 11) {
-        if (fight->boss->in_live == 1)
-            if (spell->pos.x > fight->boss->pos.x - 200 &&
-            spell->pos.x < fight->boss->pos.x + 200 &&
-            spell->pos.y > fight->boss->pos.y - 150 &&
-            spell->pos.y < fight->boss->pos.y + 150) {
-                fight->boss->life -= spell->damage;
-                (fight->boss->life <= 0) ? (rpg->quest.scd_quest.nb_kills
-                += 100) : (rpg->quest.scd_quest.nb_kills =
-                rpg->quest.scd_quest.nb_kills);
-            }
+        if (fight->boss->in_live == 1 && 
+        (spell->pos.x > fight->boss->pos.x - 200 &&
+        spell->pos.x < fight->boss->pos.x + 200 &&
+        spell->pos.y > fight->boss->pos.y - 150 &&
+        spell->pos.y < fight->boss->pos.y + 150)) {
+            fight->boss->life -= spell->damage;
+            (fight->boss->life <= 0) ? (rpg->quest.scd_quest.nb_kills
+            += 100) : (rpg->quest.scd_quest.nb_kills =
+            rpg->quest.scd_quest.nb_kills);
+        }
         fight->buttons[13].rect.width = (int){(fight->boss->life) / 40} + 2;
         sfSprite_setTextureRect(fight->buttons[13].sprite, fight->buttons[13].rect);
     }

@@ -28,9 +28,9 @@ void display_inventory(sfRenderWindow *win, rpg_t *rpg)
         rpg->quest.invent_rect.left = 0;
     if (rpg->quest.act == 2)
         rpg->quest.invent_rect.left = 1920;
-    else if (rpg->quest.act == 3)
+    if (rpg->quest.act == 3)
         rpg->quest.invent_rect.left = 3840;
-    else if (rpg->quest.act == 0)//c'était 3 mais c'est trop bizarre
+    if (rpg->quest.act == 0)//c'était 3 mais c'est trop bizarre
         rpg->quest.invent_rect.left = 5760;
     // printf("LEFT:%d\n", rpg->quest.invent_rect.left);
     sfSprite_setTextureRect(rpg->quest.invent_s, rpg->quest.invent_rect);
