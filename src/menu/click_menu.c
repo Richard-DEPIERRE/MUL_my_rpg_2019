@@ -25,12 +25,12 @@ void click_menu_two(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 400 && mouse.y < 480) {
-        rpg->fps -= 30; //rpg->fps += 30; //inverser le sens
+        rpg->fps -= 30;
         sfRenderWindow_setFramerateLimit(rpg->win, rpg->fps);
     }
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 400 && mouse.y < 480) {
-        rpg->fps += 30; //rpg->fps -= 30;
+        rpg->fps += 30;
         sfRenderWindow_setFramerateLimit(rpg->win, rpg->fps);
     }
     if (mouse.x > 1510 && mouse.x < 1920 &&
@@ -42,22 +42,23 @@ void click_menu_three(rpg_t *rpg, sfVector2i mouse)
 {
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 700 && mouse.y < 780)
-        rpg->sound_volume -= 1; //rpg->sound_volume += 1;
+        rpg->sound_volume -= 1;
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 700 && mouse.y < 780)
-        rpg->sound_volume += 1; //rpg->sound_volume -= 1;
+        rpg->sound_volume += 1;
     if (mouse.x > 680 && mouse.x < 760 &&
     mouse.y > 300 && mouse.y < 380)
-        rpg->music_volume -= 1; //rpg->music_volume += 1;
+        rpg->music_volume -= 1;
     if (mouse.x > 1160 && mouse.x < 1240 &&
     mouse.y > 300 && mouse.y < 380)
-        rpg->music_volume += 1; //rpg->music_volume -= 1;
+        rpg->music_volume += 1;
     if (mouse.x > 1510 && mouse.x < 1920 &&
     mouse.y > 910 && mouse.y < 1080)
         rpg->menu_status = 1;
 }
 
-void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t *obj __attribute__((unused)))
+void click_menu_six(rpg_t *rpg, sfVector2i mouse, game_obj_t
+*obj __attribute__((unused)))
 {
     if (mouse.x > 743 && mouse.x < 1177 &&
     mouse.y > 250 && mouse.y < 359.2)

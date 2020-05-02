@@ -19,7 +19,7 @@ float stof(const char *s)
     }
     for (int point_seen = 0; *s; s++){
         if (*s == '.') {
-            point_seen = 1; 
+            point_seen = 1;
             continue;
         }
         d = *s - '0';

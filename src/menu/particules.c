@@ -9,7 +9,8 @@
 #include <stdio.h>
 
 void init_particle_environment(particle_environment_t *particle_environment,
-const sfVector2f angle, const sfVector2f gravity, const sfUint8 alpha __attribute__((unused)))
+const sfVector2f angle, const sfVector2f gravity, const
+sfUint8 alpha __attribute__((unused)))
 {
     particle_environment->angle_min = angle.x;
     particle_environment->angle_max = angle.y;

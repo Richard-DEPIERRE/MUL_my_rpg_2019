@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-float set_speed(player_fight_t *player, spell_t *spell)
+float set_speed(__attribute__((unused)) player_fight_t *player, spell_t *spell)
 {
     if (spell[4].activated == 1)
         return (6);
@@ -16,7 +16,7 @@ float set_speed(player_fight_t *player, spell_t *spell)
     return (2);
 }
 
-int keys(player_fight_t *player, spell_t *spell)
+int return_move(player_fight_t *player, spell_t *spell)
 {
     float speed = set_speed(player, spell);
 
@@ -37,6 +37,17 @@ int keys(player_fight_t *player, spell_t *spell)
         return (move_down_fight(player));
     }
     return (0);
+}
+
+int keys(player_fight_t *player, spell_t *spell)
+{
+    player->clocks.time = sfClock_getElapsedTime(player->clocks.clock);
+    player->clocks.second = player->clocks.time.microseconds / 1000000.0;
+    if (player->clocks.second > 0.01) {
+        sfClock_restart(player->clocks.clock);
+        return (return_move(player, spell));
+    }
+    return (1);
 }
 
 void animation_player_fight(player_fight_t *player, clock_s *clock,
@@ -61,8 +72,6 @@ fight_t *fight)
 
 void player_deplacements(player_fight_t *player, fight_t *fight)
 {
-    int a = 0;
-
     animation_player_fight(player, &player->clock, fight);
     sfSprite_setPosition(player->player, player->pos);
 }

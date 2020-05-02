@@ -8,11 +8,11 @@
 #include "rpg.h"
 #include "my.h"
 
-void clics_handlings(sfMouseButtonEvent event __attribute__((unused)), rpg_t *rpg, game_obj_t *obj)
+void clics_handlings(sfMouseButtonEvent event __attribute__((unused)),
+rpg_t *rpg, game_obj_t *obj)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(rpg->win);
 
-    // printf("%d, %d\n", mouse.x, mouse.y);
     if (rpg->status == 0) {
         click_menu(rpg, mouse, obj);
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
@@ -31,5 +31,4 @@ void clics_handlings(sfMouseButtonEvent event __attribute__((unused)), rpg_t *rp
         add_particle(&rpg->screen->particle_environment, rpg->screen->particle,
         35, (sfVector2f){mouse.x, mouse.y});
     }
-    //et là tu rajoutes tous les clics pour chacun des status avec pleins de conditions
 }

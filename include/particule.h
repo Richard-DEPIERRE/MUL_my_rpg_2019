@@ -10,10 +10,10 @@
 
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
-#include <math.h>           // cos() & sin()
-#include <stdlib.h>         // exit()
-#include <stdbool.h>        // bool
-#include <string.h>         // memeset()
+#include <math.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 #define PARICULE_ANGLE_MIN (0)
 #define PARICULE_ANGLE_MAX (M_PI * 4)
@@ -57,19 +57,19 @@ struct screen_s {
     particle_environment_t particle_environment;
 };
 
-// Initialise l'environnement des particules (vitesse, vélocité, gravité, ...)
-void init_particle_environment(particle_environment_t *particle_environment, const sfVector2f angle, const sfVector2f gravity, const sfUint8 alpha);
+void init_particle_environment(particle_environment_t *particle_environment,
+const sfVector2f angle, const sfVector2f gravity, const sfUint8 alpha);
 
-// Initialise une particule
-void init_particule(const particle_environment_t *particle_environment, particle_t *particule, const sfVector2f pos);
+void init_particule(const particle_environment_t *particle_environment,
+particle_t *particule, const sfVector2f pos);
 
-// Affiche une particule
-void display_particle(sfRenderWindow *window, const particle_t *particule, sfCircleShape *circle_shape);
+void display_particle(sfRenderWindow *window, const particle_t *particule,
+sfCircleShape *circle_shape);
 
-// Met à jour une particule
-void update_particle(const particle_environment_t *particle_environment, particle_t *particule);
+void update_particle(const particle_environment_t *particle_environment,
+particle_t *particule);
 
-// Rend particle_num particules actives
-void add_particle(const particle_environment_t *particle_environment, particle_t *particule, const size_t particle_num, const sfVector2f pos);
+void add_particle(const particle_environment_t *particle_environment,
+particle_t *particule, const size_t particle_num, const sfVector2f pos);
 
 #endif

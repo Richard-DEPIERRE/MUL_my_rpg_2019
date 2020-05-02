@@ -18,14 +18,4 @@
 #include <SFML/Window/JoystickIdentification.h>
 #include <SFML/Graphics/Export.h>
 
-// typedef struct game_obj_s
-// {
-//     sfSprite *sprite;
-//     sfTexture *texture;
-//     sfVector2f pos;
-//     sfVector2f scale;
-//     sfIntRect rect;
-//     sfClock *clock;
-// } game_obj_t;
-
 #endif /* !RAFIK_H_ */

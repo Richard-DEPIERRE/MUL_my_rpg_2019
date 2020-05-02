@@ -9,174 +9,27 @@
 #include "rafik.h"
 #include "my.h"
 
-char *stock_info2(char *str, char *tmp, int *size_tmp)
-{
-    int size = 0;
-    for (size = *size_tmp; str[size] && str[size] != ':'; size += 1);
-    tmp = malloc(sizeof(char) * (size - *size_tmp + 1));
-    tmp[size - *size_tmp] = '\0';
-    for (size = *size_tmp; str[size] && str[size] != ':'; size += 1)
-        tmp[size - *size_tmp] = str[size];
-    if (str[size])
-        *size_tmp = size + 1;
-    return (tmp);
-}
-
-void get_str_five(char *str, rpg_t *rpg, game_obj_t *obj)
-{
-    int size_tmp = 0;
-    char *tmp = NULL;
-
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fight->nb_enn = my_getnbr(tmp);
-    for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->enns[i].life = my_getnbr(tmp);
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->enns[i].pos.x = my_getnbr(tmp);
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->enns[i].pos.y = my_getnbr(tmp);
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->enns[i].tmp = my_getnbr(tmp);
-    }
-}
-
-void get_str_four(char *str, rpg_t *rpg, game_obj_t *obj)
-{
-    int size_tmp = 0;
-    char *tmp = NULL;
-
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fight->player.pos.y = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fight->player.life = my_getnbr(tmp);
-    for (int i = 0; i < 5; i += 1) {
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->spell[i].sec = stof(tmp);
-        tmp = stock_info2(str, tmp, &size_tmp);
-        rpg->fight->spell[i].damage = my_getnbr(tmp);
-    }
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fight->enns[0].velocity = stof(tmp);
-    get_str_five(str, rpg, obj);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->nb_enn = my_getnbr(tmp);
-    // for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].life = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.x = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.y = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].tmp = my_getnbr(tmp);
-    // }
-}
-
-void get_str_three(char *str, rpg_t *rpg, game_obj_t *obj)
-{
-    int size_tmp = 0;
-    char *tmp = NULL;
-
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.y = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->level = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fps = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.tmp = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.scd_quest.nb_kills = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.scd_quest.nb_win = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->fight->player.pos.x = my_getnbr(tmp);
-    get_str_four(str, rpg, obj);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->player.pos.y = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->player.life = my_getnbr(tmp);
-    // for (int i = 0; i < 5; i += 1) {
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->spell[i].sec = stof(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->spell[i].damage = my_getnbr(tmp);
-    // }
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->enns[0].velocity = stof(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->nb_enn = my_getnbr(tmp);
-    // for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].life = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.x = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.y = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].tmp = my_getnbr(tmp);
-    // }
-}
-
 void get_str2(char *str, rpg_t *rpg, game_obj_t *obj)
 {
     int size_tmp = 0;
-    char *tmp = NULL;
 
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->status = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    obj->rect.left = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    obj->rect.top = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.act = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->life = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->tuto.executed = my_getnbr(tmp);
-    tmp = stock_info2(str, tmp, &size_tmp);
-    rpg->quest.x = my_getnbr(tmp);
-    get_str_three(str, rpg, obj);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->quest.y = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->level = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fps = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->quest.tmp = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->quest.scd_quest.nb_kills = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->quest.scd_quest.nb_win = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->player.pos.x = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->player.pos.y = my_getnbr(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->player.life = my_getnbr(tmp);
-    // for (int i = 0; i < 5; i += 1) {
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->spell[i].sec = stof(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->spell[i].damage = my_getnbr(tmp);
-    // }
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->enns[0].velocity = stof(tmp);
-    // tmp = stock_info2(str, tmp, &size_tmp);
-    // rpg->fight->nb_enn = my_getnbr(tmp);
-    // for (int i = 0; i < rpg->fight->nb_enn; i += 1) {
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].life = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.x = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].pos.y = my_getnbr(tmp);
-    //     tmp = stock_info2(str, tmp, &size_tmp);
-    //     rpg->fight->enns[i].tmp = my_getnbr(tmp);
-    // }
+    rpg->status = generic_save(str, &size_tmp);
+    obj->rect.left = generic_save(str, &size_tmp);
+    obj->rect.top = generic_save(str, &size_tmp);
+    rpg->quest.act = generic_save(str, &size_tmp);
+    rpg->life = generic_save(str, &size_tmp);
+    rpg->tuto.executed = generic_save(str, &size_tmp);
+    rpg->quest.x = generic_save(str, &size_tmp);
+    rpg->quest.y = generic_save(str, &size_tmp);
+    rpg->level = generic_save(str, &size_tmp);
+    rpg->fps = generic_save(str, &size_tmp);
+    rpg->quest.tmp = generic_save(str, &size_tmp);
+    rpg->quest.scd_quest.nb_kills = generic_save(str, &size_tmp);
+    rpg->quest.scd_quest.nb_win = generic_save(str, &size_tmp);
+    rpg->fight->player.pos.x = generic_save(str, &size_tmp);
+    rpg->fight->player.pos.y = generic_save(str, &size_tmp);
+    rpg->fight->player.life = generic_save(str, &size_tmp);
+    get_str3(str, size_tmp, rpg, obj);
 }
 
 void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
@@ -186,16 +39,6 @@ void get_init(rpg_t *rpg, char *str, game_obj_t *obj)
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     sfSprite_setTextureRect(rpg->perspec.sprite, rpg->perspec.rect);
 }
-
-// int get_fd(char *str)
-// {
-//     fd = open(str, O_RDONLY);
-//     if (fd == 84)
-//         return (84);
-//     if (stat(str, &fileStat) < 0)
-//         return (84);
-//     return (0);
-// }
 
 int part_one_init_save(rpg_t *rpg, int *fd, struct stat *fileStat)
 {
@@ -240,13 +83,6 @@ int init_save(rpg_t *rpg, game_obj_t *obj)
         return (84);
     if (part_two_init_save(rpg, &fd, &fileStat) != 0)
         return (84);
-    // if (rpg->save == 3) {
-    //     fd = open("assets/save/Third", O_RDONLY);
-    //     if (fd == 84)
-    //         return (84);
-    //     if (stat("assets/save/Third", &fileStat) < 0)
-    //         return (84);
-    // }
     str = malloc(sizeof(char) * (fileStat.st_size));
     a = read(fd, str, fileStat.st_size);
     str[fileStat.st_size - 1] = '\0';

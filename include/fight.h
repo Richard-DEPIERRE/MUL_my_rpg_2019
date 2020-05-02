@@ -39,9 +39,10 @@ typedef struct player_fight_s
     sfTexture *player_texture;
     clock_s clock;
     clock_s clock2;
+    clock_s clocks;
     sfIntRect rect;
     sfVector2f pos;
-    int direct; //0 ne bouge pas, 1 monte, 2 monte à droite, 3 à droite, 4 descends à droite, 5 descends, 6 descends à gauche, 7 à gauche, 8 monte à gauche
+    int direct;
     int life;
     WEAPONS weapon;
 } player_fight_t;
@@ -83,10 +84,6 @@ typedef struct fight_s
     sfSprite *background;
     sfTexture *defaultt;
     sfIntRect rect;
-    // sfTexture *condom;
-    // sfTexture *corona;
-    // sfTexture *gel;
-    // sfTexture *boss;
     player_fight_t player;
     spell_t *spell;
     ennemies_t *enns;
@@ -96,13 +93,6 @@ typedef struct fight_s
     clock_R_t *clock;
     int max_enn;
     int nb_enn;
-    /*sfSound *snd_main_music;
-    sfSound *snd_fireball;
-    sfSound *snd_shield;
-    sfSound *snd_black_hole;
-    sfSound *snd_heal;
-    sfSound *snd_speed;
-    sfSound *snd_win_fight;*/
 }fight_t;
 
 typedef struct attack_s
