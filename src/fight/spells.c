@@ -21,7 +21,7 @@ void init_fireball_shield(spell_t *spell, spells_names_t type,  sfIntRect rect)
     spell->tmp = 0;
     spell->tmp2 = 0;
     if (type == FIREBALL) {
-        spell->damage = 100;
+        spell->damage = 2;
         spell->protection = 0;
         spell->sec = 1;
     }
