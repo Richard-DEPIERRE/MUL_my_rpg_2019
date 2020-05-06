@@ -15,7 +15,7 @@ Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le doss
 
 # Collaborater
 
-* Richard Habimana (Leader)
-* Alexandre Juan
-* Rafik Merzouk
-* Tom Seiguin
+* Richard Habimana (Leader) ![](images/rich.jpeg)
+* Alexandre Juan ![](images/juan.jpeg)
+* Rafik Merzouk ![](images/rafik.jpeg)
+* Tom Seiguin ![](images/tom.jpeg)
