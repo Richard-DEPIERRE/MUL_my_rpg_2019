@@ -15,14 +15,11 @@ Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le doss
 
 # Collaborater
 
-<img align="right" width="100" height="100" src="images/rich.jpeg">
 * Richard Habimana (Leader)
-
-<img align="right" width="100" height="100" src="images/juan.jpeg">
 * Alexandre Juan
-
-<img align="right" width="100" height="100" src="images/rafik.jpeg">
 * Rafik Merzouk
-
-<img align="right" width="100" height="100" src="images/tom.jpeg">
 * Tom Seiguin
+<img align="right" width="100" height="100" src="images/rich.jpeg">
+<img align="right" width="100" height="100" src="images/juan.jpeg">
+<img align="right" width="100" height="100" src="images/rafik.jpeg">
+<img align="right" width="100" height="100" src="images/tom.jpeg">
