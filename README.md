@@ -27,9 +27,9 @@ Download [Windows version](Windows/exe%20rpg%202) ! (download all folder and exe
 
 # Gameplay
 
-![](images/gameplay1.png)
+![](images/gamplay2.gif)
 
-![](images/gameplay2.png)
+![](images/gameplay1.gif)
 
 # Collaboraters
 
