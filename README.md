@@ -13,11 +13,11 @@ This is a project that was made during our first year at Epitech Montpellier. It
 
 To play the game on **MacOS** go in the **Linux_MacOS** directory and then launch the game with **./my_rpg_mac**.
 
-Download [Mac OS version](Linux_MacOS/my_rpg_mac) !
+Download [Mac OS version](Linux_MacOS) !
 
 To play the game on **Linux** go in the **Linux_MacOS** directory and then launch the game with **./my_rpg_linux**.
 
-Download [Linux version](Linux_MacOS/my_rpg_linux) !
+Download [Linux version](Linux_MacOS) !
 
 To play the game on **Windows** go in the **Windows** directory then go to the **exe rpg 2** directory and finally launch the game with **rpg.exe**.
 
