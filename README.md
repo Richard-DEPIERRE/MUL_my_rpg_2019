@@ -61,4 +61,5 @@ Download [Windows version](Windows/exe%20rpg%202) ! (download all folder and exe
 
 # CREDITS
 
-City tile set : **"Kenney.nl"**
+**Kenney.nl :**
+[City tile set](https://www.kenney.nl/assets/rpg-urban-pack)
