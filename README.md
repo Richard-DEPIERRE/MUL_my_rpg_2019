@@ -15,7 +15,28 @@ To launch the game on **Windows** go in the **Windows** directory then go in the
 
 # Collaboraters
 
-* Richard Habimana (Leader) ![](images/rich.jpeg)
-* Alexandre Juan ![](images/juan.jpeg)
-* Rafik Merzouk ![](images/rafik.jpeg)
-* Tom Seiguin ![](images/tom.jpeg)
+---
+
+## Richard Habimana
+<img align="right" width="100" height="100" src="images/rich.jpeg">
+Richard Habimana
+
+---
+
+## Alexandre Juan
+<img align="right" width="100" height="100" src="images/juan.jpeg">
+Alexandre Juan
+
+---
+
+## Rafik Merzouk
+<img align="right" width="100" height="100" src="images/rafik.jpeg">
+Rafil Merzouk
+
+---
+
+## Tom Seiguin
+<img align="right" width="100" height="100" src="images/tom.jpeg">
+Tom Seiguin
+
+---
