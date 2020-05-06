@@ -11,7 +11,7 @@ Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le doss
 
 ![](images/windows-mac-os-linux.png)
 
-# Collaborater
+# Collaboraters
 
 * Richard Habimana (Leader)
 * Alexandre Juan
