@@ -11,9 +11,9 @@ Pour lancer sur **Linux** allez dans le fichier **Linux_MacOS** et lancer le jeu
 
 Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le dossier **exe rpg 2** et finalement vous pouvez lancer **rpg.exe**.
 
-![](images/apple.png)  ![](images/Linux_icon.png)  ![](images/windows.png)  
+![](images/windows-mac-os-linux.png)
 
-# Collaboraters
+# Collaborater
 
 * Richard Habimana (Leader)
 * Alexandre Juan
