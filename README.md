@@ -11,7 +11,19 @@ Pour lancer sur **Linux** allez dans le fichier **Linux_MacOS** et lancer le jeu
 
 Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le dossier **exe rpg 2** et finalement vous pouvez lancer **rpg.exe**.
 
+Download Mac OS version: [rpg](Linux_MacOS/my_rpg_mac) !
+
+Download Linux version : [rpg](Linux_MacOS/my_rpg_linux) !
+
+Download Windows version : [rpg](Windows/exe%20rpg%202) ! (download all folder and execute rpg.exe in the folder)
+
 ![](images/windows-mac-os-linux.png)
+
+# Gameplay
+
+![](images/gameplay1.png)
+
+![](images/gameplay2.png)
 
 # Collaboraters
 
