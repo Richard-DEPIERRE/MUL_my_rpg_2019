@@ -13,7 +13,7 @@ Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le doss
 
 ![](images/apple.png)  ![](images/Linux_icon.png)  ![](images/windows.png)  
 
-# Collaborater
+# Collaboraters
 
 * Richard Habimana (Leader)
 * Alexandre Juan
