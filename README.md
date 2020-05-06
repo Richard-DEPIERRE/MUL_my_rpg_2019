@@ -1,19 +1,19 @@
 # MUL_my_rpg_2019
-Notre RPG tek1 :computer:
+Our RPG tek1 :computer:
 
 ![](images/main.gif)
 
 # Plateforms
 
-Pour lancer sur **MacOS** allez dans le fichier **Linux_MacOS** et lancer le jeu avec **./my_rpg_mac**.
+To launch the game on **MacOS** go in the **Linux_MacOS** directory and lauch **./my_rpg_mac**.
 
-Pour lancer sur **Linux** allez dans le fichier **Linux_MacOS** et lancer le jeu avec **./my_rpg_linux**.
+To launch the game on **Linux** go in the **Linux_MacOS** directory and lauch **./my_rpg_linux**.
 
-Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le dossier **exe rpg 2** et finalement vous pouvez lancer **rpg.exe**.
+To launch the game on **Windows** go in the **Windows** directory then go in the **exe rpg 2** directory and lauch **rpg.exe**.
 
 ![](images/windows-mac-os-linux.png)
 
-# Collaborater
+# Collaboraters
 
 * Richard Habimana (Leader) ![](images/rich.jpeg)
 * Alexandre Juan ![](images/juan.jpeg)
