@@ -1,6 +1,10 @@
 # MUL_my_rpg_2019
 SIDONA (RPG) :computer:
 
+![](Linux_MacOS/assets/sprites/menu/logo.png)
+
+This is a project that was made during our first year at Epitech Montpellier. It is an RPG with a main quest and little side quests on the side. We made most of the sprites ouselves and coded everything using only the CSFML library. We are very happy to release this to the public. If you have any suggestions please put them in Issues so that we can maybe add, remove or fix anything that does not work. Thank you very much.
+
 ![](images/main.gif)
 
 # Plateforms
@@ -52,3 +56,7 @@ Download [Windows version](Windows/exe%20rpg%202) ! (download all folder and exe
 [Github](https://github.com/TomSgn)
 
 ---
+
+# CREDITS
+
+City tile set : **"Kenney.nl"**
