@@ -1,19 +1,19 @@
 # MUL_my_rpg_2019
-Notre RPG tek1 :computer:
+SIDONA (RPG) :computer:
 
 ![](images/main.gif)
 
 # Plateforms
 
-Pour lancer sur **MacOS** allez dans le fichier **Linux_MacOS** et lancer le jeu avec **./my_rpg_mac**.
-
-Pour lancer sur **Linux** allez dans le fichier **Linux_MacOS** et lancer le jeu avec **./my_rpg_linux**.
-
-Pour lancer sur **Windows**, allez dans le dossier **Windows** puis dans le dossier **exe rpg 2** et finalement vous pouvez lancer **rpg.exe**.
+To play the game on **MacOS** go in the **Linux_MacOS** directory and then launch the game with **./my_rpg_mac**.
 
 Download Mac OS version: [rpg](Linux_MacOS/my_rpg_mac) !
 
+To play the game on **Linux** go in the **Linux_MacOS** directory and then launch the game with **./my_rpg_linux**.
+
 Download Linux version : [rpg](Linux_MacOS/my_rpg_linux) !
+
+To play the game on **Windows** go in the **Windows** directory then go to the **exe rpg 2** directory and finally launch the game with **rpg.exe**.
 
 Download Windows version : [rpg](Windows/exe%20rpg%202) ! (download all folder and execute rpg.exe in the folder)
 
