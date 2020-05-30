@@ -19,7 +19,7 @@ To play the game on **Linux** go in the **Linux_MacOS** directory and then launc
 
 Download [Linux version](Linux_MacOS) !
 
-To play the game on **Windows** go in the **Windows** directory then go to the **exe rpg 2** directory and finally launch the game with **rpg.exe**.
+To play the game on **Windows** go in the **Windows** directory then go to the **exe rpg 2** directory. First install the **oalinst.exe** to be be able to get music in the game and finally launch the game with **rpg.exe** inside de **exe rpg 2** directory.
 
 Download [Windows version](Windows/exe%20rpg%202) ! (download all folder and execute rpg.exe in the folder)
 
