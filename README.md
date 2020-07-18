@@ -9,6 +9,10 @@ This is a project that was made during our first year at Epitech Montpellier. It
 
 ![](images/main.gif)
 
+# Website
+
+**[Discover our Sidona Website Now!](http://sidona.ml)**
+
 # Plateforms
 
 To play the game on **MacOS** go in the **Linux_MacOS** directory and then launch the game with **./my_rpg_mac**.
