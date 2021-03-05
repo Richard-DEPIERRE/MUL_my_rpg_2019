@@ -9,7 +9,7 @@ This is a project that was made during our first year at Epitech Montpellier. It
 
 ![](images/main.gif)
 
-# Website
+# Website 
 
 **[Discover our Sidona Website Now!](http://sidona.ml)**
 
